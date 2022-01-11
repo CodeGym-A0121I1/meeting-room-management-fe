@@ -1,1 +1,21 @@
-<p>update-equipment works!</p>
+<h1 mat-dialog-title style="color: red">Do you want to delete?</h1>
+
+<mat-dialog-content>
+
+    <ul>
+      <li>Id: {{equipment.id}}</li>
+      <li>Name: {{equipment.name}}</li>
+      <li>Trạng thái:
+      <select #element (change)="changeStatus(element.value)">
+        <option *ngFor="let status of statusList" [selected]="status == equipment.status" [value]="status">{{status}}</option>
+      </select>
+      </li>
+    </ul>
+
+<p>{{statusList}}</p>
+    <div class="button-submit">
+      <button mat-raised-button mat-dialog-close style="margin-right: 8px;">Đóng</button>
+      <button mat-raised-button color="primary" (click)="update()">Update</button>
+    </div>
+
+</mat-dialog-content>
