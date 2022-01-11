@@ -12,7 +12,7 @@ export class EquipmentService {
   URL_API_CATEGORY = "http://localhost:8080/api/categories"
   httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MTk0MzMxNCwiaWF0IjoxNjQxOTA3MzE0fQ.R1TNHwFdI6b7zdLJ1EHsmFFSJIy5FEW96zlgO9AMg6ZjcJW3iCDVOY8-JpixFcw5fdMc3gqIryPr7Khri8nU2Q"
+      'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MTk3MDY1NCwiaWF0IjoxNjQxOTM0NjU0fQ.UVB_HRSFVyE4Kl_sfVq0DT2_I_LzY6QJaTiHqhbZQMNw2gpE1eHi8er-QPBpWrL9Pveb1ubloR1ef2q-OupX6A"
     })
   }
 
@@ -31,7 +31,7 @@ export class EquipmentService {
     return this.httpClient.get<IEquipment[]>(this.URL_API_EQUIPMENT + '/' + idCategory + '/' + nameEquipmentSearch, this.httpOptions);
   }
 
-  updateStatusEquipment(idEquipment: string, status: any): Observable<void>{
+  updateStatusEquipment(idEquipment: string, status: IEquipment): Observable<void>{
     return this.httpClient.put<void>(this.URL_API_EQUIPMENT + '/' + idEquipment , status, this.httpOptions);
   }
 }

@@ -6,6 +6,6 @@ export interface IEquipment {
   description: string;
   price: string;
   image: string;
-  status: string;
+  status: any;
   category: ICategory
 }

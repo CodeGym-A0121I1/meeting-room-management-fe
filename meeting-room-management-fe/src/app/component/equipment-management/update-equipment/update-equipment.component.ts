@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {IEquipment} from "../../../models/equipment/IEquipment";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ListEquipmentComponent} from "../list-equipment/list-equipment.component";
@@ -12,9 +12,8 @@ import {EquipmentService} from "../../../service/equipment.service";
 })
 export class UpdateEquipmentComponent implements OnInit {
 
-  statusList : string[] = ['FIXING','AVAILABLE','USING'];
-
-  status: any;
+  status: string | any;
+  statusList: string[][] = [['FIXING','Đang sửa'],['USING','Đang sử dụng'],['AVAILABLE','Khả dụng']];
 
   constructor(@Inject(MAT_DIALOG_DATA) public equipment: IEquipment,
               private snackbar: MatSnackBar,
@@ -31,17 +30,18 @@ export class UpdateEquipmentComponent implements OnInit {
   }
 
   update() {
-    console.log("sdkad")
-    if (this.status === '') {
+    if (this.status == this.equipment.status || this.status === undefined) {
       this.snackbar.open('Trạng thái của ' + this.equipment.name + ' chưa được thay đổi !', 'Đóng', {
         duration: 3000
       });
       this.dialog.close();
     } else {
-      this.equipmentService.updateStatusEquipment(this.equipment.id, this.status).subscribe(
+      this.equipment.status = this.status;
+      this.equipmentService.updateStatusEquipment(this.equipment.id, this.equipment).subscribe(
         () => {
           this.snackbar.open('Trạng thái của ' + this.equipment.name + ' đã được thay đổi thành ' + this.status, 'Đóng', {
-            duration: 3000
+            duration: 3000,
+            panelClass: ['mat-toolbar', 'mat-primary']
           });
           this.dialog.close();
         }

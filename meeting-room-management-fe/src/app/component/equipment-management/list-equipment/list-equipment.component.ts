@@ -16,8 +16,7 @@ export class ListEquipmentComponent implements OnInit {
 
   equipmentList: IEquipment[] | any;
   idCategory: number | any;
-  // p: any; paginate
-  paginate: any;
+  // p: any;
 
   constructor(private equipmentService: EquipmentService,
               private activatedRoute: ActivatedRoute,
@@ -63,9 +62,8 @@ export class ListEquipmentComponent implements OnInit {
 
   openDialogEdit(equipment: IEquipment) {
     const dialog = this.matDialog.open(UpdateEquipmentComponent, {
-      width: '400px',
+      width: '600px',
       data: equipment,
-      disableClose: true
     });
     dialog.afterClosed().subscribe(() => {
       this.ngOnInit();
