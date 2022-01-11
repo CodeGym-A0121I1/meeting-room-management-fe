@@ -5,8 +5,7 @@ import {ListEquipmentComponent} from "../component/equipment-management/list-equ
 import {ListEquipmentCategoryComponent} from "../component/equipment-management/list-equipment-category/list-equipment-category.component";
 
 const routes: Routes = [
-      {path: "equipments" , component: ListEquipmentCategoryComponent}
-
+      {path: "" , component: ListEquipmentCategoryComponent}
 ];
 
 @NgModule({

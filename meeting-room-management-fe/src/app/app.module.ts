@@ -38,7 +38,7 @@ import {EquipmentManagementModule} from "./component/equipment-management/equipm
     RoomManagementModule,
     EquipmentManagementModule
   ],
-  providers: [EquipmentService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
