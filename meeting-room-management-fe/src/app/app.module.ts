@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -27,8 +27,9 @@ import {NgxPaginationModule} from "ngx-pagination";
     // MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule,MatSnackBarModule
-    ,NgxPaginationModule
+    MatInputModule,
+    MatSnackBarModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
