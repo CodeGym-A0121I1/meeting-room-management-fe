@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ICategoryDto} from "../../../models/ICategoryDto";
+import {ICategoryDto} from "../../../models/equipment/ICategoryDto";
 import {EquipmentService} from "../../../service/equipment.service";
 import {data} from "jquery";
 
