@@ -1,1 +1,39 @@
-<p>list-equipment-category works!</p>
+<h3>Danh sách tài sản</h3>
+
+<div style="text-align: center">
+  <input type="text" placeholder="Tên loại tài sản">
+  <button type="submit" class="btn btn-outline-primary" style="margin-left: 8px">Tìm kiếm</button>
+</div>
+<br>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered text-center">
+    <thead>
+    <tr>
+      <th>Stt</th>
+      <th>Loại</th>
+      <tH>Tổng số lượng</tH>
+      <th>Đang sử dụng</th>
+      <th>Đang sửa</th>
+      <th>Khả dụng</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let list of categoryDtoList; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{list.nameCategory}}</td>
+      <td>{{list.using + list.fixing + list.available}}</td>
+      <td>{{list.using}}</td>
+      <td>{{list.fixing}}</td>
+      <td>{{list.available}}</td>
+      <td>
+        <a [routerLink]="['list-equipment/', list.idCategory]" class="detailButton">
+          <i class="fa fa-floppy-o"></i>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+</div>
