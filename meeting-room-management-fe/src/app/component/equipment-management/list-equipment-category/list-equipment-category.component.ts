@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ICategoryDto} from "../../../models/equipment/ICategoryDto";
 import {EquipmentService} from "../../../service/equipment.service";
-import {data} from "jquery";
 
 @Component({
   selector: 'app-list-equipment-category',
@@ -17,9 +16,6 @@ export class ListEquipmentCategoryComponent implements OnInit {
 
   ngOnInit(): void{
     this.equipmentService.getAllCategoryQuantityStatusDto().subscribe(
-      (data) => {this.categoryDtoList = data;
-        console.log(this.categoryDtoList)}
-    );
+      (data) => {this.categoryDtoList = data});
   }
-
 }
