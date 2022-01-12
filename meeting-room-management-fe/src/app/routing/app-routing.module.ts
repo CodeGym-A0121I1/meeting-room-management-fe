@@ -3,7 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import {FeedbackManagementModule} from "../component/feedback-management/feedback-management.module";
 
 const routes: Routes = [
-  {path: "feedback", component: FeedbackManagementModule, children:[]}
+  {
+    path: 'feedback',
+    redirectTo: 'feedback',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
