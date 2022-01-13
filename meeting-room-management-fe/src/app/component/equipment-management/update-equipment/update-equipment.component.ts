@@ -37,7 +37,8 @@ export class UpdateEquipmentComponent implements OnInit {
       this.dialog.close();
     } else {
       this.equipment.status = this.status;
-      this.equipmentService.updateStatusEquipment(this.equipment.id, this.equipment).subscribe(
+      // this.equipmentService.updateStatusEquipment(this.equipment.id, this.equipment).subscribe(
+      this.equipmentService.updateStatusEquipment(this.equipment.id, "FIXING").subscribe(
         () => {
           this.snackbar.open('Trạng thái của ' + this.equipment.name + ' đã được thay đổi thành ' + this.status, 'Đóng', {
             duration: 3000,

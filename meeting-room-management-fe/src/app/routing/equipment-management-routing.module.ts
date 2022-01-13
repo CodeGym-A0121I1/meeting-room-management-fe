@@ -4,7 +4,7 @@ import {ListEquipmentComponent} from "../component/equipment-management/list-equ
 
 const routes: Routes = [
   {path: "equipment", children: [
-      {path: "", component: ListEquipmentComponent}
+      {path: ":idCategory", component: ListEquipmentComponent}
     ]}
 ];
 
