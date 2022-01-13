@@ -7,6 +7,13 @@ import {UpdateRoomComponent} from './update-room/update-room.component';
 import {DetailRoomComponent} from './detail-room/detail-room.component';
 import {CreateRoomComponent} from './create-room/create-room.component';
 import {DeleteRoomComponent} from './delete-room/delete-room.component';
+// import {AngularFireModule} from "@angular/fire";
+import { environment } from './environment/environment';
+import {AngularFireModule} from "@angular/fire/compat";
+import {ReactiveFormsModule} from "@angular/forms";
+// import {environment} from "../../../environments/environment";
+// import {AngularFireModule} from '@angular/fire';
+
 
 
 @NgModule({
@@ -15,12 +22,15 @@ import {DeleteRoomComponent} from './delete-room/delete-room.component';
     UpdateRoomComponent,
     DetailRoomComponent,
     CreateRoomComponent,
-    DeleteRoomComponent
+    DeleteRoomComponent,
+
   ],
-  imports: [
-    CommonModule,
-    RoomManagementRoutingModule
-  ],exports:[CreateRoomComponent,
+    imports: [
+        CommonModule,
+        RoomManagementRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        ReactiveFormsModule
+    ],exports:[CreateRoomComponent,
   DeleteRoomComponent,
     DetailRoomComponent,
     ListRoomComponent,
