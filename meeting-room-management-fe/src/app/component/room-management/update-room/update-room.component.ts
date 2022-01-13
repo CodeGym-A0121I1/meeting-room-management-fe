@@ -85,7 +85,7 @@ isChange:boolean=false;
 
     // console.log(this.selectedImage.name);
     if(this.isChange==true){
-
+//hihi
       const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
       const fileRef = this.storage.ref(nameImg);
       this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
