@@ -6,6 +6,7 @@ import {ListUserComponent} from './list-user/list-user.component';
 import {ChangePasswordUserComponent} from './change-password-user/change-password-user.component';
 import {CreateUserComponent} from './create-user/create-user.component';
 import {UpdateUserComponent} from './update-user/update-user.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -15,10 +16,11 @@ import {UpdateUserComponent} from './update-user/update-user.component';
     CreateUserComponent,
     UpdateUserComponent
   ],
-  imports: [
-    CommonModule,
-    UserManagementRoutingModule
-  ],exports:[
+    imports: [
+        CommonModule,
+        UserManagementRoutingModule,
+        NgxPaginationModule
+    ],exports:[
     CreateUserComponent,
     ListUserComponent,
     UpdateUserComponent,

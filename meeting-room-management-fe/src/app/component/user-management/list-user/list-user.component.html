@@ -1,1 +1,72 @@
-<p>list-user works!</p>
+<h2 align="center">Quản lý tài khoản</h2>
+<form class="form-group">
+  <div class="header">
+    <div class="row row-cols-lg-7">
+      <div class="col-sm">
+        <a class="btn btn-primary form-group" [routerLink]="" role="button">Thêm tài khoản</a>
+      </div>
+
+      <label class="col-form-label ">Tên đăng nhập</label>
+
+      <div class="col-sm">
+        <input type="text" class="form-control" placeholder="Tên đăng nhập">
+      </div>
+      <div class="col-sm">
+        <select class="custom-select">
+          <option selected hidden>Quyền</option>
+          <option value="1">Admin</option>
+          <option value="2">User</option>
+        </select>
+      </div>
+
+      <label class="col-form-label">Họ và tên</label>
+
+      <div class="col-sm">
+        <input type="text" class="form-control" placeholder="Họ và tên">
+      </div>
+      <div class="col-sm">
+        <select class="custom-select">
+          <option selected hidden>Bộ phận</option>
+          <option value="1">Giám đốc công ty</option>
+          <option value="2">Quản lý team A</option>
+          <option value="3">Quản lý team B</option>
+        </select>
+      </div>
+      <div class="col">
+        <input class="btn btn-outline-primary" type="submit" value="Tìm kiếm">
+      </div>
+    </div>
+  </div>
+</form>
+<table class="table table-striped table-hover table-bordered">
+  <thead align="center">
+  <tr>
+    <th>ID</th>
+    <th>Tên đăng nhập</th>
+    <th>Quyền</th>
+    <th>Họ và tên</th>
+    <th>Bộ phận</th>
+    <th>Sửa</th>
+    <th>Xóa</th>
+  </tr>
+  </thead>
+  <tbody align="center">
+  <tr *ngFor="let user of userList | paginate :{itemsPerPage:1 ,currentPage : p}">
+    <td>{{user.id}}</td>
+    <td>{{user.account.username}}</td>
+    <td>{{user.account.role}}</td>
+    <td>{{user.fullName}}</td>
+    <td>{{user.department.name}}</td>
+    <td>
+      <i  [routerLink]="" class="bi bi-pencil-square"></i>
+    </td>
+    <td>
+      <i (click)="openDialogDelete(user.id)" class="bi bi-trash"></i>
+    </td>
+  </tr>
+  </tbody>
+
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+

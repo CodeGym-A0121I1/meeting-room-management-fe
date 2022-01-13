@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {UserService} from "../../../service/user.service";
 
 @Component({
   selector: 'app-list-user',
@@ -7,9 +9,23 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ListUserComponent implements OnInit {
 
-  constructor() { }
+  userList: any;
+  p: any;
 
-  ngOnInit(): void {
+  constructor(
+    private userService: UserService
+  ) {
   }
 
+  ngOnInit(): void {
+    this.userService.getAllUser().subscribe(
+      (data : any) => {
+        this.userList = data
+      }
+    )
+  }
+
+  openDialogDelete(id: any) {
+    
+  }
 }

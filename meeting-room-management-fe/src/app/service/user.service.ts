@@ -19,4 +19,7 @@ export class UserService {
   ) {
   }
 
+  getAllUser(): Observable<any>{
+    return this.httpClient.get<any>(this.URL_API ,this.httpOptions)
+  }
 }
