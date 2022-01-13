@@ -7,6 +7,7 @@ import {ChangePasswordUserComponent} from './change-password-user/change-passwor
 import {CreateUserComponent} from './create-user/create-user.component';
 import {UpdateUserComponent} from './update-user/update-user.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     imports: [
         CommonModule,
         UserManagementRoutingModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        ReactiveFormsModule
     ],exports:[
     CreateUserComponent,
     ListUserComponent,
