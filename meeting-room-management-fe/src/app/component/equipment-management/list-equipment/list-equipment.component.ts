@@ -16,7 +16,7 @@ export class ListEquipmentComponent implements OnInit {
 
   equipmentList: IEquipment[] | any;
   idCategory: number | any;
-  // p: any;
+  p: any;
 
   constructor(private equipmentService: EquipmentService,
               private activatedRoute: ActivatedRoute,
@@ -50,8 +50,7 @@ export class ListEquipmentComponent implements OnInit {
                 panelClass: ['mat-toolbar', 'mat-warn'],
                 duration: 3000
               });
-              // paginate
-              // this.p = 1;
+              this.p = 1;
               this.ngOnInit();
             }
           );
@@ -98,8 +97,7 @@ export class ListEquipmentComponent implements OnInit {
         }
       );
     }
-    // paginate
-    // this.p = 1;
+    this.p = 1;
   }
 
 }

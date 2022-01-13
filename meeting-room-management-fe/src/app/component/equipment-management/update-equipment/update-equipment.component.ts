@@ -13,13 +13,13 @@ import {EquipmentService} from "../../../service/equipment.service";
 export class UpdateEquipmentComponent implements OnInit {
 
   status: string | any;
-  statusList: string[][] = [['FIXING','Đang sửa'],['USING','Đang sử dụng'],['AVAILABLE','Khả dụng']];
+  statusList: string[][] = [['FIXING', 'Đang sửa'], ['USING', 'Đang sử dụng'], ['AVAILABLE', 'Khả dụng']];
 
   constructor(@Inject(MAT_DIALOG_DATA) public equipment: IEquipment,
               private snackbar: MatSnackBar,
               private dialog: MatDialogRef<ListEquipmentComponent>,
-              private equipmentService: EquipmentService) {}
-
+              private equipmentService: EquipmentService) {
+  }
 
 
   ngOnInit(): void {
@@ -34,11 +34,9 @@ export class UpdateEquipmentComponent implements OnInit {
       this.snackbar.open('Trạng thái của ' + this.equipment.name + ' chưa được thay đổi !', 'Đóng', {
         duration: 3000
       });
-      this.dialog.close();
     } else {
       this.equipment.status = this.status;
-      // this.equipmentService.updateStatusEquipment(this.equipment.id, this.equipment).subscribe(
-      this.equipmentService.updateStatusEquipment(this.equipment.id, "FIXING").subscribe(
+      this.equipmentService.updateStatusEquipment(this.equipment).subscribe(
         () => {
           this.snackbar.open('Trạng thái của ' + this.equipment.name + ' đã được thay đổi thành ' + this.status, 'Đóng', {
             duration: 3000,
