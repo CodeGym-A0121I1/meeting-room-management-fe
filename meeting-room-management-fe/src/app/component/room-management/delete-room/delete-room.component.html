@@ -1,1 +1,7 @@
-<p>delete-room works!</p>
+<h3>Confirm Remove</h3>
+<hr>
+<p>Do you want delete room <span class="text-danger">{{room.name}}</span> ?</p>
+<div class="row d-flex justify-content-end">
+  <button class="btn btn-danger mr-3" (click)="deleteConfirm()">Delete</button>
+  <button mat-dialog-close class="btn btn-warning mr-3">Close</button>
+</div>
