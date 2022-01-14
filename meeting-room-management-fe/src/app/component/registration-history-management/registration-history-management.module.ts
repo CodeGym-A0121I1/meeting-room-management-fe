@@ -12,6 +12,7 @@ import {DeleteRegistrationHistoryComponent} from './delete-registration-history/
 import {SigupRoomComponent} from './sigup-room/sigup-room.component';
 import {CancelSignroomComponent} from './cancel-signroom/cancel-signroom.component';
 import {StatisticsOfTimesComponent} from './statistics-of-times/statistics-of-times.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -27,10 +28,11 @@ import {StatisticsOfTimesComponent} from './statistics-of-times/statistics-of-ti
     CancelSignroomComponent,
     StatisticsOfTimesComponent
   ],
-  imports: [
-    CommonModule,
-    RegistrationHistoryManagementRoutingModule
-  ],exports:[StatisticRoomFormComponent,
+    imports: [
+        CommonModule,
+        RegistrationHistoryManagementRoutingModule,
+        NgxPaginationModule
+    ],exports:[StatisticRoomFormComponent,
     StatisticsTimeFormComponent,
     StatisticsRoomTableComponent,
     StatisticsTimeTableComponent,
