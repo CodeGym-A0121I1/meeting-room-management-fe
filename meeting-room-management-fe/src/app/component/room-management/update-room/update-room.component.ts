@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {RoomService} from "../../../service/room.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs/operators";
 import {formatDate} from "@angular/common";
@@ -27,6 +27,7 @@ export class UpdateRoomComponent implements OnInit {
   areas!: any[] ;
   floors!: any[] ;
   roomTypes!: any[] ;
+  equipList!: any[] ;
 
   ngOnInit(): void {
 
@@ -40,7 +41,16 @@ export class UpdateRoomComponent implements OnInit {
         area: ['', Validators.required],
         floor: ['', Validators.required],
         roomType: ['', Validators.required]
-
+  //       equipmentList:this.fb.array([
+  //])
+        //
+        // new FormControl({'id','name'}
+        // ),
+        // new FormControl('name'),
+        // new FormControl('description'),
+        // new FormControl('price'),
+        // new FormControl('image'),
+        // new FormControl('status')
       })
     this.service.getAllAreas().subscribe(data => (
       this.areas = data
@@ -52,6 +62,8 @@ export class UpdateRoomComponent implements OnInit {
       this.roomTypes = data
     ));
     this.service.getById(this.activatedRoute.snapshot.params['id']).subscribe(data => {
+      console.log(data)
+      this.equipList=data.equipmentList;
       this.updateRoom.setValue({
           id: data.id,
           name: data.name,
@@ -66,13 +78,10 @@ export class UpdateRoomComponent implements OnInit {
       console.log(this.updateRoom.value)
     })
   }
+ addEquipment():Array<any>{
+    return this.updateRoom.get("equipmentList") as unknown as Array<any>;
+ }
 
-  // onUpdate() {
-  //   this.service.updateRoom(this.updateRoom.value,this.activatedRoute.snapshot.params['id']).subscribe(()=>{
-  //     this.snackBar.open("Bạn đã cập nhật thành công","Ok");
-  //     this.route.navigateByUrl("/employee");
-  //   })
-  // }
 isChange:boolean=false;
   showPreview(event: any) {
     this.selectedImage = event.target.files[0];
