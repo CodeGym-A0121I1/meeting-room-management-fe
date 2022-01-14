@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginService} from "../../../service/login.service";
 import {AuthService} from "../../../service/auth.service";
 
@@ -11,8 +11,8 @@ import {AuthService} from "../../../service/auth.service";
 export class LoginComponent implements OnInit {
   status = "";
   loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
+    username: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required])
   })
   constructor(
     private loginService:LoginService,
@@ -26,14 +26,14 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.loginForm.value).subscribe(
       (data:any)=>{
-        if(data){
           this.authService.setToken(data.jwtToken);
           this.authService.setRole(data.account.role);
-        }
-          this.status="Username or password was wrong"
-
-
-      }
+      },
+    ()=>{
+        this.status="Username or password was wrong"
+    }
     )
   }
+  get username() { return this.loginForm.get('username')!; }
+  get password() { return this.loginForm.get('password')!; }
 }
