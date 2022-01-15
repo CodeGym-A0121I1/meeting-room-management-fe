@@ -13,11 +13,18 @@ export class DetailRoomComponent implements OnInit {
     ,private activatedRoute:ActivatedRoute) { }
   room:any;
   errors: string ='';
+  countRoom!:any;
   ngOnInit(): void {
     this.roomServie.getRoomById(this.activatedRoute.snapshot.params['id']).subscribe(data=>{
-        console.log(data);
-        this.room=data;
-      },error =>  this.errors="Không tìm thấy"
+      console.log(data.name);
+      this.room=data;
+      console.log(this.room.id)
+      this.roomServie.getCountStaticByRoom(this.room.id).subscribe(data=>{
+        this.countRoom=data;
+        console.log(this.countRoom)
+      })
+
+      },error =>  this.errors=error
     )
   }
 
