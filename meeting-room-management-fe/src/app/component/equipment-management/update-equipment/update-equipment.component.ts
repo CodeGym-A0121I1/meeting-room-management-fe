@@ -4,16 +4,20 @@ import {IEquipment} from "../../../models/equipment/IEquipment";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ListEquipmentComponent} from "../list-equipment/list-equipment.component";
 import {EquipmentService} from "../../../service/equipment.service";
+import {EStatus} from "../../../models/EStatus";
 
 @Component({
   selector: 'app-update-equipment',
   templateUrl: './update-equipment.component.html',
   styleUrls: ['./update-equipment.component.css']
 })
+
 export class UpdateEquipmentComponent implements OnInit {
 
-  status: string | any;
-  statusList: string[][] = [['FIXING', 'Đang sửa'], ['USING', 'Đang sử dụng'], ['AVAILABLE', 'Khả dụng']];
+  status: string[] | any;
+  statusArr: string[][] = [['FIXING', 'Đang sửa'], ['USING', 'Đang sử dụng'], ['AVAILABLE', 'Khả dụng']];
+
+  eStatus = EStatus;
 
   constructor(@Inject(MAT_DIALOG_DATA) public equipment: IEquipment,
               private snackbar: MatSnackBar,
@@ -22,23 +26,32 @@ export class UpdateEquipmentComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   changeStatus(status: string) {
-    this.status = status;
+    this.status = status.split(',');
   }
 
+  getNameStatus(status: string){
+    for (let s of this.statusArr) {
+      if (s[0] === status) {
+        return s[1];
+      }
+    }
+    return null;
+  };
+
   update() {
-    if (this.status == this.equipment.status || this.status === undefined) {
-      this.snackbar.open('Trạng thái của ' + this.equipment.name + ' chưa được thay đổi !', 'Đóng', {
+    console.log(this.status)
+    if (this.status == undefined || this.status[0] == this.equipment.status) {
+      this.snackbar.open('Trạng thái ' + this.getNameStatus(this.equipment.status) +' của ' + this.equipment.name + ' chưa được thay đổi !', 'Đóng', {
         duration: 3000
       });
     } else {
-      this.equipment.status = this.status;
-      this.equipmentService.updateStatusEquipment(this.equipment).subscribe(
+      // this.equipment.status = this.status;
+      this.equipmentService.updateStatusEquipment(this.equipment.id, this.status[0]).subscribe(
         () => {
-          this.snackbar.open('Trạng thái của ' + this.equipment.name + ' đã được thay đổi thành ' + this.status, 'Đóng', {
+          this.snackbar.open('Trạng thái ' + this.getNameStatus(this.equipment.status) +' của ' + this.equipment.name + ' đã được thay đổi thành ' + this.status[0], 'Đóng', {
             duration: 3000,
             panelClass: ['mat-toolbar', 'mat-primary']
           });

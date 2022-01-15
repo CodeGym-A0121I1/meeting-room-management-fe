@@ -12,7 +12,7 @@ export class EquipmentService {
   URL_API_CATEGORY = "http://localhost:8080/api/categories"
 
   headers = new HttpHeaders({
-    'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MjEyMDQwOSwiaWF0IjoxNjQyMDg0NDA5fQ.NrFx4pcI8fcOWJj4hUjjR4LS5kLZkO7OxvPwfFtH52CernY7FjpYjIJ59K8XIZM_vjR8OQt3kybQRwed2jKIpQ"
+    'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MjI5NDA5NiwiaWF0IjoxNjQyMjU4MDk2fQ.gxM4HumGkMyVhn0xneKg1ej4JGjOtvF1FLCo_2KYmM0_vy6TSj1EqlTOwJAdywsLlVNSk71LSfwLQtHlI6SPjg"
   })
 
 
@@ -31,7 +31,7 @@ export class EquipmentService {
     return this.httpClient.get<IEquipment[]>(this.URL_API_EQUIPMENT + '/' + idCategory + '/' + nameEquipmentSearch, {headers: this.headers});
   }
 
-  updateStatusEquipment(equipemnt: IEquipment): Observable<void> {
-    return this.httpClient.put<void>(this.URL_API_EQUIPMENT + '/' + equipemnt.id, equipemnt, {headers: this.headers});
+  updateStatusEquipment(id: string, status: string): Observable<void> {
+    return this.httpClient.put<void>(this.URL_API_EQUIPMENT + '/' + id, status, {headers: this.headers});
   }
 }

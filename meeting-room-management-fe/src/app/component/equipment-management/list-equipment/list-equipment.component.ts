@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DeleteEquipmentComponent} from "../delete-equipment/delete-equipment.component";
 import {UpdateEquipmentComponent} from "../update-equipment/update-equipment.component";
+import {EStatus} from "../../../models/EStatus";
 
 @Component({
   selector: 'app-list-equipment',
@@ -16,7 +17,8 @@ export class ListEquipmentComponent implements OnInit {
 
   equipmentList: IEquipment[] | any;
   idCategory: number | any;
-  p: any;
+  p: number | any;
+  eStatus = EStatus;
 
   constructor(private equipmentService: EquipmentService,
               private activatedRoute: ActivatedRoute,
@@ -39,7 +41,6 @@ export class ListEquipmentComponent implements OnInit {
 
   openDialogDelete(equipment: IEquipment) {
     const dialog = this.matDialog.open(DeleteEquipmentComponent, {
-      width: '400px',
       data: equipment
     })
     dialog.afterClosed().subscribe(isResult => {
@@ -94,6 +95,7 @@ export class ListEquipmentComponent implements OnInit {
               duration: 3000
             });
           }
+          this.ngOnInit();
         }
       );
     }

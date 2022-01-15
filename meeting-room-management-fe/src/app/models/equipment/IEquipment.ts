@@ -1,4 +1,5 @@
 import {ICategory} from "./ICategory";
+import {EStatus} from "../EStatus";
 
 export interface IEquipment {
   id: string;
@@ -6,6 +7,6 @@ export interface IEquipment {
   description: string;
   price: string;
   image: string;
-  status: any;
+  status: EStatus;
   category: ICategory
 }
