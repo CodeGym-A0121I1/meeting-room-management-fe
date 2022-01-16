@@ -4,7 +4,7 @@
   <div class="col-2"></div>
   <div class="col-md-5">
     <!--        DatNT-->
-    <a href="#">
+    <a routerLink="#">
       <button class="btn btn-primary">Thêm tài sản</button>
     </a>
   </div>
@@ -38,8 +38,9 @@
       <td *ngIf="equipment.status == 'AVAILABLE'">Khả dụng</td>
       <td *ngIf="equipment.status == 'USING'">Đang sủ dụng</td>
       <td>{{equipment.price}}</td>
+<!--      DatNT-->
       <td>
-        <a [routerLink]="['equipment/', equipment.id]" class="detailButton">
+        <a [routerLink]="['#']" class="detailButton">
           <i class="fa fa-floppy-o"></i>
         </a>
       </td>

@@ -12,7 +12,7 @@ export class EquipmentService {
   URL_API_CATEGORY = "http://localhost:8080/api/categories"
 
   headers = new HttpHeaders({
-    'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MjI5NDA5NiwiaWF0IjoxNjQyMjU4MDk2fQ.gxM4HumGkMyVhn0xneKg1ej4JGjOtvF1FLCo_2KYmM0_vy6TSj1EqlTOwJAdywsLlVNSk71LSfwLQtHlI6SPjg"
+    'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MjM4MTY2MiwiaWF0IjoxNjQyMzQ1NjYyfQ.nnphOa08adLdodjNE7Xy7G22bKY1T0TNcJitXoeo_ZhYUQ3Qz3bJfeYHfbByMwbG5b7b5Wq9QibeGlGIP1_CoA"
   })
 
 
