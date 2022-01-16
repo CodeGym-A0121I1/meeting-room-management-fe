@@ -14,9 +14,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {RouterModule, Routes} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
 import {SigupRoomComponent} from "./component/registration-history-management/sigup-room/sigup-room.component";
-const routesConfig: Routes = [
-  {path: 'signuproom', component:  SigupRoomComponent},
-];
+
 
 @NgModule({
   declarations: [
@@ -36,10 +34,10 @@ const routesConfig: Routes = [
     MatInputModule,
     MatSnackBarModule,
     NgxPaginationModule,
-    RoomManagementModule,
-    RouterModule.forRoot(routesConfig)
+    RoomManagementModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
