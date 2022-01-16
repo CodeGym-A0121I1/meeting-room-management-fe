@@ -14,30 +14,36 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {RouterModule, Routes} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
 import {SigupRoomComponent} from "./component/registration-history-management/sigup-room/sigup-room.component";
+import {SearchRoomComponent} from "./component/registration-history-management/search-room/search-room.component";
 
+const routes: Routes = [
+    {path: 'signuproom', component: SigupRoomComponent},
+    {path: 'searchrooom', component: SearchRoomComponent},
+];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    RouterModule,
-    // MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatSnackBarModule,
-    NgxPaginationModule,
-    RoomManagementModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        RouterModule,
+        // MatFormFieldModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatSnackBarModule,
+        NgxPaginationModule,
+        RoomManagementModule,
+        RouterModule.forChild(routes)
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

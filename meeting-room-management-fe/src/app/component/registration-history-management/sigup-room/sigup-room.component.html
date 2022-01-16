@@ -32,14 +32,13 @@
         </div>
       </div>
 
-      <label>Type customer: </label>
-      <select formControlName="typeCustomer" class="form-control">
-        <option *ngFor="let typeCustomer of typeCustomers" [ngValue]="typeCustomer">{{typeCustomer.name}}</option>
-      </select>
-      <div *ngIf="customerForm.get('typeCustomer')?.hasError('required')
-&& customerForm.get('typeCustomer')?.touched" style="color: red">Not null !!!
-      </div>
-      <div style="color: red" *ngIf="isSubmit">Request re-entry ...</div>
+<!--      <select formControlName="typeCustomer" class="form-control">-->
+<!--        <option *ngFor="let typeCustomer of typeCustomers" [ngValue]="typeCustomer">{{typeCustomer.name}}</option>-->
+<!--      </select>-->
+<!--      <div *ngIf="customerForm.get('typeCustomer')?.hasError('required')-->
+<!--&& customerForm.get('typeCustomer')?.touched" style="color: red">Not null !!!-->
+<!--      </div>-->
+<!--      <div style="color: red" *ngIf="isSubmit">Request re-entry ...</div>-->
 
 
       <div class="form-group row">

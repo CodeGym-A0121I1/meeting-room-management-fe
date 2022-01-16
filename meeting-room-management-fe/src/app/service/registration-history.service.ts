@@ -11,7 +11,8 @@ import {RoomType} from "../model/RoomType";
 export class RegistrationHistoryService {
   URL_API_HISTORY = "http://localhost:8080/api/registration-histories"
   ROOM_API_URL = "http://localhost:8080/api/rooms"
-  ROOMTYPE_API_URL ="http://localhost:8080/api/rooms"
+  ROOMTYPE_API_URL ="http://localhost:8080/api/rooms/roomTypes"
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -25,4 +26,6 @@ export class RegistrationHistoryService {
   getAllRoomType(): Observable<RoomType[]> {
     return this.httpClient.get<RoomType[]>(this.ROOMTYPE_API_URL);
   }
+
+
 }
