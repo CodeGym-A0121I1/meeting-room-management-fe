@@ -14,6 +14,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 // import {environment} from "../../../environments/environment";
 // import {AngularFireModule} from '@angular/fire';
 
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SelectEquipmentComponent} from './select-equipment/select-equipment.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -23,15 +26,18 @@ import {ReactiveFormsModule} from "@angular/forms";
     DetailRoomComponent,
     CreateRoomComponent,
     DeleteRoomComponent,
-
+    SelectEquipmentComponent
   ],
-    imports: [
-        CommonModule,
-        RoomManagementRoutingModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        ReactiveFormsModule
-    ],exports:[CreateRoomComponent,
-  DeleteRoomComponent,
+  imports: [
+    CommonModule,
+    RoomManagementRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule
+  ],
+  exports: [
+    CreateRoomComponent,
+    DeleteRoomComponent,
     DetailRoomComponent,
     ListRoomComponent,
     UpdateRoomComponent

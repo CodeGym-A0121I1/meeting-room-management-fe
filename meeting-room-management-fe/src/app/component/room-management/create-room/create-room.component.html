@@ -1,123 +1,109 @@
 <h3 class="text-center">Thêm phòng họp</h3>
 
 <div class="mt-4 p-3">
-  <div class="form-group row">
-    <label for="name" class="col-sm-2 col-form-label">Tên Phòng <span class="required-field">*</span></label>
-    <div class="col-sm-10">
-      <input type="text" id="name" name="name" class="form-control" placeholder="Nhập tên phòng họp">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="floor" class="col-sm-2 col-form-label">Tầng <span class="required-field">*</span></label>
-    <div class="col-sm-10">
-      <select name="area" id="floor" class="form-control">
-        <option value="a">Tầng 1</option>
-        <option value="b">Tầng 2</option>
-        <option value="c">Tầng 3</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="area" class="col-sm-2 col-form-label">Khu vực <span class="required-field">*</span></label>
-    <div class="col-sm-10">
-      <select name="area" id="area" class="form-control">
-        <option value="a">Khu A</option>
-        <option value="b">Khu B</option>
-        <option value="c">Khu C</option>
-        <option value="d">Khu D</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="capacity" class="col-sm-2 col-form-label">Sức chứa <span class="required-field">*</span></label>
-    <div class="col-sm-10">
-      <input type="text" id="capacity" name="capacity" class="form-control" placeholder="Nhập sức chứa">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="roomType" class="col-sm-2 col-form-label">Loại phòng <span
-      class="required-field">*</span></label>
-    <div class="col-sm-10">
-      <select name="roomType" id="roomType" class="form-control">
-        <option value="a">1 lần</option>
-        <option value="b">Nhiều lần</option>
-        <option value="c">Công nghệ</option>
-        <option value="d">Triễn lãm</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Hình ảnh</label>
-    <div class="col-sm-10 input-group">
-      <div class="custom-file">
-        <input type="file" id="image" name="image" class="custom-file-input">
-        <label class="custom-file-label" for="image">Chọn ảnh</label>
+  <form [formGroup]="formAddRoom" (ngSubmit)="createRoom()">
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Tên Phòng <span class="required-field">*</span></label>
+      <div class="col-sm-10">
+        <input type="text" id="name" formControlName="name"
+               [ngClass]="getClassName('name')"
+               placeholder="Nhập tên phòng họp">
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('name')?.hasError('required')  && formAddRoom.get('name')?.touched">
+          Name is mandatory
+        </small>
       </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label">Tài sản:</label>
-    <div class="col-sm-10 d-flex justify-content-between">
-      <div class="mr-2">
-        <button class="btn btn-outline-info">Chọn tài sản</button>
+    <div class="form-group row">
+      <label for="floor" class="col-sm-2 col-form-label">Tầng <span class="required-field">*</span></label>
+      <div class="col-sm-10">
+        <select formControlName="floor" id="floor" [ngClass]="getClassName('floor')">
+          <option *ngFor="let floor of floorList" [ngValue]="floor" [text]="floor.name"></option>
+        </select>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('floor')?.hasError('required')  && formAddRoom.get('floor')?.touched">
+          Floor is mandatory
+        </small>
       </div>
-      <div class="ml-2 p-3 rounded" style="background-color: #637680;">
-        <div class="assets-list row">
-          <div class="mx-2" style="">
-            <div class="card rounded text-center m-2" onclick="alert('hello')">
-              <div class="card-body">
-                <p class="card-text">
-                  Máy tính: 2
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="mx-2" style="">
-            <div class="card rounded text-center m-2">
-              <div class="card-body">
-                <p class="card-text">
-                  Máy chiếu: 1
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="mx-2" style="">
-            <div class="card rounded text-center m-2">
-              <div class="card-body">
-                <p class="card-text">
-                  Micro: 2
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="mx-2" style="">
-            <div class="card rounded text-center m-2">
-              <div class="card-body">
-                <p class="card-text">
-                  Loa kẹo kéo: 1
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="mx-2" style="">
-            <div class="card rounded text-center m-2">
-              <div class="card-body">
-                <p class="card-text">
-                  Lazer: 1
-                </p>
-              </div>
-            </div>
-          </div>
-
+    </div>
+    <div class="form-group row">
+      <label for="area" class="col-sm-2 col-form-label">Khu vực <span class="required-field">*</span></label>
+      <div class="col-sm-10">
+        <select formControlName="area" id="area" [ngClass]="getClassName('area')">
+          <option selected disabled>Chọn</option>
+          <option *ngFor="let area of areaList" [ngValue]="area" [text]="area.name"></option>
+        </select>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('area')?.hasError('required')  && formAddRoom.get('area')?.touched">
+          Area is mandatory
+        </small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="capacity" class="col-sm-2 col-form-label">Sức chứa <span class="required-field">*</span></label>
+      <div class="col-sm-10">
+        <input type="text" id="capacity" formControlName="capacity" [ngClass]="getClassName('capacity')"
+               placeholder="Nhập sức chứa">
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('capacity')?.hasError('required')  && formAddRoom.get('capacity')?.touched">
+          Capacity is mandatory
+        </small>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('capacity')?.hasError('pattern')  && formAddRoom.get('capacity')?.dirty">
+          Capacity must be a number
+        </small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="roomType" class="col-sm-2 col-form-label">Loại phòng <span
+        class="required-field">*</span></label>
+      <div class="col-sm-10">
+        <select formControlName="roomType" id="roomType" [ngClass]="getClassName('roomType')">
+          <option *ngFor="let roomType of roomTypeList" [ngValue]="roomType" [text]="roomType.name" selected></option>
+        </select>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('roomType')?.hasError('required')  && formAddRoom.get('roomType')?.touched">
+          Room Type is mandatory
+        </small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Hình ảnh</label>
+      <div class="col-sm-10 input-group">
+        <div class="custom-file">
+          <input type="file" id="image" formControlName="image" class="custom-file-input">
+          <label class="custom-file-label" for="image">Chọn ảnh</label>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row mt-5">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-10 text-center">
-      <button class="btn btn-secondary mr-4">Huỷ</button>
-      <button class="btn btn-primary ml-4">Thêm</button>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Tài sản:</label>
+      <div class="col-sm-10 d-flex justify-content-between">
+        <div class="mr-2">
+          <button type="button" class="btn btn-outline-info" (click)="openDialogChooseEquipments()">Chọn tài sản
+          </button>
+        </div>
+        <div class="ml-2 p-3 rounded" style="background-color: #637680;">
+          <div class="assets-list row">
+            <div *ngFor="let equipment of equipmentList" class="mx-2" style="">
+              <div class="card rounded text-center m-2">
+                <div class="card-body">
+                  <p class="card-text">
+                    {{equipment.name}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="row mt-5">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10 text-center">
+        <button type="button" class="btn btn-secondary mr-4">Huỷ</button>
+        <button type="submit" class="btn btn-primary ml-4">Thêm</button>
+      </div>
+    </div>
+  </form>
 </div>
