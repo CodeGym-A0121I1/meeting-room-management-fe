@@ -12,6 +12,7 @@ import {DeleteRegistrationHistoryComponent} from './delete-registration-history/
 import {SigupRoomComponent} from './sigup-room/sigup-room.component';
 import {CancelSignroomComponent} from './cancel-signroom/cancel-signroom.component';
 import {StatisticsOfTimesComponent} from './statistics-of-times/statistics-of-times.component';
+import { SearchRoomComponent } from './search-room/search-room.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {StatisticsOfTimesComponent} from './statistics-of-times/statistics-of-ti
     DeleteRegistrationHistoryComponent,
     SigupRoomComponent,
     CancelSignroomComponent,
-    StatisticsOfTimesComponent
+    StatisticsOfTimesComponent,
+    SearchRoomComponent
   ],
   imports: [
     CommonModule,
