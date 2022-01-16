@@ -1,1 +1,67 @@
-<p>delete-registration-history works!</p>
+<div class="col-lg-5 col-md-6">
+
+  <div class="card">
+    <div class="card-body ">
+      <h4 class="card-title">Hủy đăng ký phòng</h4>
+      <div class="card-subtitle mb-2 text-muted">
+        <div class="row">
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-5 col-md-5">Tên phòng:</div>
+          <div class="col-lg-5 col-md-5">{{registrationHistory.room.name}}</div>
+          <div class="col-lg-1 col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-5 col-md-5">Loại phòng:</div>
+          <div class="col-lg-5 col-md-5">{{registrationHistory.room.roomType.name}}</div>
+          <div class="col-lg-1 col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-5 col-md-5">Ngày bắt đầu:</div>
+          <div class="col-lg-5 col-md-5">{{registrationHistory.dateStart}}</div>
+          <div class="col-lg-1 col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-5 col-md-5">Ngày kết thúc:</div>
+          <div class="col-lg-5 col-md-5">{{registrationHistory.dateEnd}}</div>
+          <div class="col-lg-1 col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-5 col-md-5">Thời gian bắt đầu:</div>
+          <div class="col-lg-5 col-md-5">{{registrationHistory.timeStart}}</div>
+          <div class="col-lg-1 col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-5 col-md-5">Thời gian kết thúc:</div>
+          <div class="col-lg-5 col-md-5">{{registrationHistory.timeEnd}}</div>
+          <div class="col-lg-1 col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-5 col-md-5">Nội dung cuộc họp:</div>
+          <div class="col-lg-5 col-md-5">{{registrationHistory.description}}</div>
+          <div class="col-lg-1 col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-5 col-md-5">Lý do hủy cuộc họp:</div>
+          <div class="col-lg-5 col-md-5"><textarea class="form-control"></textarea></div>
+          <div class="col-lg-1 col-md-1"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-5 col-md-5"><button >abc</button></div>
+          <div class="col-lg-5 col-md-5"><button (click)="confirmDelete()">delete</button></div>
+          <div class="col-lg-1 col-md-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

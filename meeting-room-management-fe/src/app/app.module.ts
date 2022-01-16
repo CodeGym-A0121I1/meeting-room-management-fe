@@ -5,7 +5,7 @@ import {AppRoutingModule} from './routing/app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
-import {MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
@@ -14,6 +14,10 @@ import {MatInputModule} from "@angular/material/input";
 import {NgxPaginationModule} from "ngx-pagination";
 import {RouterModule} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
+
+import {
+  RegistrationHistoryManagementModule
+} from "./component/registration-history-management/registration-history-management.module";
 
 @NgModule({
   declarations: [
@@ -24,18 +28,20 @@ import {RoomManagementModule} from "./component/room-management/room-management.
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDialogModule,
     ReactiveFormsModule,
     RouterModule,
+    MatDialogModule,
     // MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
     MatSnackBarModule,
     NgxPaginationModule,
-    RoomManagementModule
+    RoomManagementModule,
+    RegistrationHistoryManagementModule
   ],
-  providers: [],
+  providers: [{ provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
