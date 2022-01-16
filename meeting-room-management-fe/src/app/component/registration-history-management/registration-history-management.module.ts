@@ -12,36 +12,53 @@ import {DeleteRegistrationHistoryComponent} from './delete-registration-history/
 import {SigupRoomComponent} from './sigup-room/sigup-room.component';
 import {CancelSignroomComponent} from './cancel-signroom/cancel-signroom.component';
 import {StatisticsOfTimesComponent} from './statistics-of-times/statistics-of-times.component';
-import { SearchRoomComponent } from './search-room/search-room.component';
+import {SearchRoomComponent} from './search-room/search-room.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {DetailRoomComponent} from './detail-room/detail-room.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {MatCardModule} from "@angular/material/card";
+import {MatTableModule} from "@angular/material/table";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
-  declarations: [
-    StatisticRoomFormComponent,
-    StatisticsTimeFormComponent,
-    StatisticsRoomTableComponent,
-    StatisticsTimeTableComponent,
-    StatisticsComponent,
-    ListRegistrationHistoryComponent,
-    DeleteRegistrationHistoryComponent,
-    SigupRoomComponent,
-    CancelSignroomComponent,
-    StatisticsOfTimesComponent,
-    SearchRoomComponent
-  ],
-  imports: [
-    CommonModule,
-    RegistrationHistoryManagementRoutingModule
-  ],exports:[StatisticRoomFormComponent,
-    StatisticsTimeFormComponent,
-    StatisticsRoomTableComponent,
-    StatisticsTimeTableComponent,
-    StatisticsComponent,
-    ListRegistrationHistoryComponent,
-    DeleteRegistrationHistoryComponent,
-    SigupRoomComponent,
-    CancelSignroomComponent,
-    StatisticsOfTimesComponent
-  ]
+    declarations: [
+        StatisticRoomFormComponent,
+        StatisticsTimeFormComponent,
+        StatisticsRoomTableComponent,
+        StatisticsTimeTableComponent,
+        StatisticsComponent,
+        ListRegistrationHistoryComponent,
+        DeleteRegistrationHistoryComponent,
+        SigupRoomComponent,
+        CancelSignroomComponent,
+        StatisticsOfTimesComponent,
+        SearchRoomComponent,
+        DetailRoomComponent
+    ],
+    imports: [
+        CommonModule,
+        RegistrationHistoryManagementRoutingModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatButtonModule,
+    ], exports: [StatisticRoomFormComponent,
+        StatisticsTimeFormComponent,
+        StatisticsRoomTableComponent,
+        StatisticsTimeTableComponent,
+        StatisticsComponent,
+        ListRegistrationHistoryComponent,
+        DeleteRegistrationHistoryComponent,
+        SigupRoomComponent,
+        CancelSignroomComponent,
+        StatisticsOfTimesComponent
+    ]
 })
-export class RegistrationHistoryManagementModule { }
+export class RegistrationHistoryManagementModule {
+}
