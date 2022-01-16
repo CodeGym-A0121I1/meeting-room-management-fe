@@ -10,7 +10,6 @@ import {DeleteRoomComponent} from './delete-room/delete-room.component';
 // import {AngularFireModule} from "@angular/fire";
 import { environment } from './environment/environment';
 import {AngularFireModule} from "@angular/fire/compat";
-import {ReactiveFormsModule} from "@angular/forms";
 // import {environment} from "../../../environments/environment";
 // import {AngularFireModule} from '@angular/fire';
 

@@ -6,6 +6,14 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs/operators";
 import {formatDate} from "@angular/common";
+import {RoomDTO} from "../../../model/dto/RoomDTO";
+import {Area} from "../../../model/room/Area";
+import {Equipment} from "../../../model/equipment/Equipment";
+import {Floor} from "../../../model/room/Floor";
+import {RoomType} from "../../../model/room/RoomType";
+import {Status} from "../../../model/room/Status";
+import {SelectEquipmentComponent} from "../select-equipment/select-equipment.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-update-room',
@@ -17,6 +25,7 @@ export class UpdateRoomComponent implements OnInit {
   constructor(private service: RoomService,
               private activatedRoute: ActivatedRoute,
               private snackBar: MatSnackBar,
+              private matDialog: MatDialog,
               private route: Router,
               private fb: FormBuilder,
               @Inject(AngularFireStorage) private storage: AngularFireStorage) {
@@ -28,6 +37,17 @@ export class UpdateRoomComponent implements OnInit {
   floors!: any[] ;
   roomTypes!: any[] ;
   equipList!: any[] ;
+roomDTO:RoomDTO = new class implements RoomDTO {
+  area: any;
+  capacity: number;
+  equipmentList: Array<any>;
+  floor: any;
+  id: string;
+  image: string;
+  name: string;
+  roomType: any;
+  status: any;
+};
 
   ngOnInit(): void {
 
@@ -35,23 +55,15 @@ export class UpdateRoomComponent implements OnInit {
       {
         id: ['', Validators.required],
         name: ['', Validators.required],
-        capacity: ['', Validators.required],
+        capacity: ['', [Validators.pattern("\\d+"), Validators.required]],
         image: ['', Validators.required],
-        status: ['', Validators.required],
+        status: ['USING', Validators.required],
         area: ['', Validators.required],
         floor: ['', Validators.required],
         roomType: ['', Validators.required]
-  //       equipmentList:this.fb.array([
-  //])
-        //
-        // new FormControl({'id','name'}
-        // ),
-        // new FormControl('name'),
-        // new FormControl('description'),
-        // new FormControl('price'),
-        // new FormControl('image'),
-        // new FormControl('status')
+
       })
+
     this.service.getAllAreas().subscribe(data => (
       this.areas = data
     ));
@@ -85,14 +97,38 @@ export class UpdateRoomComponent implements OnInit {
 isChange:boolean=false;
   showPreview(event: any) {
     this.selectedImage = event.target.files[0];
+    const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
+    const fileRef = this.storage.ref(nameImg);
+    this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          this.updateRoom.patchValue({image: url});
+          // Call API to create vaccine
+          // this.service.updateRoom( this.roomDTO).subscribe(() => {
+          //   console.log(this.roomDTO)
+          //   this.snackBar.open("Bạn đã cập nhật thành công", "Ok");
+          //   this.route.navigateByUrl("/");
+          // })
+        });
+      })
+    ).subscribe();
     this.isChange=true;
   }
-
+  openDialogChooseEquipments(): void {
+    this.matDialog.open(SelectEquipmentComponent, {
+      width: "1000px",
+      data: this.equipList
+    }).afterClosed().subscribe(
+      data => this.equipList = data
+    );
+  }
   save() {
     // upload image to firebase
     // const nameImg = this.getCurrentDateTime();
-
-    // console.log(this.selectedImage.name);
+//covert qua RoomDto
+    debugger
+    this.covertToDto();
+    console.log(this.roomDTO)
     if(this.isChange==true){
 //hihi
       const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
@@ -102,8 +138,8 @@ isChange:boolean=false;
           fileRef.getDownloadURL().subscribe((url) => {
             this.updateRoom.patchValue({image: url});
             // Call API to create vaccine
-            this.service.updateRoom( this.activatedRoute.snapshot.params['id'],this.updateRoom.value).subscribe(() => {
-              console.log(this.updateRoom.value)
+            this.service.updateRoom( this.roomDTO).subscribe(() => {
+              console.log(this.roomDTO)
               this.snackBar.open("Bạn đã cập nhật thành công", "Ok");
               this.route.navigateByUrl("/");
             })
@@ -111,8 +147,8 @@ isChange:boolean=false;
         })
       ).subscribe();
     }else {
-      this.service.updateRoom( this.activatedRoute.snapshot.params['id'],this.updateRoom.value).subscribe(() => {
-        console.log(this.updateRoom.value)
+      this.service.updateRoom( this.roomDTO).subscribe(() => {
+        console.log(this.roomDTO)
         this.snackBar.open("Bạn đã cập nhật thành công", "Ok");
         this.route.navigateByUrl("/");
       });
@@ -120,7 +156,17 @@ isChange:boolean=false;
 
 
   }
-
+covertToDto(){
+    this.roomDTO.name=this.updateRoom.value.name;
+    this.roomDTO.id=this.updateRoom.value.id;
+    this.roomDTO.floor=this.updateRoom.value.floor;
+    this.roomDTO.area=this.updateRoom.value.area;
+    this.roomDTO.image=this.updateRoom.value.image;
+    this.roomDTO.capacity=this.updateRoom.value.capacity;
+    this.roomDTO.status=this.updateRoom.value.status;
+    this.roomDTO.roomType=this.updateRoom.value.roomType;
+    this.roomDTO.equipmentList=this.equipList;
+}
   getCurrentDateTime(): string {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }
