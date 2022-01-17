@@ -1,19 +1,19 @@
 <h2 align="center">Quản lý tài khoản</h2>
-<form class="form-group" [formGroup]="userForm" (ngSubmit)="abc()" >
+<form class="form-group" [formGroup]="userForm" (ngSubmit)="onSubmit()" >
   <div class="header">
     <div class="row row-cols-lg-7">
-      <div class="col-sm">
+      <div class="col-3">
         <a class="btn btn-primary form-group" [routerLink]="" role="button">Thêm tài khoản</a>
       </div>
 
       <label class="col-form-label ">Tên đăng nhập</label>
 
-      <div class="col-sm">
-        <input type="text" class="form-control" placeholder="Tên đăng nhập" formControlName="name">
+      <div class="col-2" >
+        <input  type="text" class="form-control" placeholder="Tên đăng nhập" formControlName="username">
       </div>
-      <div class="col-sm">
+      <div class="col">
         <select class="custom-select" formControlName="role">
-          <option selected hidden>Quyền</option>
+          <option [selected]="userForm.value.role ===''"hidden>Quyền</option>
           <option value="ROLE_ADMIN">Admin</option>
           <option value="ROLE_USER">User</option>
         </select>
@@ -21,15 +21,16 @@
 
       <label class="col-form-label">Họ và tên</label>
 
-      <div class="col-sm">
-        <input type="text" class="form-control" placeholder="Họ và tên">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Họ và tên" formControlName="fullName">
       </div>
-      <div class="col-sm">
+
+      <div class="col">
         <select class="custom-select">
           <option selected hidden>Bộ phận</option>
-          <option value="1">Giám đốc công ty</option>
-          <option value="2">Quản lý team A</option>
-          <option value="3">Quản lý team B</option>
+          <option value="Giám đốc công ty">Giám đốc công ty</option>
+          <option value="Quản lý team A">Quản lý team A</option>
+          <option value="Quản lý team B">Quản lý team B</option>
         </select>
       </div>
       <div class="col" >
@@ -51,7 +52,7 @@
   </tr>
   </thead>
   <tbody align="center">
-  <tr *ngFor="let user of userList | paginate :{itemsPerPage:1 ,currentPage : p}">
+  <tr *ngFor="let user of userList | paginate :{itemsPerPage:2 ,currentPage : p}">
     <td>{{user.id}}</td>
     <td>{{user.account.username}}</td>
     <td>{{user.account.role}}</td>

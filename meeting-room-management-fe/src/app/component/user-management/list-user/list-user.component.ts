@@ -14,9 +14,10 @@ export class ListUserComponent implements OnInit {
   p: any;
 
   userForm = new FormGroup({
-    name: new FormControl(''),
-    role: new FormControl('')
-  })
+    username: new FormControl(''),
+    role: new FormControl(''),
+    fullName : new FormControl('')
+  });
 
   constructor(
     private userService: UserService
@@ -35,10 +36,11 @@ export class ListUserComponent implements OnInit {
 
   }
 
-  abc() {
-    this.userService.search(this.userForm.value.name, this.userForm.value.role).subscribe(
+  onSubmit() {
+    this.userService.search(this.userForm.value).subscribe(
       (data) => {
         this.userList = data;
+        this.p =1 ;
         console.log(this.userList)
       }
     )
