@@ -12,14 +12,14 @@
           <div class="form-group col-md-6 row">
             <label class="col align-middle align-self-center m-0 ml-5" for="roomType">Chọn loại phòng</label>
             <select id="roomType" class="form-control col" #searchRoomType>
-              <option value="" selected>Choose...</option>
-              <option *ngFor="let roomType of roomTypeList" value="{{roomType.name}}" selected>{{roomType.name}}</option>
+              <option value="">Choose...</option>
+              <option *ngFor="let roomType of roomTypeList" value="{{roomType.name}}">{{roomType.name}}</option>
             </select>
           </div>
           <div class="form-group col-md-6 row">
             <label class="col  align-self-center m-0 ml-5" for="roomName">Chọn phòng</label>
             <select id="roomName" class="form-control col" #searchRoomName>
-              <option value="" selected>Choose...</option>
+              <option value="">Choose...</option>
               <option *ngFor="let room of roomList" value="{{room.name}}">{{room.name}}</option>
             </select>
           </div>
@@ -28,15 +28,15 @@
           <div class="form-group col-md-6 text-right row">
             <label for="month" class="col align-self-center m-0 ml-5">Tháng</label>
             <select id="month" class="form-control col" #searchMonth>
-              <option value="" selected>Choose...</option>
-              <option *ngFor="let month of monthList" value="{{month}}" selected>{{month}}</option>
+              <option value="">Choose...</option>
+              <option *ngFor="let month of monthList" value="{{month}}">{{month}}</option>
             </select>
           </div>
           <div class="form-group col-md-6 text-right row">
             <label for="year" class="col align-self-center m-0 ml-5">Năm</label>
             <select id="year" class="form-control col" #searchYear>
               <option value="" selected>Choose...</option>
-              <option *ngFor="let year of yearList" value="{{year}}" selected>{{year}}</option>
+              <option *ngFor="let year of yearList" value="{{year}}">{{year}}</option>
             </select>
           </div>
         </div>
@@ -61,6 +61,8 @@
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Tên người đăng ký</th>
+            <th scope="col" *ngIf="typeStatistic==''">Tên phòng</th>
+            <th scope="col" *ngIf="typeStatistic==''">Loại phòng</th>
             <th scope="col">Thời gian bắt đầu</th>
             <th scope="col">Thời gian kết thúc</th>
             <th scope="col">Ngày bắt đầu</th>
@@ -69,9 +71,11 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let registration of registrationList | paginate: { itemsPerPage: 10, currentPage: p} ">
+          <tr *ngFor="let registration of registrationList | paginate: { itemsPerPage: 5, currentPage: p} ">
             <th scope="row">{{registration.id}}</th>
             <td>{{registration.user.fullName}}</td>
+            <td *ngIf="typeStatistic==''">{{registration.room.name}}</td>
+            <td *ngIf="typeStatistic==''">{{registration.room.roomType.name}}</td>
             <td>{{registration.timeStart}}</td>
             <td>{{registration.timeEnd}}</td>
             <td>{{registration.dateStart}}</td>
