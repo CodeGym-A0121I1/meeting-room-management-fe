@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
+import {FormsModule} from "@angular/forms";
 import {RegistrationHistoryManagementRoutingModule} from '../../routing/registration-history-management-routing.module';
 import {StatisticRoomFormComponent} from './statistic-room-form/statistic-room-form.component';
 import {StatisticsTimeFormComponent} from './statistics-time-form/statistics-time-form.component';
@@ -17,13 +17,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {DetailRoomComponent} from './detail-room/detail-room.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatIconModule} from "@angular/material/icon";
-import {MatCardModule} from "@angular/material/card";
-import {MatTableModule} from "@angular/material/table";
-import {MatDividerModule} from "@angular/material/divider";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
@@ -48,6 +41,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
         ReactiveFormsModule,
         MatDialogModule,
         MatButtonModule,
+        FormsModule,
+        MatSnackBarModule,
     ], exports: [StatisticRoomFormComponent,
         StatisticsTimeFormComponent,
         StatisticsRoomTableComponent,

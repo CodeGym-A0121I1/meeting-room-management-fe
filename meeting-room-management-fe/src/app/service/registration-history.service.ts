@@ -11,7 +11,7 @@ import {ICategory} from "../model/ICategory";
     providedIn: 'root'
 })
 export class RegistrationHistoryService {
-    URL_API_HISTORY = "http://localhost:8080/api/registration-histories"
+    URL_API_HISTORY = "http://localhost:8080/api/registration-histories/signupRoom"
     ROOM_API_URL = "http://localhost:8080/api/rooms"
     ROOMTYPE_API_URL = "http://localhost:8080/api/rooms/roomTypes"
     AREAS_API_URL = "http://localhost:8080/api/rooms/areas"
@@ -42,4 +42,6 @@ export class RegistrationHistoryService {
     getAllCategry(): Observable<ICategory[]> {
         return this.httpClient.get<ICategory[]>(this.CATEGORY_API_URL);
     }
+
+
 }

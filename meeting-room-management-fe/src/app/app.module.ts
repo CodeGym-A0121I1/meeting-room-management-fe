@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './routing/app-routing.module';
 import {AppComponent} from './app.component';
+import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -15,11 +16,12 @@ import {RouterModule, Routes} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
 import {SigupRoomComponent} from "./component/registration-history-management/sigup-room/sigup-room.component";
 import {SearchRoomComponent} from "./component/registration-history-management/search-room/search-room.component";
+import {RegistrationHistoryManagementModule} from "./component/registration-history-management/registration-history-management.module";
 
-const routes: Routes = [
-    {path: 'signuproom', component: SigupRoomComponent},
-    {path: 'searchrooom', component: SearchRoomComponent},
-];
+// const routes: Routes = [
+//     {path: 'signuproom', component: SigupRoomComponent},
+//     {path: 'searchrooom', component: SearchRoomComponent},
+// ];
 
 @NgModule({
     declarations: [
@@ -33,14 +35,15 @@ const routes: Routes = [
         MatDialogModule,
         ReactiveFormsModule,
         RouterModule,
-        // MatFormFieldModule,
+        FormsModule,
         MatDatepickerModule,
         MatNativeDateModule,
         MatInputModule,
         MatSnackBarModule,
         NgxPaginationModule,
         RoomManagementModule,
-        RouterModule.forChild(routes)
+        RegistrationHistoryManagementModule
+        // RouterModule.forChild(routes)
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -10,6 +10,9 @@ import {DetailRoomComponent} from "../detail-room/detail-room.component";
 import {RegistrationHistory} from "../../../model/RegistrationHistory";
 import {Area} from "../../../model/Area";
 import {ICategory} from "../../../model/ICategory";
+import {SigupRoomComponent} from "../sigup-room/sigup-room.component";
+import {FormControl, FormGroup} from "@angular/forms";
+import {F} from "@angular/cdk/keycodes";
 
 @Component({
     selector: 'app-search-room',
@@ -18,13 +21,26 @@ import {ICategory} from "../../../model/ICategory";
 })
 export class SearchRoomComponent implements OnInit {
 
-    roomTypes: RoomType[] | any;
 
-    history: RegistrationHistory | undefined;
+    roomTypes: any;
+    history: any;
+    rooms: any;
+    areas: any;
+    categorys: any;
 
-    rooms: Room[] | any;
-    areas: Area[] | undefined
-    categorys:ICategory[] | undefined;
+    formHistory = new FormGroup(
+        {
+            // diadiem: new FormControl(''),
+            // romomType: new FormControl(''),
+            dateStart: new FormControl(''),
+            timeStart: new FormControl(''),
+            dateEnd: new FormControl(''),
+            timeEnd: new FormControl(''),
+            room: new  FormControl(''),
+            description: new FormControl(''),
+            // user: new FormControl(''),
+        }
+    )
 
 
     constructor(private historyService: RegistrationHistoryService,
@@ -38,7 +54,7 @@ export class SearchRoomComponent implements OnInit {
     ngOnInit(): void {
         this.historyService.getAllRoomType().subscribe(
             (dataroomtype) => {
-                this.roomTypes = dataroomtype
+                this.roomTypes = dataroomtype;
             },
         );
         this.historyService.getAllRoom().subscribe(
@@ -58,10 +74,11 @@ export class SearchRoomComponent implements OnInit {
         )
     }
 
-    openDialogDetailRoom(rooms: Room) {
+    openDialogDetailRoom(room: Room) {
+        console.log(room);
         const diaLog = this.dailog.open(DetailRoomComponent, {
-            width: '600px',
-            data: this.rooms
+            width: '500px',
+            data: room
         });
         diaLog.afterClosed().subscribe(
             () => {
@@ -74,7 +91,31 @@ export class SearchRoomComponent implements OnInit {
         );
     }
 
-    signup(room: any) {
+    signup(room : Room) {
+        this.formHistory.value.room = room;
+        console.log("Rooom room");
+        console.log(this.formHistory.value.room)
 
+
+
+        const diaLog = this.dailog.open(SigupRoomComponent, {
+            width: '800px',
+            data: this.formHistory
+        });
+
+        diaLog.afterClosed().subscribe(
+            () => {
+            },
+            () => {
+            },
+            () => {
+                this.ngOnInit();
+            }
+        );
+    }
+
+    onSubmit() {
+        console.log("FormHistory")
+        console.log(this.formHistory.value);
     }
 }
