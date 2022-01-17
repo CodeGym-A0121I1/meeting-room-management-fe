@@ -18,11 +18,13 @@ export class DetailRoomComponent implements OnInit {
     this.roomServie.getRoomById(this.activatedRoute.snapshot.params['id']).subscribe(data=>{
       console.log(data.name);
       this.room=data;
+      // this.room.selector
       console.log(this.room.id)
       this.roomServie.getCountStaticByRoom(this.room.id).subscribe(data=>{
         this.countRoom=data;
         console.log(this.countRoom)
       })
+
 
       },error =>  this.errors=error
     )

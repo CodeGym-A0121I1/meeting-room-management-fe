@@ -26,6 +26,7 @@ import {StatisticsOfTimesComponent} from './statistics-of-times/statistics-of-ti
     SigupRoomComponent,
     CancelSignroomComponent,
     StatisticsOfTimesComponent
+
   ],
   imports: [
     CommonModule,
