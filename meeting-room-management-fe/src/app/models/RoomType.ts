@@ -1,4 +1,4 @@
-export interface IFloor {
+export interface RoomType {
   id:number;
   name:string;
 }

@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {IRoom} from "../../../models/IRoom";
+import {Room} from "../../../models/Room";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {RoomService} from "../../../service/room.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -18,7 +18,7 @@ export class DeleteRoomComponent implements OnInit {
     private roomService:RoomService,
     private snackBar:MatSnackBar
   ) { }
-  room!: IRoom;
+  room!: Room;
   ngOnInit(): void {
     this.room = this.data;
   }

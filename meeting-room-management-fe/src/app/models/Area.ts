@@ -1,4 +1,4 @@
-export interface IRoomType {
+export interface Area {
   id:number;
   name:string;
 }

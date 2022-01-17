@@ -17,11 +17,8 @@
                 <div class="row form-group">
                   <label for="floor" class="col-md-5 col-form-label">Tầng :</label>
                   <select id="floor" class="form-control col-md-7">
-                    <option>Chọn</option>
-                    <option>Tầng 1</option>
-                    <option>Tầng 2</option>
-                    <option>Tầng 3</option>
-                    <option>Tầng 4</option>
+                    <option selected disabled>Chọn</option>
+                    <option *ngFor="let floor of floorList"  [text]="floor.name" [value]="floor.id"></option>
                   </select>
                 </div>
               </div>
