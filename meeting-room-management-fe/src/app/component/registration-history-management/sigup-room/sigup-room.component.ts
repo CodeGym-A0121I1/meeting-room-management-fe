@@ -16,7 +16,6 @@ import {User} from "../../../model/User";
 export class SigupRoomComponent implements OnInit {
 
     event: string | undefined;
-    // history: RegistrationHistory | any;
     history: RegistrationHistory | any;
     p: any;
     soa: string | undefined;
@@ -32,6 +31,7 @@ export class SigupRoomComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.formHistory.value.description = this.soa;
         this.history = this.formHistory.value;
     }
 
@@ -42,12 +42,11 @@ export class SigupRoomComponent implements OnInit {
     soA(eventss: Event) {
         // @ts-ignore
         this.soa = eventss.target.value;
-        // @ts-ignore
-        // this.history.get('description') = this.soa;
-
     }
 
     xacdinh() {
+        this.formHistory.value.description = this.soa;
+        this.history = this.formHistory.value;
         console.log("history");
         console.log(this.history)
         this.historyService.SignupHistory(this.history).subscribe();

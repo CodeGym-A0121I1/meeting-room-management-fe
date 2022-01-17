@@ -2,59 +2,66 @@
     <div class="panel panel-primary ">
         <div class="panel-heading ">
             <br> <br>
-            <h2 class="text-center">Đăng ký phòng</h2>
+            <h3 >Đăng ký phòng</h3>
         </div>
         <br>
-        <form  (ngSubmit)="history">
-            <!--       <input formControlName="diadiem">-->
+        <form >
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Tên Phòng:</label>
-                <div class="col-sm-10">
-                    <p>{{history.room.name}}</p>
-                    <!--       <input formControlName="room"  >-->
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Loại cuộc họp:</label>
-                <div class="col-sm-3">
-                    <p>{{history.room.roomType.name}}</p>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Ngày bắt đầu:</label>
+                <div class="col-sm-2"></div>
+                <label class="col-sm-3 col-form-label">Tên Phòng:</label>
                 <div class="col-sm-4">
-                    <p>{{history.dateStart}}</p>
-
-                    <!--          <input type="text" class="form-control" formControlName="dateStart" >-->
+<!--                    <p>{{history.room.name}}</p>-->
+                    <input type="text" class="form-control" value="{{history.room.name}}" readonly>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Ngày kết thúc:</label>
+                <div class="col-sm-2"></div>
+                <label class="col-sm-3 col-form-label">Loại cuộc họp:</label>
                 <div class="col-sm-4">
-                    <p>{{history.dateEnd}}</p>
+<!--                    <p>{{history.room.roomType.name}}</p>-->
+                    <input type="text" class="form-control" value="{{history.room.roomType.name}}" readonly>
 
-                    <!--            <input type="text" class="form-control" formControlName="dateEnd" >-->
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Thời gian bắt đầu:</label>
-                <div class="col-sm-3">
-                    <p>{{history.timeStart}}</p>
+                <div class="col-sm-2"></div>
+                <label class="col-sm-3 col-form-label">Ngày bắt đầu:</label>
+                <div class="col-sm-4">
+<!--                    <p>{{history.dateStart}}</p>-->
+                    <input type="text" class="form-control" value="{{history.dateStart}}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2"></div>
+                <label class="col-sm-3 col-form-label">Ngày kết thúc:</label>
+                <div class="col-sm-4">
+<!--                    <p>{{history.dateEnd}}</p>-->
 
-                    <!--            <input type="text" class="form-control" formControlName="timeStart" >-->
+                    <input type="text" class="form-control" value="{{history.dateEnd}}" readonly>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Thời gian kết thúc:</label>
-                <div class="col-sm-3">
-                    <p>{{history.timeEnd}}</p>
-                    <!--            <input type="text" class="form-control" formControlName="timeEnd" >-->
+                <div class="col-sm-2"></div>
+                <label class="col-sm-3 col-form-label">Thời gian bắt đầu:</label>
+                <div class="col-sm-4">
+<!--                    <p>{{history.timeStart}}</p>-->
+
+                    <input type="text" class="form-control" value="{{history.timeStart}}" readonly>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nội dung cuộc họp:</label>
-                <div class="col-sm-8">
-                    <textarea type="text" class="form-control"  [value]="soa" (change)="soA($event)"></textarea>
+                <div class="col-sm-2"></div>
+                <label class="col-sm-3 col-form-label">Thời gian kết thúc:</label>
+                <div class="col-sm-4">
+<!--                    <p>{{history.timeEnd}}</p>-->
+                    <input type="text" class="form-control" value="{{history.timeEnd}}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2"></div>
+                <label class="col-sm-3 col-form-label">Nội dung cuộc họp:</label>
+                <div class="col-sm-6">
+                    <textarea type="text" class="form-control"  PLACEHOLDER="Vui lòng điền nội dung cuộc họp " (change)="soA($event)"></textarea>
                 </div>
             </div>
             <div class="form-group row">
