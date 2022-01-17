@@ -52,7 +52,7 @@
   <div class="table-responsive">
     <fieldset class="form-group border p-2 " id="tabeRoom">
       <legend class="w-auto px-2">Kết quả</legend>
-      <label class="col-auto" *ngIf="typeStatistic=='byRoom'"><b>Tên phòng:</b> {{searchRoomName.value}}</label>
+      <label class="col-auto" *ngIf="typeStatistic=='byRoom' || typeStatistic=='byName'"><b>Tên phòng:</b> {{searchRoomName.value}}</label>
       <label class="col-auto" *ngIf="typeStatistic=='byRoom'"><b>Tổng số lần sử dụng:</b> {{total}}</label>
       <label class="col-auto" *ngIf="typeStatistic=='byRoom'"><b>Hiệu suất:</b> {{performance}}</label>
       <div class="table-responsive">

@@ -41,6 +41,9 @@ export class StatisticsComponent implements OnInit {
       this.p = 1;
     })
     if (roomName != "") {
+      if (month == "" && year == ""){
+        this.typeStatistic = "byName"
+      }
       this.typeStatistic = "byRoom";
       this.registrationHistoryService.getStatisticPerformance(roomType, roomName, month, year).subscribe(data => this.performance = data);
       this.registrationHistoryService.getStatisticTotalUser(roomType, roomName, month, year).subscribe(data => this.total = data);
