@@ -4,14 +4,24 @@ import {CommonModule} from '@angular/common';
 import {RegistrationHistoryManagementRoutingModule} from '../../routing/registration-history-management-routing.module';
 import {StatisticRoomFormComponent} from './statistic-room-form/statistic-room-form.component';
 import {StatisticsTimeFormComponent} from './statistics-time-form/statistics-time-form.component';
-import {StatisticsRoomTableComponent} from './statistics-room-table/statistics-room-table.component';
-import {StatisticsTimeTableComponent} from './statistics-time-table/statistics-time-table.component';
 import {StatisticsComponent} from './statistics/statistics.component';
 import {ListRegistrationHistoryComponent} from './list-registration-history/list-registration-history.component';
 import {DeleteRegistrationHistoryComponent} from './delete-registration-history/delete-registration-history.component';
 import {SigupRoomComponent} from './sigup-room/sigup-room.component';
 import {CancelSignroomComponent} from './cancel-signroom/cancel-signroom.component';
-import {StatisticsOfTimesComponent} from './statistics-of-times/statistics-of-times.component';
+import {SearchRoomComponent} from './search-room/search-room.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {DetailRoomComponent} from './detail-room/detail-room.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {MatCardModule} from "@angular/material/card";
+import {MatTableModule} from "@angular/material/table";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NgxPaginationModule} from "ngx-pagination";
 
 
@@ -19,29 +29,31 @@ import {NgxPaginationModule} from "ngx-pagination";
   declarations: [
     StatisticRoomFormComponent,
     StatisticsTimeFormComponent,
-    StatisticsRoomTableComponent,
-    StatisticsTimeTableComponent,
     StatisticsComponent,
     ListRegistrationHistoryComponent,
     DeleteRegistrationHistoryComponent,
     SigupRoomComponent,
     CancelSignroomComponent,
-    StatisticsOfTimesComponent
+    SearchRoomComponent,
+    DetailRoomComponent,
+    StatisticsComponent
   ],
-    imports: [
-        CommonModule,
-        RegistrationHistoryManagementRoutingModule,
-        NgxPaginationModule
-    ],exports:[StatisticRoomFormComponent,
+  imports: [
+    CommonModule,
+    RegistrationHistoryManagementRoutingModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    NgxPaginationModule,
+  ], exports: [StatisticRoomFormComponent,
     StatisticsTimeFormComponent,
-    StatisticsRoomTableComponent,
-    StatisticsTimeTableComponent,
     StatisticsComponent,
     ListRegistrationHistoryComponent,
     DeleteRegistrationHistoryComponent,
     SigupRoomComponent,
     CancelSignroomComponent,
-    StatisticsOfTimesComponent
+    StatisticsComponent
   ]
 })
-export class RegistrationHistoryManagementModule { }
+export class RegistrationHistoryManagementModule {
+}

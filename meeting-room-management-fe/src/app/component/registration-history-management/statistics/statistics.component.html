@@ -1,1 +1,92 @@
-<p>statistics works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <fieldset class="form-group border p-2 h-100">
+        <legend class="w-auto px-2 ">Theo thời gian</legend>
+      </fieldset>
+    </div>
+    <div class="col-md-6">
+      <fieldset class="form-group border p-2 h-100">
+        <legend class="w-auto px-2 ">Theo phòng</legend>
+        <div class="form-row text-right">
+          <div class="form-group col-md-6 row">
+            <label class="col align-middle align-self-center m-0 ml-5" for="roomType">Chọn loại phòng</label>
+            <select id="roomType" class="form-control col" #searchRoomType>
+              <option value="" selected>Choose...</option>
+              <option *ngFor="let roomType of roomTypeList" value="{{roomType.name}}" selected>{{roomType.name}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6 row">
+            <label class="col  align-self-center m-0 ml-5" for="roomName">Chọn phòng</label>
+            <select id="roomName" class="form-control col" #searchRoomName>
+              <option value="" selected>Choose...</option>
+              <option *ngFor="let room of roomList" value="{{room.name}}">{{room.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 text-right row">
+            <label for="month" class="col align-self-center m-0 ml-5">Tháng</label>
+            <select id="month" class="form-control col" #searchMonth>
+              <option value="" selected>Choose...</option>
+              <option *ngFor="let month of monthList" value="{{month}}" selected>{{month}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6 text-right row">
+            <label for="year" class="col align-self-center m-0 ml-5">Năm</label>
+            <select id="year" class="form-control col" #searchYear>
+              <option value="" selected>Choose...</option>
+              <option *ngFor="let year of yearList" value="{{year}}" selected>{{year}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="text-center">
+          <button id="btnSearchRoom" class="btn btn-primary" (click)="searchByRoom(searchRoomType.value, searchRoomName.value, searchMonth.value, searchYear.value)">Thống
+            kê
+          </button>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <!-- table -->
+  <div class="table-responsive">
+    <fieldset class="form-group border p-2 " id="tabeRoom">
+      <legend class="w-auto px-2">Kết quả</legend>
+      <label class="col-auto" *ngIf="typeStatistic=='byRoom'"><b>Tên phòng:</b> {{searchRoomName.value}}</label>
+      <label class="col-auto" *ngIf="typeStatistic=='byRoom'"><b>Tổng số lần sử dụng:</b> {{total}}</label>
+      <label class="col-auto" *ngIf="typeStatistic=='byRoom'"><b>Hiệu suất:</b> {{performance}}</label>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered text-center">
+          <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên người đăng ký</th>
+            <th scope="col">Thời gian bắt đầu</th>
+            <th scope="col">Thời gian kết thúc</th>
+            <th scope="col">Ngày bắt đầu</th>
+            <th scope="col">Ngày kết thúc</th>
+            <th scope="col">Trạng thái</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let registration of registrationList | paginate: { itemsPerPage: 10, currentPage: p} ">
+            <th scope="row">{{registration.id}}</th>
+            <td>{{registration.user.fullName}}</td>
+            <td>{{registration.timeStart}}</td>
+            <td>{{registration.timeEnd}}</td>
+            <td>{{registration.dateStart}}</td>
+            <td>{{registration.dateEnd}}</td>
+            <td *ngIf="registration.cancel==false">Chưa hủy</td>
+            <td *ngIf="registration.cancel==true">Đã hủy</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--Pagination-->
+      <div class="container-fluid justify-content-lg-end">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </fieldset>
+  </div>
+
+</div>
