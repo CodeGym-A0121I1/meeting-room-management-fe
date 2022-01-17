@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-md-6">
       <fieldset class="form-group border p-2 h-100">
-        <legend class="w-auto px-2 ">Theo thời gian</legend>
+        <legend class="w-auto ">Theo thời gian</legend>
         <div class="form-group row">
-          <label for="startDate" class="col-5 px-5">Thời gian bắt đầu</label>
-          <input id="startDate" type="date" class="form-control col-5">
+          <label for="startDate" class="col-5 px-5 my-3">Thời gian bắt đầu</label>
+          <input id="startDate" type="date" class="form-control col-5 my-3">
         </div>
         <div class="form-group row">
-          <label for="endDate" class="col-5 px-5">Thời gian kết thúc</label>
-          <input id="endDate" type="date" class="form-control col-5">
+          <label for="endDate" class="col-5 px-5 my-3">Thời gian kết thúc</label>
+          <input id="endDate" type="date" class="form-control col-5 my-3">
         </div>
         <div class="text-center">
           <button id="btnSearchTime" class="btn btn-primary">Thống
@@ -20,37 +20,39 @@
     </div>
     <div class="col-md-6">
       <fieldset class="form-group border p-2 h-100">
-        <legend class="w-auto px-2 ">Theo phòng</legend>
-        <div class="form-row text-right">
-          <div class="form-group col-md-6 row">
-            <label class="col align-middle align-self-center m-0 ml-5" for="roomType">Chọn loại phòng</label>
-            <select id="roomType" class="form-control col" #searchRoomType>
-              <option value="">Chọn...</option>
-              <option *ngFor="let roomType of roomTypeList" value="{{roomType.name}}">{{roomType.name}}</option>
-            </select>
+        <legend class="w-auto ">Theo phòng</legend>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group row">
+              <label class="col-8 px-5 my-2" for="roomType">Chọn loại phòng</label>
+              <select id="roomType" class="form-control col-4 my-2" #searchRoomType>
+                <option value="">Chọn...</option>
+                <option *ngFor="let roomType of roomTypeList" value="{{roomType.name}}">{{roomType.name}}</option>
+              </select>
+            </div>
+            <div class="form-group row">
+              <label for="month" class="col-8 px-5 my-2">Tháng</label>
+              <select id="month" class="form-control col-4 my-2" #searchMonth>
+                <option value="">Chọn...</option>
+                <option *ngFor="let month of monthList" value="{{month}}">{{month}}</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group col-md-6 row">
-            <label class="col  align-self-center m-0 ml-5" for="roomName">Chọn phòng</label>
-            <select id="roomName" class="form-control col" #searchRoomName>
-              <option value="">Chọn...</option>
-              <option *ngFor="let room of roomList" value="{{room.name}}">{{room.name}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6 text-right row">
-            <label for="month" class="col align-self-center m-0 ml-5">Tháng</label>
-            <select id="month" class="form-control col" #searchMonth>
-              <option value="">Chọn...</option>
-              <option *ngFor="let month of monthList" value="{{month}}">{{month}}</option>
-            </select>
-          </div>
-          <div class="form-group col-md-6 text-right row">
-            <label for="year" class="col align-self-center m-0 ml-5">Năm</label>
-            <select id="year" class="form-control col" #searchYear>
-              <option value="" selected>Chọn...</option>
-              <option *ngFor="let year of yearList" value="{{year}}">{{year}}</option>
-            </select>
+          <div class="col-5">
+            <div class="form-group row">
+              <label class="col-7 px-5 my-2" for="roomName">Chọn phòng</label>
+              <select id="roomName" class="form-control col-5 my-2" #searchRoomName>
+                <option value="">Chọn...</option>
+                <option *ngFor="let room of roomList" value="{{room.name}}">{{room.name}}</option>
+              </select>
+            </div>
+            <div class="form-group row">
+              <label for="year" class="col-7 px-5 my-2">Năm</label>
+              <select id="year" class="form-control col-5 my-2" #searchYear>
+                <option value="" selected>Chọn...</option>
+                <option *ngFor="let year of yearList" value="{{year}}">{{year}}</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="text-center">
