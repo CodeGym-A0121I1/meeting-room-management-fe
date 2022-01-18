@@ -1,19 +1,17 @@
 <h2 align="center">Quản lý tài khoản</h2>
-<form class="form-group" [formGroup]="userForm" (ngSubmit)="onSubmit()" >
+<form class="form-group" [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div class="header">
-    <div class="row row-cols-lg-7">
-      <div class="col-3">
+    <div class="row row-cols-lg-12">
+      <div class="col-2">
         <a class="btn btn-primary form-group" [routerLink]="" role="button">Thêm tài khoản</a>
       </div>
-
       <label class="col-form-label ">Tên đăng nhập</label>
-
-      <div class="col-2" >
-        <input  type="text" class="form-control" placeholder="Tên đăng nhập" formControlName="username">
+      <div class="col-2">
+        <input type="text" class="form-control" placeholder="Tên đăng nhập" formControlName="username">
       </div>
       <div class="col">
         <select class="custom-select" formControlName="role">
-          <option [selected]="userForm.value.role ===''"hidden>Quyền</option>
+          <option [selected]="userForm.value.role ===''" hidden>Quyền</option>
           <option value="ROLE_ADMIN">Admin</option>
           <option value="ROLE_USER">User</option>
         </select>
@@ -21,20 +19,20 @@
 
       <label class="col-form-label">Họ và tên</label>
 
-      <div class="col">
+      <div class="col-2">
         <input type="text" class="form-control" placeholder="Họ và tên" formControlName="fullName">
       </div>
 
       <div class="col">
-        <select class="custom-select">
-          <option selected hidden>Bộ phận</option>
-          <option value="Giám đốc công ty">Giám đốc công ty</option>
-          <option value="Quản lý team A">Quản lý team A</option>
-          <option value="Quản lý team B">Quản lý team B</option>
+        <select class="custom-select" formControlName="departmentName">
+          <option [selected]="userForm.value.role ===''" hidden>Bộ phận</option>
+          <option value="1">Giám đốc công ty</option>
+          <option value="2">Quản lý team A</option>
+          <option value="3">Quản lý team B</option>
         </select>
       </div>
-      <div class="col" >
-        <input class="btn btn-outline-primary" type="submit"  value="Tìm kiếm">
+      <div class="col">
+        <input class="btn btn-outline-primary" type="submit" value="Tìm kiếm">
       </div>
     </div>
   </div>
@@ -54,12 +52,12 @@
   <tbody align="center">
   <tr *ngFor="let user of userList | paginate :{itemsPerPage:2 ,currentPage : p}">
     <td>{{user.id}}</td>
-    <td>{{user.account.username}}</td>
-    <td>{{user.account.role}}</td>
-    <td>{{user.fullName}}</td>
+    <td>{{user.account.username | titlecase}}</td>
+    <td>{{user.account.role | slice : 5  }}</td>
+    <td>{{user.fullName | titlecase}}</td>
     <td>{{user.department.name}}</td>
     <td>
-      <i  [routerLink]="" class="bi bi-pencil-square"></i>
+      <i [routerLink]="" class="bi bi-pencil-square"></i>
     </td>
     <td>
       <i (click)="openDialogDelete(user.id)" class="bi bi-trash"></i>

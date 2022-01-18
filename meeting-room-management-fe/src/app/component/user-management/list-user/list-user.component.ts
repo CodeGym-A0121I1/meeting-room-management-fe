@@ -16,7 +16,8 @@ export class ListUserComponent implements OnInit {
   userForm = new FormGroup({
     username: new FormControl(''),
     role: new FormControl(''),
-    fullName : new FormControl('')
+    fullName : new FormControl(''),
+    departmentName: new FormControl('')
   });
 
   constructor(

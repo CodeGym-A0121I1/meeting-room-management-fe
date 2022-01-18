@@ -10,9 +10,9 @@ export class UserService {
 
   URL_API = "http://localhost:8080/api/users";
 
-    headers= new HttpHeaders({
-      'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0cm9uZyIsImV4cCI6MTY0MjQ0NjkwOCwiaWF0IjoxNjQyNDEwOTA4fQ.cuMyCbxc4MR-cmJoQ0of9UTmXHLIBOsEYHn6HpWfYAuTjZZRoTkwijyuYIA80oLcAklgz4RPy0eLvtDO_QAdcQ'
-    } );
+  headers = new HttpHeaders({
+    'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0cm9uZyIsImV4cCI6MTY0MjUzMDcyNCwiaWF0IjoxNjQyNDk0NzI0fQ.J6A6G2S5M9ybcwYun4qwSx7yfsMme95NMDap-V3zTHzQtP3bHRiwNsqlv3i4miFsMOqa2XNu1QamCYWLo5QFhA'
+  });
 
 
   constructor(
@@ -21,14 +21,15 @@ export class UserService {
   }
 
   getAllUser(): Observable<any> {
-    return this.httpClient.get<any>(this.URL_API, { headers : this.headers})
+    return this.httpClient.get<any>(this.URL_API, {headers: this.headers})
   }
 
-  search(userForm :any): Observable<any> {
+  search(userForm: any): Observable<any> {
     let params = new HttpParams()
       .set('username', userForm.username)
       .set('role', userForm.role)
-    .set('fullName',userForm.fullName);
+      .set('fullName', userForm.fullName)
+      .set('departmentName', userForm.departmentName)
     return this.httpClient.get<any>(this.URL_API + "/search", {headers: this.headers, params: params})
   }
 }
