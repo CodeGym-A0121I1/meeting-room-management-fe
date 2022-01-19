@@ -1,4 +1,5 @@
 import {Status} from "../room/Status";
+import {Category} from "./Category";
 
 export interface Equipment {
   id: string,
@@ -7,5 +8,5 @@ export interface Equipment {
   price: number,
   image: string,
   status: Status,
-  category_id: number;
+  category: Category;
 }

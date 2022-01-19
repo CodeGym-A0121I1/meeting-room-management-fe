@@ -14,6 +14,7 @@ import {RoomType} from "../../../model/room/RoomType";
 import {Status} from "../../../model/room/Status";
 import {SelectEquipmentComponent} from "../select-equipment/select-equipment.component";
 import {MatDialog} from "@angular/material/dialog";
+import {CategoryDTO} from "../../../model/dto/CategoryDTO";
 
 @Component({
   selector: 'app-update-room',
@@ -37,6 +38,7 @@ export class UpdateRoomComponent implements OnInit {
   floors!: any[] ;
   roomTypes!: any[] ;
   equipList!: any[] ;
+  categoryWithEquipments: Array<CategoryDTO> = [];
 roomDTO:RoomDTO = new class implements RoomDTO {
   area: any;
   capacity: number;
@@ -119,14 +121,43 @@ isChange:boolean=false;
       width: "1000px",
       data: this.equipList
     }).afterClosed().subscribe(
-      data => this.equipList = data
+      data => {this.equipList = data;
+      this.categoryWithEquipments=this.classifyEquipmentByCategory(data)}
     );
+  }
+  classifyEquipmentByCategory(equipmentList: Array<Equipment>): Array<CategoryDTO> {
+    let categoryList: Array<CategoryDTO> = [];
+    if (equipmentList.length === 0) {
+      return [];
+    } else {
+      for (const equipment of equipmentList) {
+        let isExist: boolean = false;
+
+        for (const categoryDTO of categoryList) {
+          if (categoryDTO.id == equipment.category.id) {
+            categoryDTO.equipmentList.push(equipment);
+            isExist = true;
+          }
+        }
+
+        if (!isExist) {
+          let equipments: Array<Equipment> = [];
+          equipments.push(equipment);
+          categoryList.push({
+            id: equipment.category.id,
+            name: equipment.category.name,
+            equipmentList: equipments
+          })
+        }
+      }
+    }
+    return categoryList;
   }
   save() {
     // upload image to firebase
     // const nameImg = this.getCurrentDateTime();
 //covert qua RoomDto
-    debugger
+
     this.covertToDto();
     console.log(this.roomDTO)
     if(this.isChange==true){

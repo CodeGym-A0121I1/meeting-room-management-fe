@@ -95,22 +95,17 @@
             <button type="button" class="btn btn-outline-info" (click)="openDialogChooseEquipments()">Chọn tài sản
             </button>
           </div>
-          <div class="ml-2 p-3 rounded" style="background-color: #637680;">
+          <div *ngIf="equipList.length != 0" class="ml-2 px-3 rounded" style="background-color: #637680;">
             <div class="assets-list row">
-              <div class="mx-2" style="">
-
-                <div class="card rounded text-center m-2" *ngFor="let equip of equipList">
+              <div *ngFor="let categoryDTO of categoryWithEquipments" class="mx-2" style="">
+                <div class="card rounded text-center m-2">
                   <div class="card-body">
                     <p class="card-text">
-                      {{equip.name}}
+                      {{categoryDTO.name}}: {{categoryDTO.equipmentList.length}}
                     </p>
                   </div>
-                  <small class="form-text text-danger" *ngIf="equipList.length==0">
-                    Vui lòng chọn tài sản
-                  </small>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
