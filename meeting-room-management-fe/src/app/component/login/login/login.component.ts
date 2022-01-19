@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.loginForm.value).subscribe(
       (data:any)=>{
+        this.status="Login successfull"
           this.authService.setToken(data.jwtToken);
           this.authService.setRole(data.account.role);
       },
