@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IFeedback} from "../models/IFeedback";
+import {Feedback} from "../models/Feedback";
+import {RoomDTO} from "../models/dto/RoomDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,19 @@ import {IFeedback} from "../models/IFeedback";
 export class FeedbackService {
 
   URL_API = "http://localhost:8080/api/feedbacks"
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MTk5OTY3NCwiaWF0IjoxNjQxOTYzNjc0fQ.oY3CmYXIDtxk3wyNjHS9HGfSg9enSoXceZDkwoPLoHcGt87Y4W9jcWOV6dB07iv7GuTebxO3quTipezGe-5p1A"
-    })
-  }
+  headers = new HttpHeaders({
+    'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MjYzMzI3OCwiaWF0IjoxNjQyNTk3Mjc4fQ.PcdU7vpJx6los_MKRbnW1O3UJ6hE3t2YVthrJngtEQeVkVuMZTNpWJ7qn7ueU3wYkE2sb7mO-Ccorcb8N9agPw"
+  })
+
 
   constructor(private httpClient: HttpClient) {
   }
 
+  getAllRoomDTO(): Observable<RoomDTO[]> {
+    return this.httpClient.get<RoomDTO[]>("http://localhost:8080/api/rooms/dto", {headers: this.headers})
+  }
+
+  create(feedback: Feedback): Observable<boolean> {
+    return this.httpClient.post<boolean>(this.URL_API, feedback, {headers: this.headers})
+  }
 }
