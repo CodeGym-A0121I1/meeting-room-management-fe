@@ -1,0 +1,40 @@
+<h3>Thống kê tài sản</h3>
+
+<div style="text-align: center">
+  <input type="text" placeholder="Tên loại tài sản">
+  <button type="submit" class="btn btn-outline-primary" style="margin-left: 8px">Tìm kiếm</button>
+</div>
+<br>
+
+<div class="table-responsive">
+
+  <table class="table table-striped table-bordered text-center">
+    <thead>
+    <tr>
+      <th>Stt</th>
+      <th>Loại</th>
+      <tH>Tổng số lượng</tH>
+      <th>Đang sử dụng</th>
+      <th>Đang sửa</th>
+      <th>Khả dụng</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let category of categoryDtoList; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{category.nameCategory}}</td>
+      <td>{{category.using + category.fixing + category.available}}</td>
+      <td>{{category.using}}</td>
+      <td>{{category.fixing}}</td>
+      <td>{{category.available}}</td>
+      <td>
+        <a [routerLink]="['/equipment/', category.idCategory]" class="detailButton">
+          <i class="fa fa-floppy-o"></i>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

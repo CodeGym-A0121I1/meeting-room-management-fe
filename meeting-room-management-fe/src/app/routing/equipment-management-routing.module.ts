@@ -1,10 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ListEquipmentComponent} from "../component/equipment-management/list-equipment/list-equipment.component";
+import {ListEquipmentCategoryComponent} from "../component/equipment-management/list-equipment-category/list-equipment-category.component";
 
 const routes: Routes = [
   {path: "equipment", children: [
-      {path: ":idCategory", component: ListEquipmentComponent}
+      {path: ":idCategory", component: ListEquipmentComponent},
+      {path: "category", component: ListEquipmentCategoryComponent}
     ]}
 ];
 

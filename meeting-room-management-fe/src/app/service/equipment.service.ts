@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IEquipment} from "../models/equipment/IEquipment";
+import {ICategoryDto} from "../models/equipment/ICategoryDto";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class EquipmentService {
 
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  getAllCategoryQuantityStatusDto(): Observable<ICategoryDto[]> {
+    return this.httpClient.get<ICategoryDto[]>(this.URL_API_CATEGORY + "/quantity", this.httpOptions);
   }
 
   getAllEquipmentByCategoryId(idCategory: number): Observable<IEquipment[]> {

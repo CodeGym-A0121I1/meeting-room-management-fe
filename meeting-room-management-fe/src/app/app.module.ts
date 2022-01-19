@@ -14,7 +14,6 @@ import {MatInputModule} from "@angular/material/input";
 import {NgxPaginationModule} from "ngx-pagination";
 import {RouterModule} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
-import {EquipmentService} from "./service/equipment.service";
 import {EquipmentManagementModule} from "./component/equipment-management/equipment-management.module";
 
 @NgModule({
