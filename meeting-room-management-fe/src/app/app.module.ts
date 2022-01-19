@@ -17,6 +17,7 @@ import {RoomManagementModule} from "./component/room-management/room-management.
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {environment} from "../environments/environment";
+import {LoginModule} from "./component/login/login.module";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {environment} from "../environments/environment";
     MatInputModule,
     MatSnackBarModule,
     NgxPaginationModule,
-    RoomManagementModule
+    RoomManagementModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
