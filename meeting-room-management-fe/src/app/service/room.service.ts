@@ -20,6 +20,7 @@ export class RoomService {
   private readonly api_floor = "http://localhost:8080/api/rooms/floors";
   private readonly api_area = "http://localhost:8080/api/rooms/areas";
   private readonly api_roomType = "http://localhost:8080/api/rooms/roomTypes";
+  private readonly api_image = "http://localhost:8080/api/rooms/image";
 
   getAllFloors(): Observable<Array<Floor>> {
     return this.httpClient.get<Array<Floor>>(this.api_floor);
@@ -37,4 +38,8 @@ export class RoomService {
     return this.httpClient.post(this.api_room, room);
   }
 
+  getImageName(): Observable<string> {
+    // @ts-ignore
+    return this.httpClient.get<string>(this.api_image, {responseType: 'text'});
+  }
 }
