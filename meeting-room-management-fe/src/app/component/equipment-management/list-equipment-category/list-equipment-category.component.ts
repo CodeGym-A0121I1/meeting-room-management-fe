@@ -12,10 +12,13 @@ export class ListEquipmentCategoryComponent implements OnInit {
   categoryDtoList: ICategoryDto | any;
 
 
-  constructor(private equipmentService: EquipmentService) { }
+  constructor(private equipmentService: EquipmentService) {
+  }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.equipmentService.getAllCategoryQuantityStatusDto().subscribe(
-      (data) => {this.categoryDtoList = data});
+      (data) => {
+        this.categoryDtoList = data;
+      });
   }
 }

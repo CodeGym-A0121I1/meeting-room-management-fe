@@ -5,8 +5,8 @@ import {ListEquipmentCategoryComponent} from "../component/equipment-management/
 
 const routes: Routes = [
   {path: "equipment", children: [
-      {path: ":idCategory", component: ListEquipmentComponent},
-      {path: "category", component: ListEquipmentCategoryComponent}
+      {path: "", component: ListEquipmentCategoryComponent},
+      {path: ":idCategory", component: ListEquipmentComponent}
     ]}
 ];
 
@@ -14,5 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class EquipmentManagementRoutingModule {
-}
+export class EquipmentManagementRoutingModule {}

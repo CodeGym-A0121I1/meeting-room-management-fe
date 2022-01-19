@@ -13,7 +13,7 @@ export class EquipmentService {
   URL_API_CATEGORY = "http://localhost:8080/api/categories"
 
   headers = new HttpHeaders({
-    'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MjM4MTY2MiwiaWF0IjoxNjQyMzQ1NjYyfQ.nnphOa08adLdodjNE7Xy7G22bKY1T0TNcJitXoeo_ZhYUQ3Qz3bJfeYHfbByMwbG5b7b5Wq9QibeGlGIP1_CoA"
+    'Authorization': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaHVvbmd0dCIsImV4cCI6MTY0MjYzMTExOSwiaWF0IjoxNjQyNTk1MTE5fQ.WMoRV1zi_zC4Ay3J9eRObXmySYldw2tggyfVbN6wlCwiZ1lpBeOHlJ0mOX5ohnjOFhevX8c3QwFLn_6T-By9VA"
   })
 
 
@@ -21,7 +21,7 @@ export class EquipmentService {
   }
 
   getAllCategoryQuantityStatusDto(): Observable<ICategoryDto[]> {
-    return this.httpClient.get<ICategoryDto[]>(this.URL_API_CATEGORY + "/quantity", this.httpOptions);
+    return this.httpClient.get<ICategoryDto[]>(this.URL_API_CATEGORY + "/quantity", {headers: this.headers});
   }
 
   getAllEquipmentByCategoryId(idCategory: number): Observable<IEquipment[]> {
