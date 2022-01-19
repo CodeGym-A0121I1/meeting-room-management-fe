@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {RoomService} from "../../../service/room.service";
 import {Area} from "../../../model/room/Area";
 import {Floor} from "../../../model/room/Floor";
@@ -34,7 +34,8 @@ export class CreateRoomComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
     private angularFireStorage: AngularFireStorage,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private elementRef: ElementRef
   ) {
   }
 
@@ -141,14 +142,12 @@ export class CreateRoomComponent implements OnInit {
         }
       }
     }
-    console.log(categoryList)
     return categoryList;
   }
 
   createRoom() {
     if (this.formAddRoom.valid) {
       this.convertToDTO();
-      console.log(this.newRoom)
       // this.roomService.addRoom(this.newRoom).subscribe(
       //   () => {
       //     console.log(this.newRoom)
@@ -175,6 +174,10 @@ export class CreateRoomComponent implements OnInit {
       // )
     } else {
       this.formAddRoom.markAllAsTouched();
+      const invalidElements = this.elementRef.nativeElement.querySelectorAll('.ng-invalid');
+      if (invalidElements.length > 0) {
+        invalidElements[1].focus();
+      }
     }
   }
 
