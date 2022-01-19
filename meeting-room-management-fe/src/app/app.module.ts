@@ -14,6 +14,7 @@ import {MatInputModule} from "@angular/material/input";
 import {NgxPaginationModule} from "ngx-pagination";
 import {RouterModule} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
+import {UserManagementModule} from "./component/user-management/user-management.module";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {RoomManagementModule} from "./component/room-management/room-management.
     MatInputModule,
     MatSnackBarModule,
     NgxPaginationModule,
-    RoomManagementModule
+    RoomManagementModule,
+    UserManagementModule
   ],
   providers: [],
   bootstrap: [AppComponent]
