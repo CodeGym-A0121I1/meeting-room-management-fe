@@ -78,6 +78,7 @@ roomDTO:RoomDTO = new class implements RoomDTO {
     this.service.getById(this.activatedRoute.snapshot.params['id']).subscribe(data => {
       console.log(data)
       this.equipList=data.equipmentList;
+      this.categoryWithEquipments=this.classifyEquipmentByCategory(this.equipList)
       this.updateRoom.setValue({
           id: data.id,
           name: data.name,
