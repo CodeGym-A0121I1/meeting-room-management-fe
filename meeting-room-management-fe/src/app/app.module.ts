@@ -18,6 +18,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {environment} from "../environments/environment";
 import {LoginModule} from "./component/login/login.module";
+import {EquipmentManagementModule} from "./component/equipment-management/equipment-management.module";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import {LoginModule} from "./component/login/login.module";
     NgxPaginationModule,
     RoomManagementModule,
     LoginModule
+    RoomManagementModule,
+    EquipmentManagementModule
   ],
   providers: [],
   bootstrap: [AppComponent]

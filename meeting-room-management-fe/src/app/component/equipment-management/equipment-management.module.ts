@@ -8,6 +8,9 @@ import {DeleteEquipmentComponent} from './delete-equipment/delete-equipment.comp
 import {UpdateEquipmentComponent} from './update-equipment/update-equipment.component';
 import {ViewEquipmentComponent} from './view-equipment/view-equipment.component';
 import {CreateEquipmentComponent} from './create-equipment/create-equipment.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -21,8 +24,12 @@ import {CreateEquipmentComponent} from './create-equipment/create-equipment.comp
   ],
   imports: [
     CommonModule,
-    EquipmentManagementRoutingModule
-  ],exports:[
+    EquipmentManagementRoutingModule,
+    MatDialogModule,
+    MatButtonModule,
+    NgxPaginationModule
+  ],
+  exports: [
     CreateEquipmentComponent,
     DeleteEquipmentComponent,
     ListEquipmentComponent,
@@ -31,4 +38,5 @@ import {CreateEquipmentComponent} from './create-equipment/create-equipment.comp
     ViewEquipmentComponent
   ]
 })
-export class EquipmentManagementModule { }
+export class EquipmentManagementModule {
+}

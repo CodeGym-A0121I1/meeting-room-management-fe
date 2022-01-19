@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {ICategoryDto} from "../../../models/equipment/ICategoryDto";
+import {EquipmentService} from "../../../service/equipment.service";
 
 @Component({
   selector: 'app-list-equipment-category',
@@ -7,9 +9,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ListEquipmentCategoryComponent implements OnInit {
 
-  constructor() { }
+  categoryDtoList: ICategoryDto | any;
 
-  ngOnInit(): void {
+
+  constructor(private equipmentService: EquipmentService) {
   }
 
+  ngOnInit(): void {
+    this.equipmentService.getAllCategoryQuantityStatusDto().subscribe(
+      (data) => {
+        this.categoryDtoList = data;
+      });
+  }
 }
