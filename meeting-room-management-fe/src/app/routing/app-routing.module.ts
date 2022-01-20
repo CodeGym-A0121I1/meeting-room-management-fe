@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {LoginComponent} from "../component/login/login/login.component";
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from "../component/login/login/login.component";
+import {ForbiddenComponent} from "../component/forbidden/forbidden.component";
+import {HeaderComponent} from "../component/header/header.component";
 
 const routes: Routes = [
-  {path:"",component:LoginComponent}
-];
-const routes: Routes = [
-  {path: 'equipment', redirectTo: 'equipment', pathMatch: 'full'}
+  {path: "login", component: LoginComponent},
+  {path: "header", component: HeaderComponent},
+  {path: "access-denied", component: ForbiddenComponent},
 ];
 
 @NgModule({

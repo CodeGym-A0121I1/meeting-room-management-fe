@@ -8,6 +8,14 @@ export class AuthService {
   constructor() {
   }
 
+  public setUser(user_id: string) {
+    localStorage.setItem('user', user_id);
+  }
+
+  public getUser() {
+    return localStorage.getItem('user');
+  }
+
   public setToken(jwtToken: string) {
     localStorage.setItem('jwtToken', jwtToken);
   }
@@ -22,5 +30,9 @@ export class AuthService {
 
   public getRole() {
     return localStorage.getItem('role')
+  }
+
+  public isAdmin() {
+    return this.getRole() == 'ROLE_ADMIN'
   }
 }

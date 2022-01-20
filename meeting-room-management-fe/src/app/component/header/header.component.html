@@ -1,0 +1,83 @@
+<ng-template [ngIf]="!isAdmin">
+  <div class="row header" style="background-color: #00C2E5">
+    <div class="col-md-2 logo" style="display: flex;justify-content: center">
+      <img src="/assets/images/logo.png" height="150px"/>
+
+    </div>
+    <div class="row col-md-10">
+      <div class="col-md-7 title">
+        <h2 style="padding-top: 50px;text-align: center">HỆ THỐNG QUẢN LÝ PHÒNG HỌP</h2>
+      </div>
+      <div class="col-md-4" style="display: flex; align-items: center;justify-content: flex-end">
+        <div class="dropdown">
+          <h5 style="text-align: end" class="dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+            {{name}}
+
+          </h5>
+          <div style="text-align: center" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" routerLink="changepass">Đổi mật khẩu</a>
+            <a class="dropdown-item" href="#" (click)="logOut()">Đăng xuất</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div style="display: flex;justify-content: right">
+        <a style="color: #00C2E5" href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars fa-3x hambuger"></i>
+        </a>
+      </div>
+
+      <ul class="menu" style="list-style-type: none" id="myLinks">
+        <a routerLink="listroom">
+          <li>Danh sách phòng họp</li>
+        </a>
+
+        <li class="menu1">Đăng ký phòng họp
+          <ul style="list-style-type: none; padding-left: 10px" class="menu2">
+            <a href="">
+              <li>Tìm kiếm phòng họp</li>
+            </a>
+            <a href="">
+              <li>Đăng ký phòng họp</li>
+            </a>
+            <a href="">
+              <li>Lịch sử đăng ký</li>
+            </a>
+          </ul>
+        </li>
+
+        <a href="">
+          <li>Thông báo</li>
+        </a>
+        <a href="">
+          <li>Phản hồi</li>
+        </a>
+      </ul>
+    </div>
+    <div class="col-md-10" style="height: 600px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="footer" style="background-color: #00C2E5">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="logo" style="margin-top: 20px; display: flex;justify-content: center">
+          <img src="https://img.icons8.com/fluency/30/000000/facebook-new.png"/>
+          <img src="https://img.icons8.com/color/30/000000/google-logo.png"/>
+          <span>Copyright &copy; A0121I1</span>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</ng-template>
+<ng-template [ngIf]="isAdmin">
+  admin page
+</ng-template>

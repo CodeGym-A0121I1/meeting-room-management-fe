@@ -19,10 +19,17 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {environment} from "../environments/environment";
 import {LoginModule} from "./component/login/login.module";
 import {EquipmentManagementModule} from "./component/equipment-management/equipment-management.module";
+import {HeaderComponent} from './component/header/header.component';
+import {PageNotFoundComponent} from './component/pagenotfound/page-not-found.component';
+import {ForbiddenComponent} from './component/forbidden/forbidden.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    PageNotFoundComponent,
+    ForbiddenComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -41,8 +48,7 @@ import {EquipmentManagementModule} from "./component/equipment-management/equipm
     MatSnackBarModule,
     NgxPaginationModule,
     RoomManagementModule,
-    LoginModule
-    RoomManagementModule,
+    LoginModule,
     EquipmentManagementModule
   ],
   providers: [],

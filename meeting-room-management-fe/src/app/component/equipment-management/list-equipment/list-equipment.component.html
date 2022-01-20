@@ -37,7 +37,7 @@
       <td *ngIf="equipment.status == 'FIXING'" style="color: red">Đang sửa</td>
       <td *ngIf="equipment.status == 'AVAILABLE'" style="color: blue">Khả dụng</td>
       <td *ngIf="equipment.status == 'USING'" style="color: darkcyan">Đang sủ dụng</td>
-      <td>{{equipment.price}}</td>
+      <td>{{equipment.price | currency}} VNĐ</td>
 <!--      DatNT-->
       <td>
         <a [routerLink]="['#']" class="detailButton">
