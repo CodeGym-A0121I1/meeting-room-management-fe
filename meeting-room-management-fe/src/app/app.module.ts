@@ -23,6 +23,7 @@ import {HeaderComponent} from './component/header/header.component';
 import {PageNotFoundComponent} from './component/pagenotfound/page-not-found.component';
 import {ForbiddenComponent} from './component/forbidden/forbidden.component';
 
+import {FeedbackManagementModule} from "./component/feedback-management/feedback-management.module";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import {ForbiddenComponent} from './component/forbidden/forbidden.component';
     RoomManagementModule,
     LoginModule,
     EquipmentManagementModule
+    RoomManagementModule,
+    FeedbackManagementModule
   ],
   providers: [],
   bootstrap: [AppComponent]

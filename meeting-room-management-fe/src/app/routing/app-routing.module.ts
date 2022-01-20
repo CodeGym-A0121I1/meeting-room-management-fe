@@ -5,6 +5,9 @@ import {ForbiddenComponent} from "../component/forbidden/forbidden.component";
 import {HeaderComponent} from "../component/header/header.component";
 
 const routes: Routes = [
+  {path: 'feedback', redirectTo: 'feedback', pathMatch: 'full'}
+];
+const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "header", component: HeaderComponent},
   {path: "access-denied", component: ForbiddenComponent},

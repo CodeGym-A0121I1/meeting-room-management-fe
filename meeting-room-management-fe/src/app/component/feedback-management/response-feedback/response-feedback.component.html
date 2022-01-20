@@ -1,1 +1,38 @@
-<p>response-feedback works!</p>
+<h1 mat-dialog-title>Xử lý phản hồi</h1>
+
+<mat-dialog-content>
+
+  <form [formGroup]="formNoteResponse" (submit)="onSubmit()">
+    <div class="form-group row">
+      <label class="col-lg-3 col-sm-3">Người phản hồi</label>
+      <span class="col-lg-9 col-sm-9">{{feedback.user.fullName}}</span>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-lg-3 col-sm-3">Tên phòng</label>
+      <span class="col-lg-9 col-sm-9">{{feedback.room.name}}</span>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-lg-3 col-sm-3">Nội dung cần xử lý</label>
+      <span class="col-lg-9 col-sm-9">{{feedback.noteRequest}}</span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="col-lg-3 col-sm-3 col-form-label note-response">Nội dung phản hồi<span
+        class="text-danger ml-3 ">*</span></label>
+      <div class="col-lg-9 col-sm-9">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nội dung phản hồi</mat-label>
+          <textarea matInput placeholder="VD: Đã xử lý,..." formControlName="noteResponse"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="button-submit">
+      <button mat-raised-button mat-dialog-close style="margin-right: 8px;">Hủy</button>
+      <button type="submit" mat-raised-button color="primary">Trả lời</button>
+    </div>
+  </form>
+</mat-dialog-content>
