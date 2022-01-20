@@ -42,7 +42,6 @@ export class UpdateEquipmentComponent implements OnInit {
   };
 
   update() {
-    console.log(this.status)
     if (this.status == undefined || this.status[0] == this.equipment.status) {
       this.snackbar.open('Trạng thái ' + this.getNameStatus(this.equipment.status) +' của ' + this.equipment.name + ' chưa được thay đổi !', 'Đóng', {
         duration: 3000
