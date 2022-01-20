@@ -13,6 +13,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {TruncatePipe} from "../config/TruncatePipe";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -21,20 +22,21 @@ import {TruncatePipe} from "../config/TruncatePipe";
     ResponseFeedbackComponent,
     TruncatePipe
   ],
-  imports: [
-    CommonModule,
-    FeedbackManagementRoutingModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FeedbackManagementRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatInputModule
-  ]
+    imports: [
+        CommonModule,
+        FeedbackManagementRoutingModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FeedbackManagementRoutingModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatInputModule,
+        NgxPaginationModule
+    ]
 })
 export class FeedbackManagementModule { }

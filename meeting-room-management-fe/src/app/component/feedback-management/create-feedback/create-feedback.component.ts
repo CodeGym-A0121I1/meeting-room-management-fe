@@ -39,7 +39,7 @@ export class CreateFeedbackComponent implements OnInit {
   onSubmit() {
     if (this.formFeedback.valid) {
       this.checkOnSubmit = false;
-      this.formFeedback.value.user.id = 'U-0001';
+      this.formFeedback.value.user.id = 'U0001';
       this.feedback = this.formFeedback.value;
       this.matSnackBar.open("Đang gửi phản hồi đến quản trị viên ...")
       this.feedbackService.create(this.feedback).subscribe(
