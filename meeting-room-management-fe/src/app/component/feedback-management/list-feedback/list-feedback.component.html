@@ -10,18 +10,19 @@
     <th>Thời gian giải quyết</th>
     <th>Nội dung phản hồi</th>
     <th>Trạng thái<p style="color: white;"></p></th>
-    <th>Xử lí<p style="color: white;"></p></th>
+    <th>Xử lí<p style="color: white; width: 60px"></p></th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let feedback of feedbackList">
-    <th scope="row">1</th>
+  <tr *ngFor="let feedback of feedbackList; let i = index">
+    <th scope="row">{{i+1}}</th>
     <td>{{feedback.user.fullName}}</td>
     <td>{{feedback.room.name}}</td>
-    <td>{{feedback.noteRequest}}</td>
+    <td>{{feedback.noteRequest | limitToPipe: 20 }}{{feedback.noteRequest.length > 20 ? '...' : ''}}</td>
     <td>{{feedback.dateRequest}}</td>
     <td>{{feedback.dateResponse}}</td>
-    <td>{{feedback.noteResponse}}</td>
+    <td *ngIf="feedback.noteResponse == null; else elseNote">{{feedback.noteResponse}}</td>
+    <ng-template #elseNote>{{feedback.noteResponse | limitToPipe: 20 }}{{feedback.noteResponse.length > 20 ? '...' : ''}}</ng-template>
     <td *ngIf="feedback.status" style="color: blue">Đã xử lý</td>
     <td *ngIf="!feedback.status" style="color: red">Chưa xử lý</td>
     <td>

@@ -35,4 +35,6 @@ export class ListFeedbackComponent implements OnInit {
       this.ngOnInit();
     })
   }
+
 }
+
