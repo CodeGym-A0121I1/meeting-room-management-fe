@@ -5,6 +5,11 @@ import {FeedbackManagementRoutingModule} from '../../routing/feedback-management
 import {ListFeedbackComponent} from './list-feedback/list-feedback.component';
 import {CreateFeedbackComponent} from './create-feedback/create-feedback.component';
 import {ResponseFeedbackComponent} from './response-feedback/response-feedback.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -15,7 +20,12 @@ import {ResponseFeedbackComponent} from './response-feedback/response-feedback.c
   ],
   imports: [
     CommonModule,
-    FeedbackManagementRoutingModule
+    FeedbackManagementRoutingModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class FeedbackManagementModule { }

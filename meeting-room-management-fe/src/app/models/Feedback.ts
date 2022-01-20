@@ -1,4 +1,4 @@
-export interface IFeedback{
+export interface Feedback {
   id: string,
   dateRequest: Date,
   dateResponse: Date,

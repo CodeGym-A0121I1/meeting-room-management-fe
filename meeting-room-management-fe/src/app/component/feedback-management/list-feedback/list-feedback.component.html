@@ -16,16 +16,16 @@
   <tbody>
   <tr *ngFor="let feedback of feedbackList">
     <th scope="row">1</th>
-    <td>{{feedback.user.name}}</td>
+    <td>{{feedback.user.fullName}}</td>
     <td>{{feedback.room.name}}</td>
     <td>{{feedback.noteRequest}}</td>
     <td>{{feedback.dateRequest}}</td>
     <td>{{feedback.dateResponse}}</td>
     <td>{{feedback.noteResponse}}</td>
-    <td *ngIf="feedback.status">Đã xử lý</td>
-    <td *ngIf="!feedback.status">Chưa xử lý</td>
+    <td *ngIf="feedback.status" style="color: blue">Đã xử lý</td>
+    <td *ngIf="!feedback.status" style="color: red">Chưa xử lý</td>
     <td>
-      <button type="submit" class="btn bg-danger">Xử lí</button>
+      <button *ngIf="!feedback.status" (click)="replyFeedback(feedback)" class="btn btn-warning">Xử lí</button>
     </td>
   </tr>
   </tbody>
