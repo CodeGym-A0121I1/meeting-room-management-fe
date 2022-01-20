@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {FeedbackService} from "../../../service/feedback.service";
 import {Feedback} from "../../../models/Feedback";
 import {MatDialog} from "@angular/material/dialog";
@@ -13,6 +12,7 @@ import {ResponseFeedbackComponent} from "../response-feedback/response-feedback.
 export class ListFeedbackComponent implements OnInit {
 
   feedbackList: Feedback[] = [];
+  p: number | any;
 
   constructor(private feedbackService: FeedbackService,
               private matDialog: MatDialog) {
