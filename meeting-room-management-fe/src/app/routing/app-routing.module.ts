@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'feedback', redirectTo: 'feedback', pathMatch: 'full'
-  }
+  {path: 'feedback', redirectTo: 'feedback', pathMatch: 'full'}
 ];
 
 @NgModule({

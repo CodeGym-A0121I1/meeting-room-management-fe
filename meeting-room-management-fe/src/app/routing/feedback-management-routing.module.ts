@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {ListFeedbackComponent} from "../component/feedback-management/list-feedback/list-feedback.component";
 
 const routes: Routes = [
-  {path: "feedback", children: []}
+  {path: "feedback", children: [
+      {path: "", component: ListFeedbackComponent}
+    ]}
 ];
 
 @NgModule({
