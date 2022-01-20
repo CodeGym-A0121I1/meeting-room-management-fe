@@ -10,6 +10,6 @@ export class LoginService {
     private httpClient:HttpClient
   ) { }
   login(jwtRequest: any) {
-    return this.httpClient.post('http://localhost:8080/api/login', jwtRequest)
+    return this.httpClient.post('http://localhost:8080/api/accounts/login', jwtRequest)
   }
 }

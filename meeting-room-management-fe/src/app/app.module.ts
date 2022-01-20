@@ -15,6 +15,8 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {RouterModule} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
 import {LoginModule} from "./component/login/login.module";
+import {UserPageModule} from "./component/user-page/user-page.module";
+import {AdminPageModule} from "./component/admin-page/admin-page.module";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import {LoginModule} from "./component/login/login.module";
     MatSnackBarModule,
     NgxPaginationModule,
     RoomManagementModule,
-    LoginModule
+    LoginModule,
+    UserPageModule,
+    AdminPageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,4 +23,12 @@ export class AuthService {
   public getRole() {
     return localStorage.getItem('role')
   }
+
+  public setName(fullName: string) {
+    localStorage.setItem("name", fullName)
+  }
+
+  public getName() {
+    return localStorage.getItem('name')
+  }
 }

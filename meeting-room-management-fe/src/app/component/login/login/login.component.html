@@ -11,11 +11,11 @@
               <label>Tên đăng nhập</label>
             </div>
             <div class="col-md-6">
-              <input class="form-control" type="text" style="width: 100%" formControlName="username">
+              <input class="form-control" type="text" placeholder="username" style="width: 100%" formControlName="username">
               <div *ngIf="username.invalid && (username.dirty || username.touched)"
                    class="alert alert-danger">
                 <div *ngIf="username.errors?.['required']">
-                  Username is required.
+                  username is required.
                 </div>
               </div>
             </div>
@@ -27,11 +27,11 @@
               <label>Mật khẩu</label>
             </div>
             <div class="col-md-6">
-              <input class="form-control" type="password" style="width: 100%" formControlName="password">
+              <input class="form-control" type="password" placeholder="password" style="width: 100%" formControlName="password">
               <div *ngIf="password.invalid && (password.dirty || password.touched)"
                    class="alert alert-danger">
                 <div *ngIf="password.errors?.['required']">
-                  Password is required.
+                  password is required.
                 </div>
               </div>
               {{status}}
@@ -43,7 +43,7 @@
             <div class="col-md-4">
             </div>
             <div class="col-md-6">
-              <input type="checkbox">
+              <input type="checkbox"  (change)="checkCheckBoxvalue($event)">
               <label>Nhớ mật khẩu</label>
             </div>
             <div class="col-md-1"></div>
@@ -51,7 +51,9 @@
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4" style="margin: 20px 0">
-              <button class="btn btn-primary" style="width: 100%">Đăng nhập</button>
+
+              <button class="btn btn-primary btn-lg" [disabled]="!loginForm.valid" style="width: 100%">Đăng nhập</button>
+
             </div>
             <div class="col-md-4"></div>
           </div>
