@@ -10,6 +10,7 @@ import {EquipmentService} from "../../../service/equipment.service";
 export class ListEquipmentCategoryComponent implements OnInit {
 
   categoryDtoList: ICategoryDto | any;
+  p: number | any;
 
 
   constructor(private equipmentService: EquipmentService) {

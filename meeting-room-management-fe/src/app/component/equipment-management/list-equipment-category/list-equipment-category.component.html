@@ -15,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let category of categoryDtoList; let i = index">
+    <tr *ngFor="let category of categoryDtoList | paginate :{itemsPerPage:5 ,currentPage : p} ; let i = index">
       <td>{{i + 1}}</td>
       <td>{{category.nameCategory}}</td>
       <td>{{category.using + category.fixing + category.available}}</td>
@@ -30,5 +30,5 @@
     </tr>
     </tbody>
   </table>
-
+  <pagination-controls style="text-align: right" (pageChange)="p = $event"></pagination-controls>
 </div>
