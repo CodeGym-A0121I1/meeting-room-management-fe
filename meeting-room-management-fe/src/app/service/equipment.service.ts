@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {ICategory} from "../models/equipment/ICategory";
+import {IEquipment} from "../models/equipment/IEquipment";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +18,14 @@ export class EquipmentService {
   }
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  getAllCategories(): Observable<Array<ICategory>> {
+    return this.httpClient.get<Array<ICategory>>(this.URL_API_CATEGORY);
+  }
+
+  createEquipment(equipment:IEquipment){
+    return this.httpClient.post(this.URL_API_EQUIPMENT, equipment)
   }
 
 }

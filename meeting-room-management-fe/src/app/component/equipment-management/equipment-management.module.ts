@@ -8,6 +8,7 @@ import {DeleteEquipmentComponent} from './delete-equipment/delete-equipment.comp
 import {UpdateEquipmentComponent} from './update-equipment/update-equipment.component';
 import {ViewEquipmentComponent} from './view-equipment/view-equipment.component';
 import {CreateEquipmentComponent} from './create-equipment/create-equipment.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {CreateEquipmentComponent} from './create-equipment/create-equipment.comp
   ],
   imports: [
     CommonModule,
-    EquipmentManagementRoutingModule
+    EquipmentManagementRoutingModule,
+    ReactiveFormsModule
   ],exports:[
     CreateEquipmentComponent,
     DeleteEquipmentComponent,
