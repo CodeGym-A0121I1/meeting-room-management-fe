@@ -50,7 +50,7 @@ import {FeedbackManagementModule} from "./component/feedback-management/feedback
     NgxPaginationModule,
     RoomManagementModule,
     LoginModule,
-    EquipmentManagementModule
+    EquipmentManagementModule,
     RoomManagementModule,
     FeedbackManagementModule
   ],
