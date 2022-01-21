@@ -18,6 +18,7 @@ export class CreateUserComponent implements OnInit {
   createUser: FormGroup;
   account: AccountDTO;
   user: UserDTO;
+  listUsername: String[] = [];
   listDepartment: DepartmentDTO[] = [];
   roles = Object.values(ERole);
 
@@ -25,6 +26,7 @@ export class CreateUserComponent implements OnInit {
               private userService: UserService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.getUsername();
     this.getDepartments();
     this.createUser = this.formBuilder.group({
       username: ['', [Validators.required, Validators.maxLength(30)]],
@@ -38,6 +40,11 @@ export class CreateUserComponent implements OnInit {
 
   onSubmit() {
     if (this.createUser.valid) {
+      for (let i = 0; i < this.listUsername.length; i++) {
+        if (this.createUser.value.username === this.listUsername[i]) {
+          this.snackBar.open("Tên đăng nhập đã tồn tại", "OK");
+        }
+      }
       this.convertToDto();
       this.userService.createAccount(this.account).subscribe(() => {
         this.userService.createUser(this.user).subscribe(() => {
@@ -53,6 +60,12 @@ export class CreateUserComponent implements OnInit {
 
   getDepartments() {
     this.userService.getAllDepartments().subscribe((data: DepartmentDTO[]) => this.listDepartment = data);
+    console.log(this.listDepartment);
+  }
+
+  getUsername() {
+    this.userService.getAllUsername().subscribe((data: String[]) => this.listUsername = data);
+    console.log(this.listUsername);
   }
 
   convertToDto() {

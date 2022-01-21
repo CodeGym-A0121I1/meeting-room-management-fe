@@ -27,4 +27,8 @@ export class UserService {
   public getAllDepartments(): Observable<DepartmentDTO[]> {
     return this.httpClient.get<DepartmentDTO[]>(`${this.userURL}/department`, {responseType: 'json'});
   }
+
+  public getAllUsername(): Observable<String[]> {
+    return this.httpClient.get<String[]>(`${this.userURL}/username`, {responseType: 'json'});
+  }
 }
