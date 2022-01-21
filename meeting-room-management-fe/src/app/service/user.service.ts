@@ -11,9 +11,9 @@ import {Account} from "../model/account/Account";
   providedIn: 'root'
 })
 export class UserService {
-  readonly api: string = "http://localhost:3000/user";
-  readonly apiDepartment: string = "http://localhost:3000/department";
-  readonly apiAccount: string = "http://localhost:3000/account";
+  readonly api: string = "http://localhost:8080/user";
+  readonly apiDepartment: string = "http://localhost:8080/department";
+  readonly apiAccount: string = "http://localhost:8080/account";
 
   constructor(private http: HttpClient) { }
 
