@@ -51,9 +51,9 @@ export class RoomService {
   }
 
   getById(id:string):Observable<any>{
-    return this.httpClient.get(this.URL_ROOM+'/'+id);
+    return this.httpClient.get(this.api_room + '/' + id);
   }
   updateRoom(id:string,room:any):Observable<any>{
-    return this.httpClient.put(this.URL_ROOM+'/update/'+id,room);
+    return this.httpClient.put(this.api_room, room);
   }
 }

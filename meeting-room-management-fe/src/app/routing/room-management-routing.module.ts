@@ -9,7 +9,6 @@ const routes: Routes = [
     component: CreateRoomComponent,
   },
   // {path: "**", component: PageNotFoundComponent}
-  },
   {
     path: "room/update/:id", component: UpdateRoomComponent
   }
