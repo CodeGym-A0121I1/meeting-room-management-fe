@@ -68,7 +68,7 @@ export class CreateRoomComponent implements OnInit {
         this.floorList = data;
       }
     )
-    this.roomService.getAllRoomTypes().subscribe(
+    this.roomService.getAllTypes().subscribe(
       data => this.roomTypeList = data
     )
     this.roomService.getAllAreas().subscribe(

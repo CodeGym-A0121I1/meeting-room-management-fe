@@ -2,10 +2,19 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {RoomService} from "../../../service/room.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs/operators";
 import {formatDate} from "@angular/common";
+import {RoomDTO} from "../../../model/dto/RoomDTO";
+import {Area} from "../../../model/room/Area";
+import {Equipment} from "../../../model/equipment/Equipment";
+import {Floor} from "../../../model/room/Floor";
+import {RoomType} from "../../../model/room/RoomType";
+import {Status} from "../../../model/room/Status";
+import {SelectEquipmentComponent} from "../select-equipment/select-equipment.component";
+import {MatDialog} from "@angular/material/dialog";
+import {CategoryDTO} from "../../../model/dto/CategoryDTO";
 
 @Component({
   selector: 'app-update-room',
@@ -17,6 +26,7 @@ export class UpdateRoomComponent implements OnInit {
   constructor(private service: RoomService,
               private activatedRoute: ActivatedRoute,
               private snackBar: MatSnackBar,
+              private matDialog: MatDialog,
               private route: Router,
               private fb: FormBuilder,
               @Inject(AngularFireStorage) private storage: AngularFireStorage) {
@@ -27,6 +37,19 @@ export class UpdateRoomComponent implements OnInit {
   areas!: any[] ;
   floors!: any[] ;
   roomTypes!: any[] ;
+  equipList!: any[] ;
+  categoryWithEquipments: Array<CategoryDTO> = [];
+roomDTO:RoomDTO = new class implements RoomDTO {
+  area: any;
+  capacity: number;
+  equipmentList: Array<any>;
+  floor: any;
+  id: string;
+  image: string;
+  name: string;
+  roomType: any;
+  status: any;
+};
 
   ngOnInit(): void {
 
@@ -34,14 +57,15 @@ export class UpdateRoomComponent implements OnInit {
       {
         id: ['', Validators.required],
         name: ['', Validators.required],
-        capacity: ['', Validators.required],
+        capacity: ['', [Validators.pattern("\\d+"), Validators.required]],
         image: ['', Validators.required],
-        status: ['', Validators.required],
+        status: ['USING', Validators.required],
         area: ['', Validators.required],
         floor: ['', Validators.required],
         roomType: ['', Validators.required]
 
       })
+
     this.service.getAllAreas().subscribe(data => (
       this.areas = data
     ));
@@ -52,6 +76,9 @@ export class UpdateRoomComponent implements OnInit {
       this.roomTypes = data
     ));
     this.service.getById(this.activatedRoute.snapshot.params['id']).subscribe(data => {
+      console.log(data)
+      this.equipList=data.equipmentList;
+      this.categoryWithEquipments=this.classifyEquipmentByCategory(this.equipList)
       this.updateRoom.setValue({
           id: data.id,
           name: data.name,
@@ -66,26 +93,76 @@ export class UpdateRoomComponent implements OnInit {
       console.log(this.updateRoom.value)
     })
   }
+ addEquipment():Array<any>{
+    return this.updateRoom.get("equipmentList") as unknown as Array<any>;
+ }
 
-  // onUpdate() {
-  //   this.service.updateRoom(this.updateRoom.value,this.activatedRoute.snapshot.params['id']).subscribe(()=>{
-  //     this.snackBar.open("Bạn đã cập nhật thành công","Ok");
-  //     this.route.navigateByUrl("/employee");
-  //   })
-  // }
 isChange:boolean=false;
   showPreview(event: any) {
     this.selectedImage = event.target.files[0];
+    const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
+    const fileRef = this.storage.ref(nameImg);
+    this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          this.updateRoom.patchValue({image: url});
+          // Call API to create vaccine
+          // this.service.updateRoom( this.roomDTO).subscribe(() => {
+          //   console.log(this.roomDTO)
+          //   this.snackBar.open("Bạn đã cập nhật thành công", "Ok");
+          //   this.route.navigateByUrl("/");
+          // })
+        });
+      })
+    ).subscribe();
     this.isChange=true;
   }
+  openDialogChooseEquipments(): void {
+    this.matDialog.open(SelectEquipmentComponent, {
+      width: "1000px",
+      data: this.equipList
+    }).afterClosed().subscribe(
+      data => {this.equipList = data;
+      this.categoryWithEquipments=this.classifyEquipmentByCategory(data)}
+    );
+  }
+  classifyEquipmentByCategory(equipmentList: Array<Equipment>): Array<CategoryDTO> {
+    let categoryList: Array<CategoryDTO> = [];
+    if (equipmentList.length === 0) {
+      return [];
+    } else {
+      for (const equipment of equipmentList) {
+        let isExist: boolean = false;
 
+        for (const categoryDTO of categoryList) {
+          if (categoryDTO.id == equipment.category.id) {
+            categoryDTO.equipmentList.push(equipment);
+            isExist = true;
+          }
+        }
+
+        if (!isExist) {
+          let equipments: Array<Equipment> = [];
+          equipments.push(equipment);
+          categoryList.push({
+            id: equipment.category.id,
+            name: equipment.category.name,
+            equipmentList: equipments
+          })
+        }
+      }
+    }
+    return categoryList;
+  }
   save() {
     // upload image to firebase
     // const nameImg = this.getCurrentDateTime();
+//covert qua RoomDto
 
-    // console.log(this.selectedImage.name);
+    this.covertToDto();
+    console.log(this.roomDTO)
     if(this.isChange==true){
-
+//hihi
       const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
       const fileRef = this.storage.ref(nameImg);
       this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
@@ -93,8 +170,8 @@ isChange:boolean=false;
           fileRef.getDownloadURL().subscribe((url) => {
             this.updateRoom.patchValue({image: url});
             // Call API to create vaccine
-            this.service.updateRoom( this.activatedRoute.snapshot.params['id'],this.updateRoom.value).subscribe(() => {
-              console.log(this.updateRoom.value)
+            this.service.updateRoom( this.roomDTO).subscribe(() => {
+              console.log(this.roomDTO)
               this.snackBar.open("Bạn đã cập nhật thành công", "Ok");
               this.route.navigateByUrl("/");
             })
@@ -102,8 +179,8 @@ isChange:boolean=false;
         })
       ).subscribe();
     }else {
-      this.service.updateRoom( this.activatedRoute.snapshot.params['id'],this.updateRoom.value).subscribe(() => {
-        console.log(this.updateRoom.value)
+      this.service.updateRoom( this.roomDTO).subscribe(() => {
+        console.log(this.roomDTO)
         this.snackBar.open("Bạn đã cập nhật thành công", "Ok");
         this.route.navigateByUrl("/");
       });
@@ -111,7 +188,17 @@ isChange:boolean=false;
 
 
   }
-
+covertToDto(){
+    this.roomDTO.name=this.updateRoom.value.name;
+    this.roomDTO.id=this.updateRoom.value.id;
+    this.roomDTO.floor=this.updateRoom.value.floor;
+    this.roomDTO.area=this.updateRoom.value.area;
+    this.roomDTO.image=this.updateRoom.value.image;
+    this.roomDTO.capacity=this.updateRoom.value.capacity;
+    this.roomDTO.status=this.updateRoom.value.status;
+    this.roomDTO.roomType=this.updateRoom.value.roomType;
+    this.roomDTO.equipmentList=this.equipList;
+}
   getCurrentDateTime(): string {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }
