@@ -45,7 +45,7 @@ export class CreateEquipmentComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formCreateEquipment.value);
+    this.formCreateEquipment.value.image = this.image
     if (this.formCreateEquipment.valid) {
       this.equipmentService.createEquipment(this.formCreateEquipment.value).subscribe(() => {
         this.snackBar.open("Thêm mới thành công tài sản " + this.formCreateEquipment.value.name, "OK", {
@@ -66,7 +66,6 @@ export class CreateEquipmentComponent implements OnInit {
         this.angularFireStorage.ref(path).getDownloadURL().subscribe(
           (data)=>{
             this.image=data;
-            console.log(this.image)
           }
         )
       })
