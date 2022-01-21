@@ -14,27 +14,29 @@ import {MatInputModule} from "@angular/material/input";
 import {NgxPaginationModule} from "ngx-pagination";
 import {RouterModule} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
+import {UserManagementModule} from "./component/user-management/user-management.module";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    RouterModule,
-    // MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatSnackBarModule,
-    NgxPaginationModule,
-    RoomManagementModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        RouterModule,
+        // MatFormFieldModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatSnackBarModule,
+        NgxPaginationModule,
+        RoomManagementModule,
+        UserManagementModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,27 @@
+.tittle-form, h2 {
+  text-align: center;
+}
+
+#account-name {
+  margin-top: 50px;
+  text-align: center;
+  padding-left: 380px;
+}
+
+.col-10 {
+  margin-top: 200px;
+  margin-left: 300px;
+}
+
+.h2, h2 {
+  text-align: center;
+}
+
+.row-footer {
+  margin-top: 200px;
+}
+
+.row-footer, ul, li {
+  text-align: center;
+  list-style-type: none;
+}
