@@ -15,7 +15,11 @@ export class RoomService {
   private readonly api_floor = "http://localhost:8080/api/rooms/floors";
   private readonly api_area = "http://localhost:8080/api/rooms/areas";
   private readonly api_roomType = "http://localhost:8080/api/rooms/roomTypes";
+  private readonly api_registrationHistory = "http://localhost:8080/api/rooms/registration-histories";
 
+  getAllRegistrationHistoryByIdRoom(id:String):Observable<any[]>{
+    return this.http.get<any[]>(this.api_registrationHistory+'/'+id);
+  }
   getAllRoom():Observable<any[]>{
     return this.http.get<any[]>(this.URL_ROOM);
   }

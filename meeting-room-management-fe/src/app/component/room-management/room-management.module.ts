@@ -9,6 +9,7 @@ import {CreateRoomComponent} from './create-room/create-room.component';
 import {DeleteRoomComponent} from './delete-room/delete-room.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatDialogModule} from "@angular/material/dialog";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MatDialogModule} from "@angular/material/dialog";
         CommonModule,
         RoomManagementRoutingModule,
         NgxPaginationModule,
-        MatDialogModule
+        MatDialogModule,
+        ReactiveFormsModule
     ],exports:[CreateRoomComponent,
   DeleteRoomComponent,
     DetailRoomComponent,

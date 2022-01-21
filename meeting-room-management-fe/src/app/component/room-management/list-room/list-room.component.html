@@ -25,16 +25,18 @@
               <div class="col-md-3">
                 <div class="row form-group">
                   <label for="status" class="col-md-5 col-form-label">Trạng thái :</label>
-                  <input id="status" class="form-control col-md-7" type="text">
+                  <select id="status" class="form-control col-md-7">
+                    <option selected disabled>Chọn</option>
+                    <option value="FIXING">đang sửa chữa</option>
+                    <option value="AVAILABLE">sẵn sàng</option>
+                    <option value="USING">đang sử dụng</option>
+                  </select>
                 </div>
                 <div class="row form-group">
                   <label for="typeRoom" class="col-md-5 col-form-label">Loại phòng :</label>
-                  <select id="typeRoom" class="form-control col-md-7" type="text">
-                    <option>Chọn</option>
-                    <option>1 lần</option>
-                    <option>Hằng ngày</option>
-                    <option>Hằng tuần</option>
-                    <option>Hằng tháng</option>
+                  <select id="typeRoom" class="form-control col-md-7">
+                    <option selected disabled>Chọn</option>
+                    <option *ngFor="let typeRoom of roomTypeList" [text]="typeRoom.name" [value]="typeRoom.id" ></option>
                   </select>
                 </div>
               </div>
@@ -46,11 +48,8 @@
                 <div class="row form-group">
                   <label for="area" class="col-md-5 col-form-label">Khu vực :</label>
                   <select id="area" class="form-control col-md-7">
-                    <option>Chọn</option>
-                    <option>Khu A</option>
-                    <option>Khu B</option>
-                    <option>Khu C</option>
-                    <option>Khu D</option>
+                    <option selected disabled>Chọn</option>
+                    <option *ngFor="let area of areaList" [text]="area.name" [value]="area.id"></option>
                   </select>
                 </div>
               </div>
@@ -70,9 +69,9 @@
       </div>
       <div class="row">
         <div class="table-responsive">
-          <table class="table table-bordered table-hover text-center">
+          <table class="table table-bordered table-hover">
             <thead>
-            <tr>
+            <tr class="text-center">
               <th>Stt</th>
               <th>Tên Phòng</th>
               <th>Tầng</th>
@@ -86,17 +85,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let room of roomList |paginate:{itemsPerPage:6,currentPage:p} ; let i = index">
-              <th>{{i+1}}</th>
+            <tr *ngFor="let room of roomList |paginate:{itemsPerPage:5,currentPage:p} ; let i = index">
+              <th class="text-center">{{i+1}}</th>
               <td>{{room.name}}</td>
               <td>{{room.floor.name}}</td>
               <td>{{room.area.name}}</td>
-              <td>{{room.status}}</td>
+              <td *ngIf="room.status == 'FIXING'">Đang sửa</td>
+              <td *ngIf="room.status == 'AVAILABLE'">Khả dụng</td>
+              <td *ngIf="room.status == 'USING'">Đang sử dụng</td>
               <td>{{room.roomType.name}}</td>
-              <td>{{room.capacity}}</td>
-              <td><a href="#" class="detailButton"><i class="fa fa-floppy-o"></i></a></td>
-              <td><a href="#" class="editButton"><i class="fa fa-edit"></i></a></td>
-              <td><a href="#" class="deleteButton" (click)="openDialogDelete(room)"><i class="fa fa-trash"></i></a></td>
+              <td>{{room.capacity}} người</td>
+              <td class="text-center"><a href="#" class="detailButton"><i class="fa fa-eye"></i></a></td>
+              <td class="text-center"><a href="#" class="editButton"><i class="fa fa-edit"></i></a></td>
+              <td class="text-center"><a href="#" class="deleteButton" (click)="openDialogDelete(room)"><i class="fa fa-trash"></i></a></td>
             </tr>
             </tbody>
           </table>

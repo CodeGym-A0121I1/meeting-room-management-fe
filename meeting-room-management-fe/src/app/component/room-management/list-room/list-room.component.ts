@@ -2,10 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {RoomService} from "../../../service/room.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {DeleteRoomComponent} from "../delete-room/delete-room.component";
 import {Room} from "../../../models/Room";
 import {Floor} from "../../../models/Floor";
+import {RoomType} from "../../../models/RoomType";
+import {Area} from "../../../models/Area";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-list-room',
@@ -17,11 +19,13 @@ export class ListRoomComponent implements OnInit {
   roomList!: any[];
   p: any;
   floorList:Array<Floor> = [];
-
+  roomTypeList: Array<RoomType> = [];
+  areaList:Array<Area> = [];
+  formSearchRoom!:FormGroup;
   constructor(private roomService:RoomService,
               private activatedRoute:ActivatedRoute,
               private matDialog:MatDialog,
-              private snackBar:MatSnackBar) { }
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.roomService.getAllRoom().subscribe(data =>
@@ -29,15 +33,30 @@ export class ListRoomComponent implements OnInit {
     );
     this.roomService.getAllFloors().subscribe(
       data => this.floorList = data
+    );
+    this.roomService.getAllRoomTypes().subscribe(
+      data => this.roomTypeList = data
+    );
+    this.roomService.getAllAreas().subscribe(
+      data => this.areaList = data
     )
+  }
+  createForm():void {
+    this.formSearchRoom = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      status: [''],
+      capacity: ['', [Validators.pattern("\\d+"), Validators.required]],
+      area: [this.areaList[0], [Validators.required]],
+      floor: [this.floorList[0], [Validators.required]],
+      roomType: [this.roomTypeList[0], [Validators.required]]
+    })
   }
   openDialogDelete(room:Room){
     this.roomService.getRoomById(room.id).subscribe(data =>{
       const dialogRef = this.matDialog.open(DeleteRoomComponent,{
         width:'500px',
         height:'215px',
-        data:data
-      });
+        data:data});
       dialogRef.afterClosed().subscribe(()=>{
         this.ngOnInit();
       })

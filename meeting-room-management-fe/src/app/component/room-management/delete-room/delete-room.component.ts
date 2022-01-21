@@ -3,6 +3,7 @@ import {Room} from "../../../models/Room";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {RoomService} from "../../../service/room.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {error} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-delete-room',
@@ -10,7 +11,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./delete-room.component.css']
 })
 export class DeleteRoomComponent implements OnInit {
-
+  private errors: any;
 
   constructor(
     private dialogRef:MatDialogRef<DeleteRoomComponent>,
@@ -23,11 +24,19 @@ export class DeleteRoomComponent implements OnInit {
     this.room = this.data;
   }
   deleteConfirm(){
-    this.roomService.deleteRoomById(this.room.id).subscribe(()=>{
+      this.roomService.deleteRoomById(this.room.id).subscribe(() => {
+        this.dialogRef.close();
+        this.snackBar.open("Xoá phòng thành công !!! ", "OK", {
+          duration: 4000
+        })
+      },error => {
+        this.errors = error
+      });
+    if(!this.errors){
       this.dialogRef.close();
-      this.snackBar.open("Delete room success !!! ", "OK",{
-        duration: 4000
+      this.snackBar.open("Xoá thất bại ! Phòng đang có người đặt","OK",{
+        duration:4000
       })
-    })
+    }
   }
 }
