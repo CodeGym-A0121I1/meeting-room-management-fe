@@ -70,6 +70,7 @@ export class CreateEquipmentComponent implements OnInit {
           }
         )
       })
+
     ).subscribe();
   }
 
