@@ -1,9 +1,8 @@
 import {AccountDTO} from "./AccountDTO";
-import {Department} from "../IDepartment";
+import {DepartmentDTO} from "./DepartmentDTO";
 
-export interface UserDTO {
-  id: string;
+export class UserDTO {
   fullName: string;
   account: AccountDTO;
-  department: Department;
+  department: DepartmentDTO;
 }

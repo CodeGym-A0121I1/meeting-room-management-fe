@@ -48,8 +48,8 @@
         <div class="form-group mt-3 row">
           <label for="role" class="form-label">Quyền (<span class="red-asterisk">*</span>)</label>
           <select id="role" name="role" class="form-control" formControlName="role">
-            <option value="Admin">Quản trị</option>
-            <option value="User">Người dùng</option>
+            <option selected value=""></option>
+            <option *ngFor="let role of roles" [ngValue]="getKeyName(role)">{{role}}</option>
           </select>
         </div>
         <div class="small-red-text"
@@ -59,22 +59,22 @@
         <div class="form-group mt-3 row">
           <label for="fullName" class="form-label">Họ và tên (<span class="red-asterisk">*</span>)</label>
           <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Nhập họ và tên"
-                 formControlName="fullname">
+                 formControlName="fullName">
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('fullname')?.hasError('required') && createUser.get('fullname')?.touched">
+             *ngIf="createUser.get('fullName')?.hasError('required') && createUser.get('fullName')?.touched">
           <p>Họ và tên không được để trống</p>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('fullname')?.hasError('maxLength') && createUser.get('fullname')?.touched">
+             *ngIf="createUser.get('fullName')?.hasError('maxLength') && createUser.get('fullName')?.touched">
           <p>Họ và tên tối đa 30 kí tự</p>
         </div>
         <div class="form-group mt-3 row">
           <label for="department" class="form-label">Bộ phận (<span class="red-asterisk">*</span>)</label>
-          <select id="department" name="department" class="form-control" formControlName="department">
-            <option value="team-lead">Team lead</option>
-            <option value="manager">Manager</option>
-            <option value="member">Member</option>
+          <select id="department" name="department" class="form-control"
+                  formControlName="department">
+            <option selected value=""></option>
+            <option *ngFor="let department of listDepartment" [ngValue]="department">{{department.name}}</option>
           </select>
         </div>
         <div class="small-red-text"
