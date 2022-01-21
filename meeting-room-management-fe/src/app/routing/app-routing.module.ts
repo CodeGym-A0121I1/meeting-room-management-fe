@@ -7,7 +7,8 @@ import {HeaderComponent} from "../component/header/header.component";
 const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "header", component: HeaderComponent},
-  {path: "access-denied", component: ForbiddenComponent}
+  {path: "access-denied", component: ForbiddenComponent},
+  // {path: "**", component: PageNotFoundComponent}
 ];
 
 @NgModule({

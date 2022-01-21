@@ -35,4 +35,8 @@ export class AuthService {
   public isAdmin() {
     return this.getRole() == 'ROLE_ADMIN'
   }
+
+  public isAuthenticated() {
+    return (this.getUser() != null);
+  }
 }

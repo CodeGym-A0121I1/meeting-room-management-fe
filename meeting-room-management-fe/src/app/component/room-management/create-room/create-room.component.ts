@@ -16,6 +16,7 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import bsCustomFileInput from 'bs-custom-file-input'
 import {DomSanitizer} from "@angular/platform-browser";
 import {CategoryDTO} from "../../../model/dto/CategoryDTO";
+import {ValidateMessage} from "../../../model/dto/ValidateMessage";
 
 
 @Component({
@@ -148,30 +149,30 @@ export class CreateRoomComponent implements OnInit {
   createRoom() {
     if (this.formAddRoom.valid) {
       this.convertToDTO();
-      // this.roomService.addRoom(this.newRoom).subscribe(
-      //   () => {
-      //     console.log(this.newRoom)
-      //     this.snackBar.open("Add Successful")._dismissAfter(3000);
-      //     this.formAddRoom.reset();
-      //     this.equipmentList = [];
-      //     this.image = "";
-      //   },
-      //   error => {
-      //     if (error.status === 400) {
-      //       let errors: Array<ValidateMessage> = []
-      //       for (const key of Object.keys(error.error)) {
-      //         errors.push({
-      //           field: key,
-      //           error: error.error[key]
-      //         })
-      //       }
-      //
-      //       for (const validateMessage of errors) {
-      //         this.formAddRoom.get(validateMessage.field)?.setErrors({'serverError': validateMessage.error})
-      //       }
-      //     }
-      //   }
-      // )
+      this.roomService.addRoom(this.newRoom).subscribe(
+        () => {
+          console.log(this.newRoom)
+          this.snackBar.open("Add Successful")._dismissAfter(3000);
+          this.formAddRoom.reset();
+          this.equipmentList = [];
+          this.image = "";
+        },
+        error => {
+          if (error.status === 400) {
+            let errors: Array<ValidateMessage> = []
+            for (const key of Object.keys(error.error)) {
+              errors.push({
+                field: key,
+                error: error.error[key]
+              })
+            }
+
+            for (const validateMessage of errors) {
+              this.formAddRoom.get(validateMessage.field)?.setErrors({'serverError': validateMessage.error})
+            }
+          }
+        }
+      )
     } else {
       this.formAddRoom.markAllAsTouched();
       const invalidElements = this.elementRef.nativeElement.querySelectorAll('.ng-invalid');
@@ -197,7 +198,6 @@ export class CreateRoomComponent implements OnInit {
         ).subscribe();
       }
     )
-
   }
 
   convertToDTO() {
@@ -218,14 +218,9 @@ export class CreateRoomComponent implements OnInit {
       || this.formAddRoom.get(field)?.hasError("serverError");
 
     return isInvalid ? 'form-control is-invalid' : 'form-control';
-
   }
 
   getImage() {
     return this.sanitizer.bypassSecurityTrustUrl(this.formAddRoom.value.image);
-  }
-
-  byArea(area1: Area, area2: Area) {
-    return area1.id == area2.id
   }
 }
