@@ -5,6 +5,8 @@ import {EquipmentService} from "../../../service/equipment.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ICategory} from "../../../models/equipment/ICategory";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-create-equipment',
@@ -15,13 +17,16 @@ export class CreateEquipmentComponent implements OnInit {
 
   // @ts-ignore
   formCreateEquipment: FormGroup;
+  image:string |any;
+  selectedFile: File | any;
 
   constructor(
     private equipmentService: EquipmentService,
     private formBuilder: FormBuilder,
     private matDialog: MatDialog,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private angularFireStorage: AngularFireStorage,
   ) { }
 
   categoryList: Array<ICategory> = [];
@@ -42,7 +47,6 @@ export class CreateEquipmentComponent implements OnInit {
   onSubmit() {
     console.log(this.formCreateEquipment.value);
     if (this.formCreateEquipment.valid) {
-      console.log("asaadadada")
       this.equipmentService.createEquipment(this.formCreateEquipment.value).subscribe(() => {
         this.snackBar.open("Thêm mới thành công tài sản " + this.formCreateEquipment.value.name, "OK", {
           duration: 5000
@@ -50,6 +54,23 @@ export class CreateEquipmentComponent implements OnInit {
         this.formCreateEquipment.reset();
       })
     }
+  }
+
+  selectFile(event: any) {
+    const path = new Date().toString();
+    this.selectedFile=event.target.files[0]
+    console.log(this.selectedFile)
+    this.angularFireStorage.upload(path,this.selectedFile)
+      .snapshotChanges().pipe(
+      finalize(() => {
+        this.angularFireStorage.ref(path).getDownloadURL().subscribe(
+          (data)=>{
+            this.image=data;
+            console.log(this.image)
+          }
+        )
+      })
+    ).subscribe();
   }
 
 }

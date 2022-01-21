@@ -10,7 +10,7 @@
           <input type="text" id="name" name="name" class="form-control" formControlName="name">
         </div>
         <small class="text-danger col-sm-10"
-             *ngIf="formCreateEquipment.get('name')?.hasError('required') && formCreateEquipment.get('name')?.touched">
+               *ngIf="formCreateEquipment.get('name')?.hasError('required') && formCreateEquipment.get('name')?.touched">
           <p>Tên tài sản không được để trống</p>
         </small>
       </div>
@@ -18,7 +18,8 @@
         <label for="description" class="col-sm-2 col-form-label">Mô tả:<label
           class="text-danger">(*)</label></label>
         <div class="col-sm-10">
-          <textarea rows="3" id="description" name="description" class="form-control" formControlName="description"></textarea>
+          <textarea rows="3" id="description" name="description" class="form-control"
+                    formControlName="description"></textarea>
         </div>
         <small class="text-danger col-sm-10"
                *ngIf="formCreateEquipment.get('description')?.hasError('required') && formCreateEquipment.get('description')?.touched">
@@ -61,15 +62,17 @@
         <label class="col-sm-2 col-form-label">Hình ảnh:<label
           class="text-danger">(*)</label></label>
         <div class="col-sm-10">
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="image">
-              <label class="custom-file-label" for="image">Chọn ảnh</label>
-            </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="image" name="image" accept="image/*"
+                   (change)="selectFile($event)" formControlName="image">
+            <label class="custom-file-label" for="image">Chọn ảnh</label>
+          </div>
         </div>
-        <small class="text-danger col-sm-10"
-               *ngIf="formCreateEquipment.get('image')?.hasError('required') && formCreateEquipment.get('image')?.touched">
-          <p>Hình ảnh không được để trống</p>
-        </small>
+        <div class="col-sm-5">
+          <div *ngIf="image">
+            <img [src]="image" class="img-thumbnail" alt="image">
+          </div>
+        </div>
       </div>
       <div class="row mt-5">
         <div class="col-sm-12 d-flex justify-content-center ">
