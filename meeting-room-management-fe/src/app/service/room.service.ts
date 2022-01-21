@@ -49,4 +49,11 @@ export class RoomService {
     // @ts-ignore
     return this.httpClient.get<string>(this.api_image, {responseType: 'text', headers: this.headers});
   }
+
+  getById(id:string):Observable<any>{
+    return this.httpClient.get(this.URL_ROOM+'/'+id);
+  }
+  updateRoom(id:string,room:any):Observable<any>{
+    return this.httpClient.put(this.URL_ROOM+'/update/'+id,room);
+  }
 }
