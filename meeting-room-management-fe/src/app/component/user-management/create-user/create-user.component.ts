@@ -39,15 +39,19 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.createUser.valid) {
+    if (this.createUser.invalid) {
+      return;
+    } else {
       for (let i = 0; i < this.listUsername.length; i++) {
         if (this.createUser.value.username === this.listUsername[i]) {
           this.snackBar.open("Tên đăng nhập đã tồn tại", "OK");
+          return;
         }
       }
       this.convertToDto();
       this.userService.createAccount(this.account).subscribe(() => {
         this.userService.createUser(this.user).subscribe(() => {
+          this.createUser.reset();
           this.snackBar.open("Thêm mới thành công", "OK")
         })
       });

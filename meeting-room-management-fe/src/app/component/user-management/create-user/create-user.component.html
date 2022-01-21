@@ -14,7 +14,7 @@
           <p>Tên đăng nhập không được để trống</p>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('username')?.hasError('maxLength') && createUser.get('username')?.touched">
+             *ngIf="createUser.get('username')?.hasError('maxlength') && createUser.get('username')?.touched">
           <p>Tên đăng nhập tối đa 30 kí tự</p>
         </div>
         <div class="form-group mt-3 row">
@@ -27,8 +27,8 @@
           <p>Mật khẩu không được để trống</p>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('password')?.hasError('maxLength') &&
-             createUser.get('password')?.hasError('minLength') && createUser.get('password')?.touched">
+             *ngIf="createUser.get('password')?.hasError('maxlength') &&
+             createUser.get('password')?.hasError('minlength') && createUser.get('password')?.touched">
           <p>Mật khẩu tối thiểu 6 kí tự và tối đa 30 kí tự</p>
         </div>
         <div class="form-group mt-3 row">
@@ -66,7 +66,7 @@
           <p>Họ và tên không được để trống</p>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('fullName')?.hasError('maxLength') && createUser.get('fullName')?.touched">
+             *ngIf="createUser.get('fullName')?.hasError('maxlength') && createUser.get('fullName')?.touched">
           <p>Họ và tên tối đa 30 kí tự</p>
         </div>
         <div class="form-group mt-3 row">
