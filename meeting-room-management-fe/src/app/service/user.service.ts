@@ -20,7 +20,6 @@ export class UserService {
   }
 
   changePassword(changePasswordRequestDTO: ChangePasswordRequestDTO): Observable<boolean> {
-    console.log(changePasswordRequestDTO);
     return this.httpClient.put<boolean>(this.URL_API + '/account/password', changePasswordRequestDTO, {headers: this.headers});
   }
 

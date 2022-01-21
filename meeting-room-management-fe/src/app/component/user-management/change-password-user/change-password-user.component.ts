@@ -26,10 +26,13 @@ export class ChangePasswordUserComponent implements OnInit {
   constructor(private userService: UserService,
               private matSnackBar: MatSnackBar) {
   }
+
   formChangePassword = new FormGroup({
     oldPassword: new FormControl('', [Validators.required]),
-    newPassword: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required])
+    pwGroup: new FormGroup({
+      newPassword: new FormControl('', [Validators.required]),
+      confirmPassword: new FormControl('', [Validators.required])
+    }, this.checkMatchPassword)
   });
 
   ngOnInit(): void {
@@ -37,36 +40,35 @@ export class ChangePasswordUserComponent implements OnInit {
   }
 
   checkMatchPassword(control: AbstractControl) {
-    let newPassword = control.value.get('newPassword');
-    let confirmPassword = control.value.get('confirmPassword');
-    if (newPassword !== confirmPassword) {
-      return {DontMatch: true};
+    let pwGroup = control.value;
+    if (pwGroup.newPassword !== pwGroup.confirmPassword) {
+      return {passwordDontMatch: true};
+
     }
     return null;
-  }
+   }
 
   onSubmit() {
     if (this.formChangePassword.valid) {
       // gáng cứng, sau này fix sau
       this.changePasswordRequestDTO.username = "trong";
       this.changePasswordRequestDTO.oldPassword = this.formChangePassword.value.oldPassword;
-      this.changePasswordRequestDTO.newPassword = this.formChangePassword.value.newPassword;
+      this.changePasswordRequestDTO.newPassword = this.formChangePassword.value.pwGroup.newPassword;
       this.userService.changePassword(this.changePasswordRequestDTO).subscribe(
         (data) => {
           this.matSnackBar.open("Thay đổi mật khẩu thành công", "Đóng", {
             duration: 3000
           });
           this.formChangePassword.reset();
+          this.checkOldPassword = false;
         },
         (error) => {
           this.checkOldPassword = true;
 
         }
       );
-    } else {
-      this.checkOldPassword = true;
-
     }
+
   }
 
 }
