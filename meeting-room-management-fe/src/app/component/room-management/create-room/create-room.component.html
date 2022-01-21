@@ -10,7 +10,11 @@
                placeholder="Nhập tên phòng họp">
         <small class="form-text text-danger"
                *ngIf="formAddRoom.get('name')?.hasError('required')  && formAddRoom.get('name')?.touched">
-          Name is mandatory
+          Tên phòng là bắt buộc.
+        </small>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('name')?.hasError('serverError')">
+          {{formAddRoom.get('name')?.getError('serverError')}}
         </small>
       </div>
     </div>
@@ -18,11 +22,16 @@
       <label for="floor" class="col-sm-2 col-form-label">Tầng <span class="required-field">*</span></label>
       <div class="col-sm-10">
         <select formControlName="floor" id="floor" [ngClass]="getClassName('floor')">
+          <option disabled selected>Chọn tầng</option>
           <option *ngFor="let floor of floorList" [ngValue]="floor" [text]="floor.name"></option>
         </select>
         <small class="form-text text-danger"
                *ngIf="formAddRoom.get('floor')?.hasError('required')  && formAddRoom.get('floor')?.touched">
-          Floor is mandatory
+          Tầng là bắt buộc.
+        </small>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('floor')?.hasError('serverError')">
+          {{formAddRoom.get('floor')?.getError('serverError')}}
         </small>
       </div>
     </div>
@@ -30,12 +39,16 @@
       <label for="area" class="col-sm-2 col-form-label">Khu vực <span class="required-field">*</span></label>
       <div class="col-sm-10">
         <select formControlName="area" id="area" [ngClass]="getClassName('area')">
-          <option selected disabled>Chọn</option>
+          <option disabled selected>Chọn khu vực</option>
           <option *ngFor="let area of areaList" [ngValue]="area" [text]="area.name"></option>
         </select>
         <small class="form-text text-danger"
                *ngIf="formAddRoom.get('area')?.hasError('required')  && formAddRoom.get('area')?.touched">
-          Area is mandatory
+          Khu vực là bắt buộc.
+        </small>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('area')?.hasError('serverError')">
+          {{formAddRoom.get('area')?.getError('serverError')}}
         </small>
       </div>
     </div>
@@ -46,11 +59,19 @@
                placeholder="Nhập sức chứa">
         <small class="form-text text-danger"
                *ngIf="formAddRoom.get('capacity')?.hasError('required')  && formAddRoom.get('capacity')?.touched">
-          Capacity is mandatory
+          Sức chứa là bắt buộc.
         </small>
         <small class="form-text text-danger"
-               *ngIf="formAddRoom.get('capacity')?.hasError('pattern')  && formAddRoom.get('capacity')?.dirty">
-          Capacity must be a number
+               *ngIf="formAddRoom.get('capacity')?.hasError('invalidCapacity') && !formAddRoom.get('capacity')?.hasError('required')  && formAddRoom.get('capacity')?.dirty">
+          Sức chứa phải là số nguyên.
+        </small>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('capacity')?.hasError('negativeCapacity')  && formAddRoom.get('capacity')?.dirty">
+          Sức chứa phải lớn hơn 0.
+        </small>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('capacity')?.hasError('serverError')">
+          {{formAddRoom.get('capacity')?.getError('serverError')}}
         </small>
       </div>
     </div>
@@ -59,20 +80,30 @@
         class="required-field">*</span></label>
       <div class="col-sm-10">
         <select formControlName="roomType" id="roomType" [ngClass]="getClassName('roomType')">
-          <option *ngFor="let roomType of roomTypeList" [ngValue]="roomType" [text]="roomType.name" selected></option>
+          <option disabled selected>Chọn loại phòng</option>
+          <option *ngFor="let roomType of roomTypeList" [ngValue]="roomType" [text]="roomType.name"></option>
         </select>
         <small class="form-text text-danger"
                *ngIf="formAddRoom.get('roomType')?.hasError('required')  && formAddRoom.get('roomType')?.touched">
-          Room Type is mandatory
+          Loại phòng là bắt buộc.
+        </small>
+        <small class="form-text text-danger"
+               *ngIf="formAddRoom.get('roomType')?.hasError('serverError')">
+          {{formAddRoom.get('roomType')?.getError('serverError')}}
         </small>
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Hình ảnh</label>
-      <div class="col-sm-10 input-group">
+      <div class="col-sm-5 input-group">
         <div class="custom-file">
-          <input type="file" id="image" formControlName="image" class="custom-file-input">
+          <input type="file" id="image" class="custom-file-input" accept="image/*" (change)="selectFile($event)">
           <label class="custom-file-label" for="image">Chọn ảnh</label>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <div *ngIf="image">
+          <img [src]="image" class="img-thumbnail" alt="image">
         </div>
       </div>
     </div>
@@ -83,13 +114,13 @@
           <button type="button" class="btn btn-outline-info" (click)="openDialogChooseEquipments()">Chọn tài sản
           </button>
         </div>
-        <div class="ml-2 p-3 rounded" style="background-color: #637680;">
+        <div *ngIf="equipmentList.length != 0" class="ml-2 px-3 rounded" style="background-color: #637680;">
           <div class="assets-list row">
-            <div *ngFor="let equipment of equipmentList" class="mx-2" style="">
+            <div *ngFor="let categoryDTO of categoryWithEquipments" class="mx-2" style="">
               <div class="card rounded text-center m-2">
                 <div class="card-body">
                   <p class="card-text">
-                    {{equipment.name}}
+                    {{categoryDTO.name}}: {{categoryDTO.equipmentList.length}}
                   </p>
                 </div>
               </div>

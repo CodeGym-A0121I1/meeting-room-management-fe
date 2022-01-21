@@ -8,6 +8,7 @@ export const environment = {
     apiKey: "AIzaSyAsOBFJz5ynJI9WTk7jK4pwoVZixCM2qh8",
     authDomain: "room-meeting-management.firebaseapp.com",
     projectId: "room-meeting-management",
+    databaseURL: "https://room-meeting-management-default-rtdb.asia-southeast1.firebasedatabase.app/",
     storageBucket: "room-meeting-management.appspot.com",
     messagingSenderId: "554191587700",
     appId: "1:554191587700:web:1424f77b6006266f988421",
