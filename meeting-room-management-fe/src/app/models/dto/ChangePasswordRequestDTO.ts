@@ -1,5 +1,5 @@
 export interface ChangePasswordRequestDTO {
-  username : string ,
+    username : string ,
   oldPassword : string ,
   newPassword : string
 }

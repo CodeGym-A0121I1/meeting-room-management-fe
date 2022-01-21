@@ -12,16 +12,17 @@ export class UserService {
   URL_API = "http://localhost:8080/api/users";
 
   headers = new HttpHeaders({
-    'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0aGFuZyIsImV4cCI6MTY0MjcxMjE3NSwiaWF0IjoxNjQyNjc2MTc1fQ.tnF7AdrOtvwFj2tF5iV3ZNXd4YMBOCYbiBWd-4CSB6R62k0tNodSjG39-bGZD1Ly_VJm--2Dz_AnUdZGk9f14Q'
+    'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0cm9uZyIsImV4cCI6MTY0Mjc5MzgyMiwiaWF0IjoxNjQyNzU3ODIyfQ.tKlM0R5yyrpglxZftofB5E9SnWK_PpZq58PseCa4NxPOICUSMP71sDn17OE1ElzGGA2JTc2d5AZAIWLHdizxJg'
   });
 
 
   constructor(private httpClient: HttpClient) {
   }
 
-  changePassword(changePasswordRequestDTO: ChangePasswordRequestDTO): Observable<any> {
+  changePassword(changePasswordRequestDTO: ChangePasswordRequestDTO): Observable<boolean> {
     console.log(changePasswordRequestDTO);
-    return this.httpClient.put<any>(this.URL_API + '/account/password', changePasswordRequestDTO, {headers: this.headers});
+    return this.httpClient.put<boolean>(this.URL_API + '/account/password', changePasswordRequestDTO, {headers: this.headers});
   }
+
 }
 

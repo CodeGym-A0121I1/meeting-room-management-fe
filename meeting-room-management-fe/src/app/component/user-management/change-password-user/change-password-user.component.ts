@@ -1,7 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators
+} from "@angular/forms";
 import {ChangePasswordRequestDTO} from "../../../models/dto/ChangePasswordRequestDTO";
 import {UserService} from "../../../service/user.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-change-password-user',
@@ -10,49 +16,57 @@ import {UserService} from "../../../service/user.service";
 })
 export class ChangePasswordUserComponent implements OnInit {
 
-  changePasswordRequestDTO: ChangePasswordRequestDTO | any;
-  constructor( private userService : UserService) { }
+  changePasswordRequestDTO: ChangePasswordRequestDTO = new class implements ChangePasswordRequestDTO {
+    newPassword: string | any;
+    oldPassword: string | any;
+    username: string | any;
+  };
+  checkOldPassword = false;
 
-  // form1 = new FormGroup({
-  //   oldPw: new FormControl(['', [Validators.required]]),
-  //   newPw: new FormControl(['', [Validators.required ]]),
-    // confirmPw: new FormControl(['', [Validators.required]])
-  // } ,this.checkPassword);
-  // } );
-  form2 = new FormGroup({
-    username: new FormControl('',Validators.required),
-    oldPassword: new FormControl('',Validators.required),
-    newPassword : new FormControl('',Validators.required)
-  } );
+  constructor(private userService: UserService,
+              private matSnackBar: MatSnackBar) {
+  }
+  formChangePassword = new FormGroup({
+    oldPassword: new FormControl('', [Validators.required]),
+    newPassword: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('', [Validators.required])
+  });
+
   ngOnInit(): void {
 
   }
-  // checkPassword(control : AbstractControl) {
-  //   let newPwd2 = control.value.get('newPw');
-  //   let confirmPwd2 = control.value.get('confirmPw');
-  //   if(newPwd2 !== confirmPwd2){
-  //     return { pwdsDontMatch: true };
-  //   }
-  //   return null;
-  //
 
-  onSubmit( ) {
-    this.changePasswordRequestDTO = this.form2.value;
-    console.log(this.changePasswordRequestDTO);
-    this.userService.changePassword(this.changePasswordRequestDTO).subscribe(
-      (data) => {
-        console.log(data)
-      }
-    );
+  checkMatchPassword(control: AbstractControl) {
+    let newPassword = control.value.get('newPassword');
+    let confirmPassword = control.value.get('confirmPassword');
+    if (newPassword !== confirmPassword) {
+      return {DontMatch: true};
+    }
+    return null;
   }
-  // get oldPw() {
-  //   return this.form1.get("oldPw");
-  // }
-  // get newPw() {
-  //   return this.form1.get("newPw");
-  // }
-  // get confirmPw() {
-  //   return this.form1.get("confirmPw");
-  // }
+
+  onSubmit() {
+    if (this.formChangePassword.valid) {
+      // gáng cứng, sau này fix sau
+      this.changePasswordRequestDTO.username = "trong";
+      this.changePasswordRequestDTO.oldPassword = this.formChangePassword.value.oldPassword;
+      this.changePasswordRequestDTO.newPassword = this.formChangePassword.value.newPassword;
+      this.userService.changePassword(this.changePasswordRequestDTO).subscribe(
+        (data) => {
+          this.matSnackBar.open("Thay đổi mật khẩu thành công", "Đóng", {
+            duration: 3000
+          });
+          this.formChangePassword.reset();
+        },
+        (error) => {
+          this.checkOldPassword = true;
+
+        }
+      );
+    } else {
+      this.checkOldPassword = true;
+
+    }
+  }
 
 }
