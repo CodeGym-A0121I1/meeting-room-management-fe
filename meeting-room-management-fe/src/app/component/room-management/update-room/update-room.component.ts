@@ -72,7 +72,7 @@ roomDTO:RoomDTO = new class implements RoomDTO {
     this.service.getAllFloors().subscribe(data => (
       this.floors = data
     ));
-    this.service.getAllTypes().subscribe(data => (
+    this.service.getAllRoomTypes().subscribe(data => (
       this.roomTypes = data
     ));
     this.service.getById(this.activatedRoute.snapshot.params['id']).subscribe(data => {

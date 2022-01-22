@@ -25,6 +25,8 @@ export class SelectEquipmentComponent implements OnInit {
   mapCategoryCheckbox: Map<string, boolean> = new Map<string, boolean>();
   searchName: string = "";
   searchCategory: number = 0;
+  categoryWithEquipments: Array<CategoryDTO> = [];
+  isesxit:boolean=false;
 
   constructor(
     private matDialogRef: MatDialogRef<SelectEquipmentComponent>,
@@ -34,6 +36,7 @@ export class SelectEquipmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.categoryWithEquipments=this.classifyEquipmentByCategory(this.data);
     this.equipmentService.getAllCategory().subscribe(
       data => this.categoryList = data
     );
@@ -42,6 +45,46 @@ export class SelectEquipmentComponent implements OnInit {
       data => {
         this.categoryWithEquipmentList = data;
         this.categoryWithEquipmentListDuplicate = data;
+//add dữ liệu
+        console.log(this.categoryWithEquipments)
+        for (const item of this.categoryWithEquipments){
+          this.isesxit=false;
+          for (const item2 of this.categoryWithEquipmentList){
+            if(item2.id==item.id){
+              this.isesxit=true;
+              for (let i of item.equipmentList){
+                if(!item2.equipmentList.includes(i)){
+                  item2.equipmentList.push(i);
+                }
+
+              }
+            }
+          }
+          if(!this.isesxit){
+            this.categoryWithEquipmentList.push(item)
+          }
+
+        }
+//add sud lieu
+        for (const item of this.categoryWithEquipments){
+          this.isesxit=false;
+          for (const item2 of this.categoryWithEquipmentListDuplicate){
+            if(item2.id==item.id){
+              this.isesxit=true;
+              for (let i of item.equipmentList){
+                if(!item2.equipmentList.includes(i)){
+                  item2.equipmentList.push(i);
+                }
+
+              }
+            }
+          }
+          if(!this.isesxit){
+            this.categoryWithEquipmentListDuplicate.push(item)
+          }
+
+        }
+
         for (const category of this.categoryWithEquipmentList) {
           this.mapCategoryCheckbox.set('check' + category.id, true);
           for (const equipment of category.equipmentList) {
@@ -128,5 +171,33 @@ export class SelectEquipmentComponent implements OnInit {
       },
       () => this.categoryWithEquipmentList = []
     )
+  }
+  classifyEquipmentByCategory(equipmentList: Array<Equipment>): Array<CategoryDTO> {
+    let categoryList: Array<CategoryDTO> = [];
+    if (equipmentList.length === 0) {
+      return [];
+    } else {
+      for (const equipment of equipmentList) {
+        let isExist: boolean = false;
+
+        for (const categoryDTO of categoryList) {
+          if (categoryDTO.id == equipment.category.id) {
+            categoryDTO.equipmentList.push(equipment);
+            isExist = true;
+          }
+        }
+
+        if (!isExist) {
+          let equipments: Array<Equipment> = [];
+          equipments.push(equipment);
+          categoryList.push({
+            id: equipment.category.id,
+            name: equipment.category.name,
+            equipmentList: equipments
+          })
+        }
+      }
+    }
+    return categoryList;
   }
 }
