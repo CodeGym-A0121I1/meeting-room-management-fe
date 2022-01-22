@@ -36,7 +36,6 @@ import {FeedbackManagementModule} from "./component/feedback-management/feedback
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
@@ -52,7 +51,8 @@ import {FeedbackManagementModule} from "./component/feedback-management/feedback
     LoginModule,
     EquipmentManagementModule,
     RoomManagementModule,
-    FeedbackManagementModule
+    FeedbackManagementModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
