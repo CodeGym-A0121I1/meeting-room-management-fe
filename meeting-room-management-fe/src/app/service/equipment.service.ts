@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {CategoryDTO} from "../model/dto/CategoryDTO";
 import {Category} from "../model/equipment/Category";
 import {AuthService} from "./auth.service";
+import {Equipment} from "../model/equipment/Equipment";
 
 @Injectable({
   providedIn: 'root'
@@ -26,17 +27,17 @@ export class EquipmentService {
     'Authorization': this.JWT
   })
 
-  getAllCategoryWithEquipment(): Observable<Array<CategoryDTO>> {
-    return this.httpClient.get<Array<CategoryDTO>>(this.API_EQUIPMENT);
+  getAllCategoryWithEquipment(roomID: string): Observable<Array<CategoryDTO>> {
+    return this.httpClient.get<Array<CategoryDTO>>(this.API_EQUIPMENT + "?room=" + roomID, {headers: this.headers});
   }
 
   searchByNameAndCategory(name: string, category: number): Observable<Array<CategoryDTO>> {
     // let params = new HttpParams().set("name", name).set("category", category);
-    return this.httpClient.get<Array<CategoryDTO>>(this.API_EQUIPMENT + "/search?category=" + category + "&name=" + name);
+    return this.httpClient.get<Array<CategoryDTO>>(this.API_EQUIPMENT + "/search?category=" + category + "&name=" + name, {headers: this.headers});
   }
 
   getAllCategory(): Observable<Array<Category>> {
-    return this.httpClient.get<Array<Category>>(this.API_CATEGORY);
+    return this.httpClient.get<Array<Category>>(this.API_CATEGORY, {headers: this.headers});
   }
 
   getAllCategoryQuantityStatusDto(): Observable<ICategoryDto[]> {
@@ -57,5 +58,34 @@ export class EquipmentService {
 
   updateStatusEquipment(id: string, status: string): Observable<void> {
     return this.httpClient.put<void>(this.API_EQUIPMENT + '/' + id, status, {headers: this.headers});
+  }
+
+  classifyEquipmentByCategory(equipmentList: Array<Equipment>): Array<CategoryDTO> {
+    let categoryList: Array<CategoryDTO> = [];
+    if (equipmentList?.length === 0) {
+      return [];
+    } else {
+      for (const equipment of equipmentList) {
+        let isExist: boolean = false;
+
+        for (const categoryDTO of categoryList) {
+          if (categoryDTO.id == equipment.category.id) {
+            categoryDTO.equipmentList.push(equipment);
+            isExist = true;
+          }
+        }
+
+        if (!isExist) {
+          let equipments: Array<Equipment> = [];
+          equipments.push(equipment);
+          categoryList.push({
+            id: equipment.category.id,
+            name: equipment.category.name,
+            equipmentList: equipments
+          })
+        }
+      }
+    }
+    return categoryList;
   }
 }

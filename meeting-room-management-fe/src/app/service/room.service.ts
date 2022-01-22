@@ -50,10 +50,11 @@ export class RoomService {
     return this.httpClient.get<string>(this.api_image, {responseType: 'text', headers: this.headers});
   }
 
-  getById(id:string):Observable<any>{
-    return this.httpClient.get(this.api_room + '/' + id);
+  getById(id: string): Observable<any> {
+    return this.httpClient.get(this.api_room + '/' + id, {headers: this.headers});
   }
-  updateRoom(id:string,room:any):Observable<any>{
-    return this.httpClient.put(this.api_room, room);
+
+  updateRoom(room: any): Observable<any> {
+    return this.httpClient.put(this.api_room, room, {headers: this.headers});
   }
 }

@@ -17,6 +17,7 @@ import bsCustomFileInput from 'bs-custom-file-input'
 import {DomSanitizer} from "@angular/platform-browser";
 import {CategoryDTO} from "../../../model/dto/CategoryDTO";
 import {ValidateMessage} from "../../../model/dto/ValidateMessage";
+import {EquipmentService} from "../../../service/equipment.service";
 
 
 @Component({
@@ -30,6 +31,7 @@ export class CreateRoomComponent implements OnInit {
 
   constructor(
     private roomService: RoomService,
+    private equipmentService: EquipmentService,
     private formBuilder: FormBuilder,
     private matDialog: MatDialog,
     private router: Router,
@@ -68,7 +70,7 @@ export class CreateRoomComponent implements OnInit {
         this.floorList = data;
       }
     )
-    this.roomService.getAllTypes().subscribe(
+    this.roomService.getAllRoomTypes().subscribe(
       data => this.roomTypeList = data
     )
     this.roomService.getAllAreas().subscribe(
@@ -107,43 +109,14 @@ export class CreateRoomComponent implements OnInit {
   openDialogChooseEquipments(): void {
     this.matDialog.open(SelectEquipmentComponent, {
       width: "1000px",
-      data: this.equipmentList,
+      data: [this.equipmentList, ''],
       disableClose: true
     }).afterClosed().subscribe(
       data => {
         this.equipmentList = data;
-        this.categoryWithEquipments = this.classifyEquipmentByCategory(data);
+        this.categoryWithEquipments = this.equipmentService.classifyEquipmentByCategory(data);
       }
     );
-  }
-
-  classifyEquipmentByCategory(equipmentList: Array<Equipment>): Array<CategoryDTO> {
-    let categoryList: Array<CategoryDTO> = [];
-    if (equipmentList.length === 0) {
-      return [];
-    } else {
-      for (const equipment of equipmentList) {
-        let isExist: boolean = false;
-
-        for (const categoryDTO of categoryList) {
-          if (categoryDTO.id == equipment.category.id) {
-            categoryDTO.equipmentList.push(equipment);
-            isExist = true;
-          }
-        }
-
-        if (!isExist) {
-          let equipments: Array<Equipment> = [];
-          equipments.push(equipment);
-          categoryList.push({
-            id: equipment.category.id,
-            name: equipment.category.name,
-            equipmentList: equipments
-          })
-        }
-      }
-    }
-    return categoryList;
   }
 
   createRoom() {

@@ -19,8 +19,8 @@ export class SelectEquipmentComponent implements OnInit {
   categoryWithEquipmentList: Array<CategoryDTO>;
   categoryWithEquipmentListDuplicate: Array<CategoryDTO>;
   categoryList: Array<Category>;
-  oldSelectedEquipments: Array<Equipment> = []
-  newSelectedEquipments: Array<Equipment> = []
+  oldSelectedEquipments: Array<Equipment> = [] //list get from form add/update
+  newSelectedEquipments: Array<Equipment> = [] //list will return to form
   mapEquipmentCheckbox: Map<string, boolean> = new Map<string, boolean>();
   mapCategoryCheckbox: Map<string, boolean> = new Map<string, boolean>();
   searchName: string = "";
@@ -28,7 +28,7 @@ export class SelectEquipmentComponent implements OnInit {
 
   constructor(
     private matDialogRef: MatDialogRef<SelectEquipmentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Array<Equipment>,
+    @Inject(MAT_DIALOG_DATA) public data: [Array<Equipment>, string],
     private equipmentService: EquipmentService
   ) {
   }
@@ -37,11 +37,12 @@ export class SelectEquipmentComponent implements OnInit {
     this.equipmentService.getAllCategory().subscribe(
       data => this.categoryList = data
     );
-    this.oldSelectedEquipments = Object.assign([], this.data);
-    this.equipmentService.getAllCategoryWithEquipment().subscribe(
+    this.oldSelectedEquipments = Object.assign([], this.data[0]);
+    this.equipmentService.getAllCategoryWithEquipment(this.data[1]).subscribe(
       data => {
         this.categoryWithEquipmentList = data;
-        this.categoryWithEquipmentListDuplicate = data;
+        this.categoryWithEquipmentListDuplicate = this.categoryWithEquipmentList
+
         for (const category of this.categoryWithEquipmentList) {
           this.mapCategoryCheckbox.set('check' + category.id, true);
           for (const equipment of category.equipmentList) {
