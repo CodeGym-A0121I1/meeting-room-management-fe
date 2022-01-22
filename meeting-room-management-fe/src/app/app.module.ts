@@ -25,6 +25,10 @@ import {ForbiddenComponent} from './component/forbidden/forbidden.component';
 
 import {FeedbackManagementModule} from "./component/feedback-management/feedback-management.module";
 
+import {environment} from "../environments/environment";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +40,7 @@ import {FeedbackManagementModule} from "./component/feedback-management/feedback
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
@@ -53,6 +58,7 @@ import {FeedbackManagementModule} from "./component/feedback-management/feedback
     RoomManagementModule,
     FeedbackManagementModule,
     AppRoutingModule
+    EquipmentManagementModule
   ],
   providers: [],
   bootstrap: [AppComponent]

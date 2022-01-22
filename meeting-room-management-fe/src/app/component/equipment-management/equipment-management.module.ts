@@ -11,6 +11,7 @@ import {CreateEquipmentComponent} from './create-equipment/create-equipment.comp
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {NgxPaginationModule} from "ngx-pagination";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     MatButtonModule,
     NgxPaginationModule
   ],
-  exports: [
+ exports:[
     CreateEquipmentComponent,
     DeleteEquipmentComponent,
     ListEquipmentComponent,
