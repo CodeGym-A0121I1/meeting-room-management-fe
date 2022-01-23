@@ -38,7 +38,6 @@ import {UserManagementModule} from "./component/user-management/user-management.
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,

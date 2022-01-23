@@ -7,7 +7,6 @@ import {ChangePasswordUserComponent} from './change-password-user/change-passwor
 import {CreateUserComponent} from './create-user/create-user.component';
 import {UpdateUserComponent} from './update-user/update-user.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {ConfirmEqualValidatorDirective} from "../../validator/confirm-equal-validator.directive";
 
 
 @NgModule({
@@ -16,7 +15,6 @@ import {ConfirmEqualValidatorDirective} from "../../validator/confirm-equal-vali
     ChangePasswordUserComponent,
     CreateUserComponent,
     UpdateUserComponent,
-    ConfirmEqualValidatorDirective
   ],
   imports: [
     CommonModule,
