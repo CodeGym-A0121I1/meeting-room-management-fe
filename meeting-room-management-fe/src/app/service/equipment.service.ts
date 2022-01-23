@@ -1,13 +1,11 @@
 import {Injectable} from '@angular/core';
 import {QuantityCategory} from "../model/dto/QuantityCategory";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {CategoryDTO} from "../model/dto/CategoryDTO";
 import {Category} from "../model/equipment/Category";
 import {AuthService} from "./auth.service";
 import {Equipment} from "../model/equipment/Equipment";
-import {HttpClient} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
 
 @Injectable({
@@ -100,11 +98,11 @@ export class EquipmentService {
   }
 
   getEquipmentById(id:string):Observable<any>{
-    return this.httpClient.get(this.URL_EQUIPMENT+'/'+id).pipe(
+    return this.httpClient.get(this.API_EQUIPMENT + '/' + id, {headers: this.headers}).pipe(
       catchError((err) => {
         if (err.status === 404)
-          return throwError("Không tìm thấy tài sản với mã: "+id);
-        return throwError("Không tìm thấy tài sản với mã: "+id);
+          return throwError("Không tìm thấy tài sản với mã: " + id);
+        return throwError("Không tìm thấy tài sản với mã: " + id);
       }));
   }
 }

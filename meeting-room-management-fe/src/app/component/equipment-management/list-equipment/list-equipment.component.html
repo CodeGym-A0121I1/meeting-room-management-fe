@@ -40,7 +40,7 @@
       <td>{{equipment.price | currency}} VNĐ</td>
 <!--      DatNT-->
       <td>
-        <a [routerLink]="['#']" class="detailButton">
+        <a [routerLink]="['/equipment/detail/' + equipment.id]" class="detailButton">
           <i class="fa fa-floppy-o"></i>
         </a>
       </td>

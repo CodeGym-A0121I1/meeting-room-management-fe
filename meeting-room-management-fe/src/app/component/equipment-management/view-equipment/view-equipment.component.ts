@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EquipmentService} from "../../../service/equipment.service";
 import {ActivatedRoute} from "@angular/router";
-import {data} from "jquery";
 
 @Component({
   selector: 'app-view-equipment',
@@ -15,10 +14,10 @@ export class ViewEquipmentComponent implements OnInit {
   errors: string = '';
 
   ngOnInit(): void {
-    this.equipmentService.getEquipmentById(this.activatedRoute.snapshot.params['id']).subscribe((data:any)=>{
-        this.equipment=data;
+    this.equipmentService.getEquipmentById(this.activatedRoute.snapshot.params['idEquipment']).subscribe((data: any) => {
+        this.equipment = data;
         console.log(data);
-      },error => this.errors=error
+      }, error => this.errors = error
     )
   }
 
