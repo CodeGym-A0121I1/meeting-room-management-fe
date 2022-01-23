@@ -42,8 +42,6 @@ export class SearchRoomComponent implements OnInit {
         }
     )
 
-
-
     constructor(private historyService: RegistrationHistoryService,
                 private activatedRoute: ActivatedRoute,
                 private matDialog: MatDialog,

@@ -20,8 +20,6 @@ export class SigupRoomComponent implements OnInit {
     p: any;
     soa: string | undefined;
   // @ts-ignore
-
-
     constructor(@Inject(MAT_DIALOG_DATA) public formHistory: FormGroup,
                 private matdialog: MatDialogRef<SigupRoomComponent>,
                 private historyService: RegistrationHistoryService,
@@ -53,7 +51,7 @@ export class SigupRoomComponent implements OnInit {
         this.historyService.SignupHistory(this.history).subscribe();
         this.snackbar.open("Đăng ký phòng thành công", "Đóng", {
             duration: 3000,
-            panelClass: ['mat-toolbar', 'mat-primary']
+            panelClass: ['mat-toolbar', 'mat-toolbar']
         })
         this.matdialog.close();
     }

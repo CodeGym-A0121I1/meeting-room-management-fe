@@ -3,7 +3,7 @@
   <div class="panel panel-primary ">
     <div class="panel-heading ">
       <br> <br>
-      <h3>Đăng ký phòng</h3>
+      <h3 >Đăng ký phòng</h3>
     </div>
     <br>
     <form>
@@ -34,7 +34,8 @@
         <div class="col-sm-2"></div>
         <label class="col-sm-3 col-form-label">Ngày kết thúc:</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" value="{{history.dateEnd}}" placeholder="dd/mm/yyyy" readonly>
+<!--          <p class="form-control">{{history.dateEnd}}</p>-->
+                      <input type="text" class="form-control" value="{{history.dateEnd}}" placeholder="dd/mm/yyyy" readonly>
         </div>
       </div>
       <div class="form-group row">
@@ -66,7 +67,6 @@
         </div>
         <div class="col-sm-5">
           <button (click)="xacdinh()" class="btn btn-primary">Đăng Ký</button>
-
         </div>
       </div>
       <br>
