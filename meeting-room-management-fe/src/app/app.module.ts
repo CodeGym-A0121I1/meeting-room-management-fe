@@ -16,37 +16,39 @@ import {RouterModule, Routes} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
 import {SigupRoomComponent} from "./component/registration-history-management/sigup-room/sigup-room.component";
 import {SearchRoomComponent} from "./component/registration-history-management/search-room/search-room.component";
-import {RegistrationHistoryManagementModule} from "./component/registration-history-management/registration-history-management.module";
+import {
+  RegistrationHistoryManagementModule
+} from "./component/registration-history-management/registration-history-management.module";
 
-// const routes: Routes = [
-//     {path: 'signuproom', component: SigupRoomComponent},
-//     {path: 'searchrooom', component: SearchRoomComponent},
-// ];
+const routes: Routes = [
+  {path: 'signuproom', component: SigupRoomComponent},
+  {path: 'searchrooom', component: SearchRoomComponent},
+];
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatDialogModule,
-        ReactiveFormsModule,
-        RouterModule,
-        FormsModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MatSnackBarModule,
-        NgxPaginationModule,
-        RoomManagementModule,
-        RegistrationHistoryManagementModule
-        // RouterModule.forChild(routes)
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSnackBarModule,
+    NgxPaginationModule,
+    RoomManagementModule,
+    RegistrationHistoryManagementModule
+    // RouterModule.forChild(routes)
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

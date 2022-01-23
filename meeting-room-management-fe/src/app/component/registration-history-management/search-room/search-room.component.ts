@@ -11,7 +11,7 @@ import {RegistrationHistory} from "../../../model/RegistrationHistory";
 import {Area} from "../../../model/Area";
 import {ICategory} from "../../../model/ICategory";
 import {SigupRoomComponent} from "../sigup-room/sigup-room.component";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {F} from "@angular/cdk/keycodes";
 
 @Component({
@@ -32,15 +32,16 @@ export class SearchRoomComponent implements OnInit {
         {
             // diadiem: new FormControl(''),
             // romomType: new FormControl(''),
-            dateStart: new FormControl(''),
-            timeStart: new FormControl(''),
-            dateEnd: new FormControl(''),
-            timeEnd: new FormControl(''),
-            room: new  FormControl(''),
-            description: new FormControl(''),
+            dateStart: new FormControl('',Validators.required),
+            timeStart: new FormControl('',Validators.required),
+            dateEnd: new FormControl('',Validators.required),
+            timeEnd: new FormControl('',Validators.required),
+            room: new  FormControl('',Validators.required),
+            description: new FormControl('',Validators.required),
             // user: new FormControl(''),
         }
     )
+
 
 
     constructor(private historyService: RegistrationHistoryService,

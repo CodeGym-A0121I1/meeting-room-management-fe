@@ -19,6 +19,8 @@ export class SigupRoomComponent implements OnInit {
     history: RegistrationHistory | any;
     p: any;
     soa: string | undefined;
+  // @ts-ignore
+
 
     constructor(@Inject(MAT_DIALOG_DATA) public formHistory: FormGroup,
                 private matdialog: MatDialogRef<SigupRoomComponent>,
@@ -28,7 +30,6 @@ export class SigupRoomComponent implements OnInit {
                 private snackbar: MatSnackBar,
                 private router: Router) {
     }
-
 
     ngOnInit(): void {
         this.formHistory.value.description = this.soa;

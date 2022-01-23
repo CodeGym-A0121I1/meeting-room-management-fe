@@ -1,51 +1,53 @@
-<mat-dialog-content>
-    <div>
-      <h3 >Chi Tiết Phòng Họp</h3>
+<!--<mat-dialog-content style="background: #673ab7;color: white">-->
+<div class="container" style="background: cornflowerblue;color: white">
+  <br>
+<h3 >Chi Tiết Phòng Họp</h3>
         <div class="form-group row">
             <div class="col-sm-2"></div>
-            <label class="col-sm-3 col-form-label">Tên phòng: </label>
+            <label class="col-sm-4 col-form-label">Tên phòng: </label>
             <div class="col-sm-4">
                 <p>{{room.name}}</p>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-2"></div>
-            <label class="col-sm-3 col-form-label">Tầng: </label>
+            <label class="col-sm-4 col-form-label">Tầng: </label>
             <div class="col-sm-4">
                 <p>{{room.floor.name}}</p>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-2"></div>
-            <label class="col-sm-3 col-form-label">Khu vực: </label>
+            <label class="col-sm-4 col-form-label">Khu vực: </label>
             <div class="col-sm-4">
                 <p>{{room.area.name}}</p>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-2"></div>
-            <label class="col-sm-3 col-form-label">Sức chứa: </label>
+            <label class="col-sm-4 col-form-label">Sức chứa: </label>
             <div class="col-sm-4">
                 <p>{{room.capacity}}</p>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-2"></div>
-            <label class="col-sm-3 col-form-label">Loại phòng: </label>
+            <label class="col-sm-4 col-form-label">Loại phòng: </label>
             <div class="col-sm-4">
                 <p>{{room.roomType.name}}</p>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-2"></div>
-            <label class="col-sm-3 col-form-label">Tài sản: </label>
+            <label class="col-sm-4 col-form-label">Tài sản: </label>
             <div class="col-sm-4">
                 <p *ngFor="let equipment of room.equipmentList">{{equipment.name}}</p>
             </div>
         </div>
-    </div>
-    <button type="button" (click)="Huy()" class="btn btn-warning">Hủy</button>
-</mat-dialog-content>
+  <button type="button" (click)="Huy()" class="btn btn-secondary">Hủy</button>
+<br><br>
+</div>
+<!--</mat-dialog-content>-->
 
 
 

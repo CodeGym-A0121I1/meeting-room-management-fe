@@ -18,4 +18,6 @@ export class DetailRoomComponent implements OnInit {
     Huy() {
         this.matdialog.close();
     }
+
+
 }
