@@ -25,6 +25,7 @@ import {FeedbackManagementModule} from "./component/feedback-management/feedback
 import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {UserManagementModule} from "./component/user-management/user-management.module";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
@@ -53,6 +55,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     EquipmentManagementModule,
     RoomManagementModule,
     FeedbackManagementModule,
+    UserManagementModule,
     AppRoutingModule,
   ],
   providers: [],
