@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {IEquipment} from "../../../models/equipment/IEquipment";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ListEquipmentComponent} from "../list-equipment/list-equipment.component";
 import {EquipmentService} from "../../../service/equipment.service";
-import {EStatus} from "../../../models/EStatus";
+import {Equipment} from "../../../model/equipment/Equipment";
+import {Status} from "../../../model/room/Status";
 
 @Component({
   selector: 'app-update-equipment',
@@ -17,9 +17,9 @@ export class UpdateEquipmentComponent implements OnInit {
   status: string[] | any;
   statusArr: string[][] = [['FIXING', 'Đang sửa'], ['USING', 'Đang sử dụng'], ['AVAILABLE', 'Khả dụng']];
 
-  eStatus = EStatus;
+  eStatus = Status;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public equipment: IEquipment,
+  constructor(@Inject(MAT_DIALOG_DATA) public equipment: Equipment,
               private snackbar: MatSnackBar,
               private dialog: MatDialogRef<ListEquipmentComponent>,
               private equipmentService: EquipmentService) {

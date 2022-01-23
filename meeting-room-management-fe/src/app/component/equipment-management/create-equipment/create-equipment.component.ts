@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {EquipmentService} from "../../../service/equipment.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ICategory} from "../../../models/equipment/ICategory";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs/operators";
+import {Category} from "../../../model/equipment/Category";
 
 @Component({
   selector: 'app-create-equipment',
@@ -29,7 +29,7 @@ export class CreateEquipmentComponent implements OnInit {
     private angularFireStorage: AngularFireStorage,
   ) { }
 
-  categoryList: Array<ICategory> = [];
+  categoryList: Array<Category> = [];
 
   ngOnInit(): void {
     this.formCreateEquipment = this.formBuilder.group({

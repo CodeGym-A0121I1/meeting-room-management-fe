@@ -7,7 +7,6 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {Status} from "../../../model/room/Status";
 import {MatDialog} from "@angular/material/dialog";
 import {SelectEquipmentComponent} from "../select-equipment/select-equipment.component";
-import {RoomDTO} from "../../../model/dto/RoomDTO";
 import {Equipment} from "../../../model/equipment/Equipment";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -18,6 +17,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {CategoryDTO} from "../../../model/dto/CategoryDTO";
 import {ValidateMessage} from "../../../model/dto/ValidateMessage";
 import {EquipmentService} from "../../../service/equipment.service";
+import {Room} from "../../../model/room/Room";
 
 
 @Component({
@@ -48,7 +48,7 @@ export class CreateRoomComponent implements OnInit {
   equipmentList: Array<Equipment> = [];
   categoryWithEquipments: Array<CategoryDTO> = [];
   image: string = "";
-  newRoom: RoomDTO = new class implements RoomDTO {
+  newRoom: Room = new class implements Room {
     area: Area;
     capacity: number;
     equipmentList: Array<Equipment>;

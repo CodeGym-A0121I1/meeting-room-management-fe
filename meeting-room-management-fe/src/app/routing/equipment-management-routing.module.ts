@@ -9,15 +9,17 @@ const routes: Routes = [
   {
     path: "equipment", children: [
       {path: "", component: ListEquipmentCategoryComponent},
-      {path: ":idCategory", component: ListEquipmentComponent}
+      {
+        path: "create",
+        component: CreateEquipmentComponent,
+      },
+      {path: ":idCategory", component: ListEquipmentComponent},
+
     ], canActivate: [AdminGuard]
   },
 
   // {path: "**", component: PageNotFoundComponent}
-  {
-    path: "equipment/create",
-    component: CreateEquipmentComponent,
-  }
+
 ];
 
 @NgModule({

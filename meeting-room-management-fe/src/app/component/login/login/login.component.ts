@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
       (data:any)=>{
           this.authService.setToken(data.jwtToken);
           this.authService.setRole(data.account.role);
+        this.authService.setUser(data.account.username);
       },
     ()=>{
         this.status="Username or password was wrong"

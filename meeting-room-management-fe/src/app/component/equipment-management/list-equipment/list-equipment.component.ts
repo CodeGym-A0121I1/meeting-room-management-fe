@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {IEquipment} from "../../../models/equipment/IEquipment";
 import {EquipmentService} from "../../../service/equipment.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DeleteEquipmentComponent} from "../delete-equipment/delete-equipment.component";
 import {UpdateEquipmentComponent} from "../update-equipment/update-equipment.component";
-import {EStatus} from "../../../models/EStatus";
+import {Equipment} from "../../../model/equipment/Equipment";
+import {Status} from "../../../model/room/Status";
 
 @Component({
   selector: 'app-list-equipment',
@@ -15,10 +15,10 @@ import {EStatus} from "../../../models/EStatus";
 })
 export class ListEquipmentComponent implements OnInit {
 
-  equipmentList: IEquipment[] | any;
+  equipmentList: Equipment[] | any;
   idCategory: number | any;
   p: number | any;
-  eStatus = EStatus;
+  eStatus = Status;
 
   constructor(private equipmentService: EquipmentService,
               private activatedRoute: ActivatedRoute,
@@ -39,17 +39,17 @@ export class ListEquipmentComponent implements OnInit {
     )
   }
 
-  openDialogDelete(equipment: IEquipment) {
+  openDialogDelete(equipment: Equipment) {
     const dialog = this.matDialog.open(DeleteEquipmentComponent, {
       data: equipment
     })
     dialog.afterClosed().subscribe(isResult => {
-        if (isResult) {
-          this.equipmentService.deleteEquipment(equipment.id).subscribe(
-            () => {
-              this.snackbar.open("Đã xóa tài sản " + equipment.name, "OK", {
-                panelClass: ['mat-toolbar', 'mat-warn'],
-                duration: 3000
+      if (isResult) {
+        this.equipmentService.deleteEquipment(equipment.id).subscribe(
+          () => {
+            this.snackbar.open("Đã xóa tài sản " + equipment.name, "OK", {
+              panelClass: ['mat-toolbar', 'mat-warn'],
+              duration: 3000
               });
               this.p = 1;
               this.ngOnInit();
@@ -60,7 +60,7 @@ export class ListEquipmentComponent implements OnInit {
     )
   }
 
-  openDialogEdit(equipment: IEquipment) {
+  openDialogEdit(equipment: Equipment) {
     const dialog = this.matDialog.open(UpdateEquipmentComponent, {
       width: '600px',
       data: equipment,

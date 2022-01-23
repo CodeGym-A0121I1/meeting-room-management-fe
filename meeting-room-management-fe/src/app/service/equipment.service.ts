@@ -1,15 +1,11 @@
 import {Injectable} from '@angular/core';
-import {IEquipment} from "../models/equipment/IEquipment";
-import {ICategoryDto} from "../models/equipment/ICategoryDto";
+import {QuantityCategory} from "../model/dto/QuantityCategory";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CategoryDTO} from "../model/dto/CategoryDTO";
 import {Category} from "../model/equipment/Category";
 import {AuthService} from "./auth.service";
 import {Equipment} from "../model/equipment/Equipment";
-import {Observable} from "rxjs";
-import {ICategory} from "../models/equipment/ICategory";
-import {IEquipment} from "../models/equipment/IEquipment";
 
 @Injectable({
   providedIn: 'root'
@@ -43,20 +39,20 @@ export class EquipmentService {
     return this.httpClient.get<Array<Category>>(this.API_CATEGORY, {headers: this.headers});
   }
 
-  getAllCategoryQuantityStatusDto(): Observable<ICategoryDto[]> {
-    return this.httpClient.get<ICategoryDto[]>(this.API_CATEGORY + "/quantity", {headers: this.headers});
+  getAllCategoryQuantityStatusDto(): Observable<QuantityCategory[]> {
+    return this.httpClient.get<QuantityCategory[]>(this.API_CATEGORY + "/quantity", {headers: this.headers});
   }
 
-  getAllEquipmentByCategoryId(idCategory: number): Observable<IEquipment[]> {
-    return this.httpClient.get<IEquipment[]>(this.API_EQUIPMENT + "/categories/" + idCategory, {headers: this.headers});
+  getAllEquipmentByCategoryId(idCategory: number): Observable<Equipment[]> {
+    return this.httpClient.get<Equipment[]>(this.API_EQUIPMENT + "/categories/" + idCategory, {headers: this.headers});
   }
 
   deleteEquipment(id: string): Observable<void> {
     return this.httpClient.delete<void>(this.API_EQUIPMENT + '/' + id, {headers: this.headers})
   }
 
-  getAllEquipmentByCategoryIdAndNameLike(idCategory: number, nameEquipmentSearch: string): Observable<IEquipment[]> {
-    return this.httpClient.get<IEquipment[]>(this.API_EQUIPMENT + '/' + idCategory + '/' + nameEquipmentSearch, {headers: this.headers});
+  getAllEquipmentByCategoryIdAndNameLike(idCategory: number, nameEquipmentSearch: string): Observable<Equipment[]> {
+    return this.httpClient.get<Equipment[]>(this.API_EQUIPMENT + '/' + idCategory + '/' + nameEquipmentSearch, {headers: this.headers});
   }
 
   updateStatusEquipment(id: string, status: string): Observable<void> {
@@ -91,12 +87,13 @@ export class EquipmentService {
     }
     return categoryList;
   }
-  getAllCategories(): Observable<Array<ICategory>> {
-    return this.httpClient.get<Array<ICategory>>(this.URL_API_CATEGORY);
+
+  getAllCategories(): Observable<Array<Category>> {
+    return this.httpClient.get<Array<Category>>(this.API_CATEGORY, {headers: this.headers});
   }
 
-  createEquipment(equipment:IEquipment){
-    return this.httpClient.post(this.URL_API_EQUIPMENT, equipment)
+  createEquipment(equipment: Equipment) {
+    return this.httpClient.post(this.API_EQUIPMENT, equipment, {headers: this.headers})
   }
 
 }

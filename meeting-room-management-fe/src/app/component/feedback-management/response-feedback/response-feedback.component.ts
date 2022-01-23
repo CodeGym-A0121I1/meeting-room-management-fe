@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FeedbackService} from "../../../service/feedback.service";
-import {Feedback} from "../../../models/Feedback";
+import {Feedback} from "../../../model/feedback/Feedback";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ListFeedbackComponent} from "../list-feedback/list-feedback.component";

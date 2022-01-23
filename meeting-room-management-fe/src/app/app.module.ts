@@ -14,9 +14,6 @@ import {MatInputModule} from "@angular/material/input";
 import {NgxPaginationModule} from "ngx-pagination";
 import {RouterModule} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
-import {AngularFireModule} from "@angular/fire/compat";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
-import {environment} from "../environments/environment";
 import {LoginModule} from "./component/login/login.module";
 import {EquipmentManagementModule} from "./component/equipment-management/equipment-management.module";
 import {HeaderComponent} from './component/header/header.component';
@@ -40,7 +37,6 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
@@ -57,8 +53,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     EquipmentManagementModule,
     RoomManagementModule,
     FeedbackManagementModule,
-    AppRoutingModule
-    EquipmentManagementModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

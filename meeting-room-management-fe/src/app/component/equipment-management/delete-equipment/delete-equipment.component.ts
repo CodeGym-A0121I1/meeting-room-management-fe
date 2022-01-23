@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {IEquipment} from "../../../models/equipment/IEquipment";
+import {Equipment} from "../../../model/equipment/Equipment";
 
 @Component({
   selector: 'app-delete-equipment',
@@ -9,7 +9,8 @@ import {IEquipment} from "../../../models/equipment/IEquipment";
 })
 export class DeleteEquipmentComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public equipment: IEquipment) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public equipment: Equipment) {
+  }
 
   ngOnInit(): void {
   }

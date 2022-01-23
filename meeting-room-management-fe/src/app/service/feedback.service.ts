@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Feedback} from "../models/Feedback";
-import {RoomDTO} from "../models/dto/RoomDTO";
+import {Feedback} from "../model/feedback/Feedback";
+import {RoomDTO} from "../model/dto/RoomDTO";
 import {AuthService} from "./auth.service";
 
 @Injectable({

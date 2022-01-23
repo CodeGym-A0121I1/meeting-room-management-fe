@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ICategoryDto} from "../../../models/equipment/ICategoryDto";
+import {QuantityCategory} from "../../../model/dto/QuantityCategory";
 import {EquipmentService} from "../../../service/equipment.service";
 
 @Component({
@@ -9,7 +9,7 @@ import {EquipmentService} from "../../../service/equipment.service";
 })
 export class ListEquipmentCategoryComponent implements OnInit {
 
-  categoryDtoList: ICategoryDto | any;
+  categoryDtoList: QuantityCategory | any;
   p: number | any;
 
 

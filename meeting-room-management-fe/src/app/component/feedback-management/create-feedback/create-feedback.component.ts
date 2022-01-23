@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {RoomDTO} from "../../../models/dto/RoomDTO";
+import {RoomDTO} from "../../../model/dto/RoomDTO";
 import {FeedbackService} from "../../../service/feedback.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Feedback} from "../../../models/Feedback";
+import {Feedback} from "../../../model/feedback/Feedback";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({

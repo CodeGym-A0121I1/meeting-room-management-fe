@@ -28,7 +28,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     EquipmentManagementRoutingModule,
     MatDialogModule,
     MatButtonModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
  exports:[
     CreateEquipmentComponent,

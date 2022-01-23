@@ -6,11 +6,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs/operators";
 import {formatDate} from "@angular/common";
-import {RoomDTO} from "../../../model/dto/RoomDTO";
 import {SelectEquipmentComponent} from "../select-equipment/select-equipment.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CategoryDTO} from "../../../model/dto/CategoryDTO";
 import {EquipmentService} from "../../../service/equipment.service";
+import {Room} from "../../../model/room/Room";
 
 @Component({
   selector: 'app-update-room',
@@ -36,7 +36,7 @@ export class UpdateRoomComponent implements OnInit {
   roomTypes!: any[];
   equipList!: any[];
   categoryWithEquipments: Array<CategoryDTO> = [];
-  roomDTO: RoomDTO = new class implements RoomDTO {
+  roomDTO: Room = new class implements Room {
     area: any;
     capacity: number;
     equipmentList: Array<any>;
