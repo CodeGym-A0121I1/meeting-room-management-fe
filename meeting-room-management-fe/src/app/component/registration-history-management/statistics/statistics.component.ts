@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RegistrationHistoryService} from "../../../service/registration-history.service";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-statistics',
@@ -11,16 +12,13 @@ export class StatisticsComponent implements OnInit {
   yearList: number[] = [2018, 2019, 2020, 2021, 2022];
   roomTypeList: any;
   roomList: any;
-  typeStatistic: string = "";
   registrationList: any;
   performance: number = 0;
   total: number = 0;
   // @ts-ignore
   p: string | number;
 
-  constructor(
-    private registrationHistoryService: RegistrationHistoryService
-  ) {
+  constructor(private registrationHistoryService: RegistrationHistoryService,) {
   }
 
   ngOnInit(): void {
@@ -39,15 +37,9 @@ export class StatisticsComponent implements OnInit {
     this.registrationHistoryService.getStatisticByRoom(roomType, roomName, month, year).subscribe(data => {
       this.registrationList = data;
       this.p = 1;
-    })
-    if (roomName != "") {
-      if (month == "" && year == ""){
-        this.typeStatistic = "byName"
-      }
-      this.typeStatistic = "byRoom";
-      this.registrationHistoryService.getStatisticPerformance(roomType, roomName, month, year).subscribe(data => this.performance = data);
-      this.registrationHistoryService.getStatisticTotalUser(roomType, roomName, month, year).subscribe(data => this.total = data);
-    }
+    });
+    this.registrationHistoryService.getStatisticPerformance(roomType, roomName, month, year).subscribe(data => this.performance = data);
+    this.registrationHistoryService.getStatisticTotalUser(roomType, roomName, month, year).subscribe(data => this.total = data);
   }
 
 }

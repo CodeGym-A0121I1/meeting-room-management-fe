@@ -4,12 +4,12 @@
       <fieldset class="form-group border p-2 h-100">
         <legend class="w-auto ">Theo thời gian</legend>
         <div class="form-group row">
-          <label for="startDate" class="col-5 px-5 my-3">Thời gian bắt đầu</label>
-          <input id="startDate" type="date" class="form-control col-5 my-3">
+          <label for="startDate" class="col-5 px-5 my-2">Thời gian bắt đầu</label>
+          <input id="startDate" type="date" class="form-control col-5 my-2">
         </div>
         <div class="form-group row">
-          <label for="endDate" class="col-5 px-5 my-3">Thời gian kết thúc</label>
-          <input id="endDate" type="date" class="form-control col-5 my-3">
+          <label for="endDate" class="col-5 px-5 my-2">Thời gian kết thúc</label>
+          <input id="endDate" type="date" class="form-control col-5 my-2">
         </div>
         <div class="text-center">
           <button id="btnSearchTime" class="btn btn-primary">Thống
@@ -26,14 +26,14 @@
             <div class="form-group row">
               <label class="col-8 px-5 my-2" for="roomType">Chọn loại phòng</label>
               <select id="roomType" class="form-control col-4 my-2" #searchRoomType>
-                <option value="">Chọn...</option>
+                <option value="">Chọn</option>
                 <option *ngFor="let roomType of roomTypeList" value="{{roomType.name}}">{{roomType.name}}</option>
               </select>
             </div>
             <div class="form-group row">
               <label for="month" class="col-8 px-5 my-2">Tháng</label>
               <select id="month" class="form-control col-4 my-2" #searchMonth>
-                <option value="">Chọn...</option>
+                <option value="">Chọn</option>
                 <option *ngFor="let month of monthList" value="{{month}}">{{month}}</option>
               </select>
             </div>
@@ -42,14 +42,14 @@
             <div class="form-group row">
               <label class="col-7 px-5 my-2" for="roomName">Chọn phòng</label>
               <select id="roomName" class="form-control col-5 my-2" #searchRoomName>
-                <option value="">Chọn...</option>
+                <option value="">Chọn</option>
                 <option *ngFor="let room of roomList" value="{{room.name}}">{{room.name}}</option>
               </select>
             </div>
             <div class="form-group row">
               <label for="year" class="col-7 px-5 my-2">Năm</label>
               <select id="year" class="form-control col-5 my-2" #searchYear>
-                <option value="" selected>Chọn...</option>
+                <option value="" selected>Chọn</option>
                 <option *ngFor="let year of yearList" value="{{year}}">{{year}}</option>
               </select>
             </div>
@@ -58,29 +58,30 @@
         <div class="text-center">
           <button id="btnSearchRoom" class="btn btn-primary"
                   (click)="searchByRoom(searchRoomType.value, searchRoomName.value, searchMonth.value, searchYear.value)">
-            Thống
-            kê
+            Thống kê
           </button>
         </div>
       </fieldset>
     </div>
   </div>
   <!-- table -->
-  <div class="table-responsive">
+  <div class="m-5 text-center alert-danger" *ngIf="registrationList == null">Hiện không có dữ liệu nào phù hợp!</div>
+  <div class=" table-responsive" *ngIf="registrationList != null">
     <fieldset class="form-group border p-2 " id="tabeRoom">
       <legend class="w-auto px-2">Kết quả</legend>
-      <label class="col-auto" *ngIf="typeStatistic=='byRoom' || typeStatistic=='byName'"><b>Tên
-        phòng:</b> {{searchRoomName.value}}</label>
-      <label class="col-auto" *ngIf="typeStatistic=='byRoom'"><b>Tổng số lần sử dụng:</b> {{total}}</label>
-      <label class="col-auto" *ngIf="typeStatistic=='byRoom'"><b>Hiệu suất:</b> {{performance | percent}}</label>
+      <label *ngIf="searchRoomType.value != ''" class="col-auto"><b>Tên loại phòng:</b> {{searchRoomType.value}}
+      </label>
+      <label *ngIf="searchRoomName.value != ''" class="col-auto"><b>Tên phòng:</b> {{searchRoomName.value}}</label>
+      <label *ngIf="searchRoomName.value != ''" class="col-auto"><b>Tổng số lần sử dụng:</b> {{total}}</label>
+      <label *ngIf="searchRoomName.value != ''" class="col-auto"><b>Hiệu suất:</b> {{performance | percent}}</label>
       <div class="table-responsive">
         <table class="table table-striped table-bordered text-center">
           <thead>
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Tên người đăng ký</th>
-            <th scope="col" *ngIf="typeStatistic==''">Tên phòng</th>
-            <th scope="col" *ngIf="typeStatistic==''">Loại phòng</th>
+            <th *ngIf="searchRoomName.value != ''" scope="col">Loại phòng</th>
+            <th *ngIf="searchRoomType.value != ''" scope="col">Tên phòng</th>
             <th scope="col">Thời gian bắt đầu</th>
             <th scope="col">Thời gian kết thúc</th>
             <th scope="col">Ngày bắt đầu</th>
@@ -93,8 +94,8 @@
               *ngFor="let registration of registrationList | paginate: { itemsPerPage: 5, currentPage: p} ">
             <th scope="row">{{registration.id}}</th>
             <td class="text-left">{{registration.user.fullName}}</td>
-            <td class="text-left" *ngIf="typeStatistic==''">{{registration.room.name}}</td>
-            <td class="text-left" *ngIf="typeStatistic==''">{{registration.room.roomType.name}}</td>
+            <td *ngIf="searchRoomName.value != ''" class="text-left">{{registration.room.roomType.name}}</td>
+            <td *ngIf="searchRoomType.value != ''" class="text-left">{{registration.room.name}}</td>
             <td class="text-right">{{registration.timeStart}}</td>
             <td class="text-right">{{registration.timeEnd}}</td>
             <td class="text-right">{{registration.dateStart | date:'dd/MM/yyyy'}}</td>
