@@ -27,6 +27,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {UserManagementModule} from "./component/user-management/user-management.module";
 import {HomeComponent} from './component/home/home.component';
+import {RegistrationHistoryManagementModule} from "./component/registration-history-management/registration-history-management.module";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {HomeComponent} from './component/home/home.component';
     RoomManagementModule,
     FeedbackManagementModule,
     UserManagementModule,
+    RegistrationHistoryManagementModule,
     AppRoutingModule,
   ],
   providers: [],
