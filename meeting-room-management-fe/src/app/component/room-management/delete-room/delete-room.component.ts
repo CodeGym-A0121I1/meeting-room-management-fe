@@ -1,9 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Room} from "../../../models/Room";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {RoomService} from "../../../service/room.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {error} from "@angular/compiler/src/util";
+import {Room} from "../../../model/room/Room";
 
 @Component({
   selector: 'app-delete-room',

@@ -4,6 +4,7 @@ import {ListRegistrationHistoryComponent} from "../component/registration-histor
 import {SearchRoomComponent} from "../component/registration-history-management/search-room/search-room.component";
 import {StatisticsComponent} from "../component/registration-history-management/statistics/statistics.component";
 import {UserGuard} from "../guards/user.guard";
+import {DeleteRegistrationHistoryComponent} from "../component/registration-history-management/delete-registration-history/delete-registration-history.component";
 
 
 const routes: Routes = [

@@ -14,10 +14,6 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NgxPaginationModule} from "ngx-pagination";
-import {MatDialogModule} from "@angular/material/dialog";
-import { PopUpComponent } from './pop-up/pop-up.component';
-import {ReactiveFormsModule} from "@angular/forms";
-
 
 @NgModule({
     declarations: [
@@ -28,7 +24,6 @@ import {ReactiveFormsModule} from "@angular/forms";
       CancelSignroomComponent,
       SearchRoomComponent,
       DetailRoomComponent,
-      PopUpComponent
     ],
   imports: [
     CommonModule,

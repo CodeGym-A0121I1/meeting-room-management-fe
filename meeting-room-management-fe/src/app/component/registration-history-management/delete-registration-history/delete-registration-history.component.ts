@@ -1,10 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {RegistrationHistoryService} from "../../../service/registration-history.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {RegistrationHistory} from "../../../model/RegistrationHistory";
-import {CancelSignroomComponent} from "../cancel-signroom/cancel-signroom.component";
-import {PopUpComponent} from "../pop-up/pop-up.component";
+import {RegistrationHistory} from "../../../model/registration-history/RegistrationHistory";
 
 @Component({
   selector: 'app-delete-registration-history',

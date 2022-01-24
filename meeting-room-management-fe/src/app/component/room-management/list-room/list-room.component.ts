@@ -3,11 +3,11 @@ import {RoomService} from "../../../service/room.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteRoomComponent} from "../delete-room/delete-room.component";
-import {Room} from "../../../models/Room";
-import {Floor} from "../../../models/Floor";
-import {RoomType} from "../../../models/RoomType";
-import {Area} from "../../../models/Area";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Floor} from "../../../model/room/Floor";
+import {RoomType} from "../../../model/room/RoomType";
+import {Room} from "../../../model/room/Room";
+import {Area} from "../../../model/room/Area";
 
 @Component({
   selector: 'app-list-room',

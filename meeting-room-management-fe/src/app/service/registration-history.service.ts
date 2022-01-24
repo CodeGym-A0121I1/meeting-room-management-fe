@@ -84,20 +84,20 @@ export class RegistrationHistoryService {
     return this.httpClient.get<number>(this.URL_STATISTIC_TOTAL_USE + "?roomType=" + roomType + "&roomName=" + roomName + "&month=" + month + "&year=" + year, {headers: this.headers});
   }
   getById(id:String):Observable<any>{
-    return this.httpClient.get(this.url+'/'+id);
+    return this.httpClient.get(this.URL_STATISTIC_BY_TIME + '/' + id, {headers: this.headers});
   }
 
   cancel(id:String):Observable<any>{
     console.log(id);
-    return this.httpClient.delete(this.url+'/cancel/'+id);
+    return this.httpClient.delete(this.URL_STATISTIC_BY_TIME + '/cancel/' + id, {headers: this.headers});
   }
 
   getListIsCancel(){
-    return this.httpClient.get<any[]>(this.url+'/getListRegistrationHistoryNotCancel');
+    return this.httpClient.get<any[]>(this.URL_STATISTIC_BY_TIME + '/getListRegistrationHistoryNotCancel', {headers: this.headers});
   }
 
   getListSearch(roomName: string, dateStart: string, dateEnd: string, status: string, roomType: string){
-    return this.httpClient.get(this.url+'/search?roomName='+roomName+'&dateStart='+dateStart +'&dateEnd='+dateEnd+'&status='+ status +'&roomType='+roomType);
+    return this.httpClient.get(this.URL_STATISTIC_BY_TIME + '/search?roomName=' + roomName + '&dateStart=' + dateStart + '&dateEnd=' + dateEnd + '&status=' + status + '&roomType=' + roomType, {headers: this.headers});
   }
 
 }
