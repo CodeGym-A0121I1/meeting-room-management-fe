@@ -6,13 +6,17 @@ import {AdminGuard} from "../guards/admin.guard";
 
 const routes: Routes = [
   {
-    path: "room/add",
-    component: CreateRoomComponent,
+    path: "room", children: [
+      {
+        path: "add",
+        component: CreateRoomComponent,
+      },
+      {
+        path: "update/:id",
+        component: UpdateRoomComponent
+      }
+    ],
     canActivate: [AdminGuard]
-  },
-  // {path: "**", component: PageNotFoundComponent}
-  {
-    path: "room/update/:id", component: UpdateRoomComponent
   }
 ];
 
@@ -20,4 +24,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RoomManagementRoutingModule { }
+export class RoomManagementRoutingModule {
+}

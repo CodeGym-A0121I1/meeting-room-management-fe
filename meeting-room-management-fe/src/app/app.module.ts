@@ -16,7 +16,7 @@ import {RouterModule} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
 import {LoginModule} from "./component/login/login.module";
 import {EquipmentManagementModule} from "./component/equipment-management/equipment-management.module";
-import {HeaderComponent} from './component/header/header.component';
+import {HomeComponent} from './component/home/home.component';
 import {PageNotFoundComponent} from './component/pagenotfound/page-not-found.component';
 import {ForbiddenComponent} from './component/forbidden/forbidden.component';
 
@@ -30,7 +30,7 @@ import {UserManagementModule} from "./component/user-management/user-management.
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HomeComponent,
     PageNotFoundComponent,
     ForbiddenComponent
   ],

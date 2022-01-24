@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {DepartmentDTO} from 'src/app/model/DTO/DepartmentDTO';
-import {AccountDTO} from 'src/app/model/DTO/AccountDTO';
+import {Department} from 'src/app/model/user/Department';
+import {Account} from 'src/app/model/user/Account';
 
 @Component({
   selector: 'app-update-user',
@@ -12,8 +12,8 @@ import {AccountDTO} from 'src/app/model/DTO/AccountDTO';
   styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent implements OnInit {
-  listDepartment: Array<DepartmentDTO> = [];
-  listAccount: Array<AccountDTO> = [];
+  listDepartment: Array<Department> = [];
+  listAccount: Array<Account> = [];
 
   formEditUser: FormGroup = this.formBuilder.group({
     full_name: ['', [Validators.required]],

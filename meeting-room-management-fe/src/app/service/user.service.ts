@@ -3,9 +3,9 @@ import {HttpClient} from "@angular/common/http";
 
 import {Observable} from "rxjs";
 import {UserDTO} from "../model/DTO/UserDTO";
-import {DepartmentDTO} from "../model/DTO/DepartmentDTO";
-import {AccountDTO} from "../model/DTO/AccountDTO";
-import {User} from "../model/user/IUser";
+import {Department} from "../model/user/Department";
+import {Account} from "../model/user/Account";
+import {User} from "../model/user/User";
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,8 @@ export class UserService {
     return this.http.get<User>(this.api + "/" + id);
   }
 
-  getAllDepartment(): Observable<Array<DepartmentDTO>> {
-    return this.http.get<Array<DepartmentDTO>>(this.apiDepartment);
+  getAllDepartment(): Observable<Array<Department>> {
+    return this.http.get<Array<Department>>(this.apiDepartment);
   }
 
   userURL = 'http://localhost:8080/api/users';
@@ -37,20 +37,20 @@ export class UserService {
     return this.http.post<UserDTO>(`${this.userURL}/add/user`, user, {responseType: 'json'});
   }
 
-  public createAccount(account: AccountDTO): Observable<AccountDTO> {
-    return this.http.post<AccountDTO>(`${this.userURL}/add/account`, account, {responseType: 'json'});
+  public createAccount(account: Account): Observable<Account> {
+    return this.http.post<Account>(`${this.userURL}/add/account`, account, {responseType: 'json'});
   }
 
-  public getAllDepartments(): Observable<DepartmentDTO[]> {
-    return this.http.get<DepartmentDTO[]>(`${this.userURL}/department`, {responseType: 'json'});
+  public getAllDepartments(): Observable<Department[]> {
+    return this.http.get<Department[]>(`${this.userURL}/department`, {responseType: 'json'});
   }
 
   public getAllUsername(): Observable<String[]> {
     return this.http.get<String[]>(`${this.userURL}/username`, {responseType: 'json'});
   }
 
-  getAllAccount(): Observable<Array<AccountDTO>> {
-    return this.http.get<Array<AccountDTO>>(this.apiAccount);
+  getAllAccount(): Observable<Array<Account>> {
+    return this.http.get<Array<Account>>(this.apiAccount);
   }
 
   getAccountByUsername(username: any): Observable<User> {
