@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {RegistrationHistoryService} from "../../../service/registration-history.service";
 
 @Component({
   selector: 'app-list-registration-history',
@@ -7,9 +8,23 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ListRegistrationHistoryComponent implements OnInit {
 
-  constructor() { }
+  registrationHistoryList1: any;
+  p: any;
+  listRoomType!: any[];
+
+  constructor(private service: RegistrationHistoryService) { }
 
   ngOnInit(): void {
+    this.service.getAll().subscribe((data: any) => {
+        this.registrationHistoryList1 = data;
+      }
+    )
+
+    this.service.getAllRoomType().subscribe((data: any) => {
+        this.listRoomType = data;
+      }
+    )
+  }
   }
 
-}
+

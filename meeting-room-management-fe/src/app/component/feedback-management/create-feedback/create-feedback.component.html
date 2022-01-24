@@ -1,1 +1,43 @@
-<p>create-feedback works!</p>
+<form [formGroup]="formFeedback" (submit)="onSubmit()">
+
+  <div style="color: black; font-size: 20px;text-align: center;">
+    <h2>Phản hồi</h2><br>
+  </div>
+  <div class="card border container" style="border: 1px solid #d3d3d3;
+  box-shadow: 1px 1px 7px #ccc;">
+    <br>
+    <div class="form-group row rooom">
+      <label class="col-lg-3 col-sm-3 col-form-label">Tên phòng<span class="text-danger  ml-3">*</span></label>
+      <div class="col-lg-9 col-sm-9">
+        <mat-form-field appearance="fill">
+          <mat-label>Chọn phòng</mat-label>
+          <mat-select formControlName="room" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let room of roomDtoList" [value]="room">
+              {{room.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formFeedback.hasError('required')">Vui lòng chọn phòng</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-lg-3 col-sm-3 col-form-label">Nội dung phản hồi<span
+        class="text-danger ml-3 ">*</span></label>
+      <div class="col-lg-9 col-sm-9">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nội dung phản hồi</mat-label>
+          <textarea matInput placeholder="VD: Tên thiết bị: vấn đề..." formControlName="noteRequest"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="text-center">
+      <a class="btn m-2 btn-light" style="width: 100px; color: black; height: 39px;">Hủy bỏ</a>
+      <button *ngIf="checkOnSubmit" type="submit" class="btn m-2 btn btn-primary" style="width: 190px; border: 0px; height: 39px; color: black; ">Lưu</button>
+      <a *ngIf="!checkOnSubmit" class="btn m-2 btn btn-primary" style="width: 190px; border: 0px; height: 39px; color: black; ">Lưu</a>
+    </div>
+  </div>
+</form>

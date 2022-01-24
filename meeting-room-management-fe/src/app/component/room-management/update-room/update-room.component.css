@@ -1,0 +1,7 @@
+.card:hover {
+  cursor: pointer;
+}
+
+.required-field {
+  color: red;
+}

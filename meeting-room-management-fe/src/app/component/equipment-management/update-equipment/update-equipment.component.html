@@ -1,1 +1,31 @@
-<p>update-equipment works!</p>
+<h1 mat-dialog-title>Cập nhật thiết bị</h1>
+
+<mat-dialog-content>
+
+  <table>
+    <tr>
+      <th>Loại thiết bị:</th>
+      <td>{{equipment.category.name}}</td>
+    </tr>
+    <tr>
+      <th>Tên thiết bị:</th>
+      <td>{{equipment.name}}</td>
+    </tr>
+    <tr>
+      <th>Trạng thái:</th>
+      <td>
+        <select #element (change)="changeStatus(element.value)">
+          <option *ngFor="let status of statusArr" [value]="status"
+                  [selected]="status[0] === equipment.status">{{status[1]}}</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+
+
+  <div class="button-submit">
+    <button mat-raised-button mat-dialog-close style="margin-right: 8px;">Đóng</button>
+    <button mat-raised-button color="primary" (click)="update()">Cập nhật</button>
+  </div>
+
+</mat-dialog-content>

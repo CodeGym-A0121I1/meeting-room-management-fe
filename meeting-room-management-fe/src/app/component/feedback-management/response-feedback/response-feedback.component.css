@@ -1,0 +1,20 @@
+h1{
+  font-weight: bold;
+  text-align: center;
+}
+
+.button-submit{
+  margin-left: 35%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.note-response{
+  padding-top: 2%;
+}
+
+label{
+  font-weight: bolder;
+}

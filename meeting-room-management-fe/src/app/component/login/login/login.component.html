@@ -1,1 +1,50 @@
-<p>login works!</p>
+<div class=" d-flex align-items-center justify-content-center" style="height: 80vh;">
+  <div style=" width: 470px">
+    <div class="card rounded shadow border-0">
+      <div class="card-body p-4 bg-white rounded">
+        <div class="text-center mb-5">
+          <p class="text-dark h1">Đăng nhập</p>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <label for="username">Tên đăng nhập</label>
+            <input class="form-control" type="text" id="username" formControlName="username">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                 class="form-text text-danger">
+              <div *ngIf="username.errors?.['required']">
+                Tên đăng nhập không được để trống.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Mật khẩu</label>
+            <div class="input-group" id="show_hide_password">
+              <input class="form-control" type="password" id="password" formControlName="password">
+              <div class="input-group-append">
+										<span class="input-group-text">
+										<a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+										</span>
+              </div>
+            </div>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                 class="form-text text-danger">
+              <div *ngIf="password.errors?.['required']">
+                Mật khẩu không được để trống.
+              </div>
+            </div>
+            <div class="form-text text-danger">
+              {{status}}
+            </div>
+          </div>
+          <div class="custom-control custom-checkbox mt-3">
+            <input type="checkbox" class="custom-control-input" name="remember-me"
+                   id="remember-me">
+            <label for="remember-me" class="custom-control-label">Remember me</label>
+          </div>
+          <button type="submit" class="btn btn-primary mt-4">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

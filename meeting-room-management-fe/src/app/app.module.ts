@@ -14,15 +14,33 @@ import {MatInputModule} from "@angular/material/input";
 import {NgxPaginationModule} from "ngx-pagination";
 import {RouterModule} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
+import {LoginModule} from "./component/login/login.module";
+import {EquipmentManagementModule} from "./component/equipment-management/equipment-management.module";
+import {SlidebarComponent} from './component/slidebar/slidebar.component';
+import {PageNotFoundComponent} from './component/pagenotfound/page-not-found.component';
+import {ForbiddenComponent} from './component/forbidden/forbidden.component';
+
+import {FeedbackManagementModule} from "./component/feedback-management/feedback-management.module";
+
+import {environment} from "../environments/environment";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {UserManagementModule} from "./component/user-management/user-management.module";
+import {HomeComponent} from './component/home/home.component';
+import {RegistrationHistoryManagementModule} from "./component/registration-history-management/registration-history-management.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent,
+    ForbiddenComponent,
+    SlidebarComponent,
+    HomeComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
@@ -37,6 +55,14 @@ import {UserManagementModule} from "./component/user-management/user-management.
     RoomManagementModule ,
     UserManagementModule,
     FormsModule,
+    RoomManagementModule,
+    LoginModule,
+    EquipmentManagementModule,
+    RoomManagementModule,
+    FeedbackManagementModule,
+    UserManagementModule,
+    RegistrationHistoryManagementModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

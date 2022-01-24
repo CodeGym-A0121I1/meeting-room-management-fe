@@ -7,6 +7,9 @@ import {UpdateRoomComponent} from './update-room/update-room.component';
 import {DetailRoomComponent} from './detail-room/detail-room.component';
 import {CreateRoomComponent} from './create-room/create-room.component';
 import {DeleteRoomComponent} from './delete-room/delete-room.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SelectEquipmentComponent} from './select-equipment/select-equipment.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -15,16 +18,23 @@ import {DeleteRoomComponent} from './delete-room/delete-room.component';
     UpdateRoomComponent,
     DetailRoomComponent,
     CreateRoomComponent,
-    DeleteRoomComponent
+    DeleteRoomComponent,
+    SelectEquipmentComponent
   ],
   imports: [
     CommonModule,
-    RoomManagementRoutingModule
-  ],exports:[CreateRoomComponent,
-  DeleteRoomComponent,
+    RoomManagementRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule
+  ],
+  exports: [
+    CreateRoomComponent,
+    DeleteRoomComponent,
     DetailRoomComponent,
     ListRoomComponent,
     UpdateRoomComponent
   ]
 })
-export class RoomManagementModule { }
+export class RoomManagementModule {
+}

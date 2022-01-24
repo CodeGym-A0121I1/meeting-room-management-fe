@@ -1,1 +1,86 @@
-<p>create-equipment works!</p>
+<div class="container">
+  <h2 class="text-center">Thêm tài sản mới</h2>
+
+  <form [formGroup]="formCreateEquipment" (ngSubmit)="onSubmit()">
+    <div class="mt-4 p-3">
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Tên tài sản:<label
+          class="text-danger">(*)</label></label>
+        <div class="col-sm-10">
+          <input type="text" id="name" name="name" class="form-control" formControlName="name">
+        </div>
+        <small class="text-danger col-sm-10"
+               *ngIf="formCreateEquipment.get('name')?.hasError('required') && formCreateEquipment.get('name')?.touched">
+          <p>Tên tài sản không được để trống</p>
+        </small>
+      </div>
+      <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">Mô tả:<label
+          class="text-danger">(*)</label></label>
+        <div class="col-sm-10">
+          <textarea rows="3" id="description" name="description" class="form-control"
+                    formControlName="description"></textarea>
+        </div>
+        <small class="text-danger col-sm-10"
+               *ngIf="formCreateEquipment.get('description')?.hasError('required') && formCreateEquipment.get('description')?.touched">
+          <p>Mô tả không được để trống</p>
+        </small>
+      </div>
+      <div class="form-group row">
+        <label for="price" class="col-sm-2 col-form-label">Giá:<label class="text-danger">(*)</label></label>
+        <div class="col-sm-10">
+          <input type="text" id="price" name="price" class="form-control" formControlName="price">
+        </div>
+        <small class="text-danger col-sm-10"
+               *ngIf="formCreateEquipment.get('price')?.hasError('required') && formCreateEquipment.get('price')?.touched">
+          <p>Giá không được để trống</p>
+        </small>
+        <small class="text-danger col-sm-10"
+               *ngIf="formCreateEquipment.get('price')?.hasError('min') && formCreateEquipment.get('price')?.touched">
+          <p>Giá phải lớn hơn 50000</p>
+        </small>
+        <small class="text-danger col-sm-10"
+               *ngIf="formCreateEquipment.get('price')?.hasError('max') && formCreateEquipment.get('price')?.touched">
+          <p>Giá phải nhỏ hơn 200000</p>
+        </small>
+      </div>
+      <div class="form-group row">
+        <label for="category" class="col-sm-2 col-form-label">Loại tài sản:<label
+          class="text-danger">(*)</label></label>
+        <div class="col-sm-10">
+          <select name="category" id="category" class="form-control" formControlName="category">
+            <option disabled selected>Chọn loại tài sản</option>
+            <option *ngFor="let category of categoryList" [ngValue]="category" [text]="category.name"></option>
+          </select>
+        </div>
+        <small class="text-danger col-sm-10"
+               *ngIf="formCreateEquipment.get('category')?.hasError('required') && formCreateEquipment.get('category')?.touched">
+          <p>Loại tài sản không được để trống</p>
+        </small>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Hình ảnh:<label
+          class="text-danger">(*)</label></label>
+        <div class="col-sm-10">
+          <div class="custom-file">
+            <input type="file" id="image" name="image" class="custom-file-input" formControlName="image"
+                   (change)="selectFile($event)">
+            <label class="custom-file-label" for="image">Chọn ảnh</label>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div *ngIf="image">
+            <img [src]="image" class="img-thumbnail" alt="image">
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-sm-12 d-flex justify-content-center ">
+          <button [routerLink]="'/equipment'" class="btn btn-secondary mr-2">Trở về</button>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          <button type="submit" class="btn btn-primary ml-2">Thêm mới</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

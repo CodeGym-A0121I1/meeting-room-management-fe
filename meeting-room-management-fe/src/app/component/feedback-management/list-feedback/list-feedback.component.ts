@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {FeedbackService} from "../../../service/feedback.service";
+import {Feedback} from "../../../model/feedback/Feedback";
+import {MatDialog} from "@angular/material/dialog";
+import {ResponseFeedbackComponent} from "../response-feedback/response-feedback.component";
 
 @Component({
   selector: 'app-list-feedback',
@@ -7,9 +11,30 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ListFeedbackComponent implements OnInit {
 
-  constructor() { }
+  feedbackList: Feedback[] = [];
+  p: number | any;
+
+  constructor(private feedbackService: FeedbackService,
+              private matDialog: MatDialog) {
+  }
 
   ngOnInit(): void {
+    this.feedbackService.getAll().subscribe(
+      (data) => {
+        this.feedbackList = data
+      }
+    )
+  }
+
+  replyFeedback(feedback: Feedback) {
+    const matDialog = this.matDialog.open(ResponseFeedbackComponent, {
+      width: '800px',
+      data: feedback,
+    });
+    matDialog.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    })
   }
 
 }
+
