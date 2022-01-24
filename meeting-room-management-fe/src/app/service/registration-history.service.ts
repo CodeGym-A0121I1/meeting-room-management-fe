@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {RegistrationHistory} from "../model/RegistrationHistory";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {RegistrationHistory} from "../model/registration-history/RegistrationHistory";
 import {Observable} from "rxjs";
-import {Room} from "../model/Room";
-import {RoomType} from "../model/RoomType";
-import {Area} from "../model/Area";
-import {ICategory} from "../model/ICategory";
+import {Room} from "../model/room/Room";
+import {Area} from "../model/room/Area";
+import {Category} from "../model/equipment/Category";
+import {RoomType} from "../model/room/RoomType";
+import {AuthService} from "./auth.service";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class RegistrationHistoryService {
 
@@ -22,55 +23,64 @@ export class RegistrationHistoryService {
   readonly URL_STATISTIC_TOTAL_USE = "http://localhost:8080/api/registration-histories/static-room-total";
   readonly URL_STATISTIC_BY_TIME = "http://localhost:8080/api/registration-histories";
 
+  private readonly jwt = this.authService.getToken() || '';
 
-  constructor(private httpClient: HttpClient) {
+  headers = new HttpHeaders({
+    'Authorization': this.jwt
+  });
+
+
+  constructor(private httpClient: HttpClient, private authService: AuthService) {
   }
 
   getAll() {
-    return this.httpClient.get(this.URL_API_HISTORY);
+    return this.httpClient.get(this.URL_API_HISTORY, {headers: this.headers});
   }
 
-  SignupHistory(history: RegistrationHistory): Observable<RegistrationHistory> {
-    return this.httpClient.post<RegistrationHistory>(this.URL_API_HISTORY, history);
+  signupHistory(history: RegistrationHistory): Observable<RegistrationHistory> {
+    return this.httpClient.post<RegistrationHistory>(this.URL_API_HISTORY, history, {headers: this.headers});
   }
 
   getAllRoom(): Observable<Room[]> {
-    return this.httpClient.get<Room[]>(this.ROOM_API_URL);
+    return this.httpClient.get<Room[]>(this.ROOM_API_URL, {headers: this.headers});
   }
 
   //show all các loại  phòng
   getAllRoomType(): Observable<RoomType[]> {
-    return this.httpClient.get<RoomType[]>(this.ROOMTYPE_API_URL);
+    return this.httpClient.get<RoomType[]>(this.ROOMTYPE_API_URL, {headers: this.headers});
   }
 
   //Show all khu vục phòng hợp
 
   getAllAreas(): Observable<Area[]> {
-    return this.httpClient.get<Area[]>(this.AREAS_API_URL);
+    return this.httpClient.get<Area[]>(this.AREAS_API_URL, {headers: this.headers});
   }
 
   //show all các loại thiết bị
-  getAllCategry(): Observable<ICategory[]> {
-    return this.httpClient.get<ICategory[]>(this.CATEGORY_API_URL);
+  getAllCategry(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(this.CATEGORY_API_URL, {headers: this.headers});
   }
 
   //thong ke theo thoi gian
   getStatisticByTime(startdate: Date, endDate: Date): Observable<RegistrationHistory[]> {
-    return this.httpClient.put<RegistrationHistory[]>(this.URL_STATISTIC_BY_TIME, {startdate, endDate});
+    return this.httpClient.put<RegistrationHistory[]>(this.URL_STATISTIC_BY_TIME, {
+      startdate,
+      endDate
+    }, {headers: this.headers});
   }
 
   //thong ke theo phong
   getStatisticByRoom(roomType: String, roomName: String, month: String, year: String): Observable<RegistrationHistory[]> {
-    return this.httpClient.get<RegistrationHistory[]>(this.URL_STATISTIC_BY_ROOM + "?roomType=" + roomType + "&roomName=" + roomName + "&month=" + month + "&year=" + year);
+    return this.httpClient.get<RegistrationHistory[]>(this.URL_STATISTIC_BY_ROOM + "?roomType=" + roomType + "&roomName=" + roomName + "&month=" + month + "&year=" + year, {headers: this.headers});
   }
 
   //hieu suat
   getStatisticPerformance(roomType: String, roomName: String, month: String, year: String): Observable<number> {
-    return this.httpClient.get<number>(this.URL_STATISTIC_PERFORMANCE + "?roomType=" + roomType + "&roomName=" + roomName + "&month=" + month + "&year=" + year);
+    return this.httpClient.get<number>(this.URL_STATISTIC_PERFORMANCE + "?roomType=" + roomType + "&roomName=" + roomName + "&month=" + month + "&year=" + year, {headers: this.headers});
   }
 
   //tong so lan su dung
   getStatisticTotalUser(roomType: String, roomName: String, month: String, year: String): Observable<number> {
-    return this.httpClient.get<number>(this.URL_STATISTIC_TOTAL_USE + "?roomType=" + roomType + "&roomName=" + roomName + "&month=" + month + "&year=" + year);
+    return this.httpClient.get<number>(this.URL_STATISTIC_TOTAL_USE + "?roomType=" + roomType + "&roomName=" + roomName + "&month=" + month + "&year=" + year, {headers: this.headers});
   }
 }

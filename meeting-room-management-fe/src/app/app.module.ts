@@ -46,7 +46,6 @@ import {RegistrationHistoryManagementModule} from "./component/registration-hist
     MatDialogModule,
     ReactiveFormsModule,
     RouterModule,
-    // MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,

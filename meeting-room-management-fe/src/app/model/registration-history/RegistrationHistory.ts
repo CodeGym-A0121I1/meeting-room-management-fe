@@ -1,5 +1,5 @@
-import {Room} from "./Room";
-import {User} from "./User";
+import {Room} from "../room/Room";
+import {User} from "../user/User";
 
 export interface RegistrationHistory {
   id: string;

@@ -3,16 +3,10 @@ import {RegistrationHistoryService} from "../../../service/registration-history.
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {RoomType} from "../../../model/RoomType";
-import {isElementScrolledOutsideView} from "@angular/cdk/overlay/position/scroll-clip";
-import {Room} from "../../../model/Room";
 import {DetailRoomComponent} from "../detail-room/detail-room.component";
-import {RegistrationHistory} from "../../../model/RegistrationHistory";
-import {Area} from "../../../model/Area";
-import {ICategory} from "../../../model/ICategory";
-import {SigupRoomComponent} from "../sigup-room/sigup-room.component";
+import {SignupRoomComponent} from "../sigup-room/signup-room.component";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {F} from "@angular/cdk/keycodes";
+import {Room} from "../../../model/room/Room";
 
 @Component({
     selector: 'app-search-room',
@@ -74,7 +68,6 @@ export class SearchRoomComponent implements OnInit {
     }
 
     openDialogDetailRoom(room: Room) {
-        console.log(room);
         const diaLog = this.dailog.open(DetailRoomComponent, {
             width: '500px',
             data: room
@@ -96,11 +89,10 @@ export class SearchRoomComponent implements OnInit {
         console.log(this.formHistory.value.room)
 
 
-
-        const diaLog = this.dailog.open(SigupRoomComponent, {
-            width: '800px',
-            data: this.formHistory
-        });
+      const diaLog = this.dailog.open(SignupRoomComponent, {
+        width: '800px',
+        data: this.formHistory
+      });
 
         diaLog.afterClosed().subscribe(
             () => {

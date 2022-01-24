@@ -9,7 +9,7 @@ import {RegistrationHistoryService} from "../../../service/registration-history.
 export class ListRegistrationHistoryComponent implements OnInit {
 
   registrationHistoryList1: any;
-  p: any;
+  p: number | string;
   listRoomType!: any[];
 
   constructor(private service: RegistrationHistoryService) { }
