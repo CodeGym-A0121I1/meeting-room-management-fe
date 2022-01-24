@@ -16,19 +16,25 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public createUser(user: UserDTO): Observable<UserDTO> {
-    return this.httpClient.post<UserDTO>(`${this.userURL}/add/user`, user, {responseType: 'json'});
-  }
-
-  public createAccount(account: AccountDTO): Observable<AccountDTO> {
-    return this.httpClient.post<AccountDTO>(`${this.userURL}/add/account`, account, {responseType: 'json'});
-  }
-
   public getAllDepartments(): Observable<DepartmentDTO[]> {
     return this.httpClient.get<DepartmentDTO[]>(`${this.userURL}/department`, {responseType: 'json'});
   }
 
-  public getAllUsername(): Observable<String[]> {
-    return this.httpClient.get<String[]>(`${this.userURL}/username`, {responseType: 'json'});
+  public getAllUsername(): Observable<string[]> {
+    return this.httpClient.get<string[]>(`${this.userURL}/username`, {responseType: 'json'});
+  }
+
+  // public createUser(user: UserDTO): Observable<UserDTO> {
+  //   return this.httpClient.post<UserDTO>(`${this.userURL}/add`, user, {responseType: 'json'});
+  // }
+  //
+  // public createAccount(account: AccountDTO): Observable<AccountDTO> {
+  //   return this.httpClient.post<AccountDTO>(`${this.userURL}/add`, account, {responseType: 'json'});
+  // }
+
+  public createNewUser(newAccount: AccountDTO, newUser: UserDTO): Observable<UserDTO> {
+
+    this.httpClient.post<AccountDTO>(`${this.userURL}`, newAccount, {responseType: 'json'});
+    return this.httpClient.post<UserDTO>(`${this.userURL}`, newUser, {responseType: 'json'});
   }
 }

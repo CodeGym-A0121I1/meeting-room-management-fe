@@ -1,21 +1,28 @@
 <div class="body">
   <div class="container">
-    <form [formGroup]="createUser" (ngSubmit)="onSubmit()" novalidate>
-      <article class="card-body mx-auto" style="max-width: 550px;">
+    <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()" novalidate>
+      <article class="card-body mx-auto" style="max-width: 500px;">
         <h2 class="mt-4 text-center">Thêm người dùng</h2>
-        <hr>
         <div class="form-group mt-3 row">
           <label for="username">Tên đăng nhập (<span class="red-asterisk">*</span>)</label>
           <input type="text" id="username" name="username" class="form-control" placeholder="Nhập tên đăng nhập"
-                 formControlName="username">
+                 formControlName="username" #username (change)="checkExistUsername(username.value)">
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('username')?.hasError('required') && createUser.get('username')?.touched">
+             *ngIf="createUserForm.get('username')?.hasError('required') && createUserForm.get('username')?.touched">
           <p>Tên đăng nhập không được để trống</p>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('username')?.hasError('maxlength') && createUser.get('username')?.touched">
+             *ngIf="createUserForm.get('username')?.hasError('minlength') && createUserForm.get('username')?.touched">
+          <p>Tên đăng nhập tối thiểu 6 kí tự</p>
+        </div>
+        <div class="small-red-text"
+             *ngIf="createUserForm.get('username')?.hasError('maxlength') && createUserForm.get('username')?.touched">
           <p>Tên đăng nhập tối đa 30 kí tự</p>
+        </div>
+        <div class="small-red-text"
+             *ngIf="isExistUsername">
+          <p>Tên đăng nhập đã tồn tại</p>
         </div>
         <div class="form-group mt-3 row">
           <label for="password" class="form-label">Mật khẩu (<span class="red-asterisk">*</span>)</label>
@@ -23,13 +30,20 @@
                  formControlName="password">
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('password')?.hasError('required') && createUser.get('password')?.touched">
+             *ngIf="createUserForm.get('password')?.hasError('required') && createUserForm.get('password')?.touched">
           <p>Mật khẩu không được để trống</p>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('password')?.hasError('maxlength') &&
-             createUser.get('password')?.hasError('minlength') && createUser.get('password')?.touched">
-          <p>Mật khẩu tối thiểu 6 kí tự và tối đa 30 kí tự</p>
+             *ngIf="createUserForm.get('password')?.hasError('minlength') && createUserForm.get('password')?.touched">
+          <p>Mật khẩu tối thiểu 6 kí tự</p>
+        </div>
+        <div class="small-red-text"
+             *ngIf="createUserForm.get('password')?.hasError('maxlength') && createUserForm.get('password')?.touched">
+          <p>Mật khẩu tối đa 30 kí tự</p>
+        </div>
+        <div class="small-red-text"
+             *ngIf="createUserForm.get('password')?.hasError('pattern') && createUserForm.get('password')?.touched">
+          <p>Mật khẩu phải có 1 kí tự hoa, 1 kí tự số và 1 kí tự đặc biệt</p>
         </div>
         <div class="form-group mt-3 row">
           <label for="confirmPassword" class="form-label">Xác nhận mật khẩu (<span
@@ -38,22 +52,34 @@
                  type="password" formControlName="confirmPassword" appConfirmEqualValidator="password">
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('confirmPassword')?.hasError('required') && createUser.get('confirmPassword')?.touched">
+             *ngIf="createUserForm.get('confirmPassword')?.hasError('required') && createUserForm.get('confirmPassword')?.touched">
           <p>Xác nhận mật khẩu không được để trống</p>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('confirmPassword')?.hasError('notEqual') && createUser.get('confirmPassword')?.touched">
+             *ngIf="createUserForm.get('confirmPassword')?.hasError('minlength') && createUserForm.get('confirmPassword')?.touched">
+          <p>Xác nhận mật khẩu tối thiểu 6 kí tự</p>
+        </div>
+        <div class="small-red-text"
+             *ngIf="createUserForm.get('confirmPassword')?.hasError('maxlength') && createUserForm.get('confirmPassword')?.touched">
+          <p>Xác nhận mật khẩu tối đa 30 kí tự</p>
+        </div>
+        <div class="small-red-text"
+             *ngIf="createUserForm.get('confirmPassword')?.hasError('pattern') && createUserForm.get('confirmPassword')?.touched">
+          <p>Xác nhận mật khẩu phải có 1 kí tự hoa, 1 kí tự số và 1 kí tự đặc biệt</p>
+        </div>
+        <div class="small-red-text"
+             *ngIf="createUserForm.get('confirmPassword')?.hasError('notEqual') && createUserForm.get('confirmPassword')?.touched">
           <p>Mật khẩu xác nhận không khớp</p>
         </div>
         <div class="form-group mt-3 row">
           <label for="role" class="form-label">Quyền (<span class="red-asterisk">*</span>)</label>
           <select id="role" name="role" class="form-control" formControlName="role">
-            <option selected value=""></option>
+            <option selected disabled>Chọn</option>
             <option *ngFor="let role of roles" [ngValue]="getKeyName(role)">{{role}}</option>
           </select>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('role')?.hasError('required') && createUser.get('role')?.touched">
+             *ngIf="createUserForm.get('role')?.hasError('required') && createUserForm.get('role')?.touched">
           <p>Quyền không được để trống</p>
         </div>
         <div class="form-group mt-3 row">
@@ -62,29 +88,30 @@
                  formControlName="fullName">
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('fullName')?.hasError('required') && createUser.get('fullName')?.touched">
+             *ngIf="createUserForm.get('fullName')?.hasError('required') && createUserForm.get('fullName')?.touched">
           <p>Họ và tên không được để trống</p>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('fullName')?.hasError('maxlength') && createUser.get('fullName')?.touched">
+             *ngIf="createUserForm.get('fullName')?.hasError('maxlength') && createUserForm.get('fullName')?.touched">
           <p>Họ và tên tối đa 30 kí tự</p>
         </div>
         <div class="form-group mt-3 row">
           <label for="department" class="form-label">Bộ phận (<span class="red-asterisk">*</span>)</label>
           <select id="department" name="department" class="form-control"
                   formControlName="department">
-            <option selected value=""></option>
+            <option selected disabled>Chọn</option>
             <option *ngFor="let department of listDepartment" [ngValue]="department">{{department.name}}</option>
           </select>
         </div>
         <div class="small-red-text"
-             *ngIf="createUser.get('department')?.hasError('required') && createUser.get('department')?.touched">
+             *ngIf="createUserForm.get('department')?.hasError('required') && createUserForm.get('department')?.touched">
           <p>Bộ phận không được để trống</p>
         </div>
         <div class="form-group mt-3 row">
-          <button type="submit" class="btn btn-primary col" [disabled]="createUser.invalid">Thêm</button>
-          <button type="reset" class="btn btn-secondary col">Hủy</button>
-          <button type="reset" class="btn btn-success col">Về trang</button>
+          <button type="submit" class="btn btn-primary col" [disabled]="createUserForm.invalid && !isExistUsername">
+            Thêm
+          </button>
+          <button [routerLink]="" class="btn btn-secondary col">Trở về</button>
         </div>
       </article>
     </form>
