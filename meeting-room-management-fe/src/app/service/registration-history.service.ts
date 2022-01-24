@@ -83,4 +83,21 @@ export class RegistrationHistoryService {
   getStatisticTotalUser(roomType: String, roomName: String, month: String, year: String): Observable<number> {
     return this.httpClient.get<number>(this.URL_STATISTIC_TOTAL_USE + "?roomType=" + roomType + "&roomName=" + roomName + "&month=" + month + "&year=" + year, {headers: this.headers});
   }
+  getById(id:String):Observable<any>{
+    return this.httpClient.get(this.url+'/'+id);
+  }
+
+  cancel(id:String):Observable<any>{
+    console.log(id);
+    return this.httpClient.delete(this.url+'/cancel/'+id);
+  }
+
+  getListIsCancel(){
+    return this.httpClient.get<any[]>(this.url+'/getListRegistrationHistoryNotCancel');
+  }
+
+  getListSearch(roomName: string, dateStart: string, dateEnd: string, status: string, roomType: string){
+    return this.httpClient.get(this.url+'/search?roomName='+roomName+'&dateStart='+dateStart +'&dateEnd='+dateEnd+'&status='+ status +'&roomType='+roomType);
+  }
+
 }

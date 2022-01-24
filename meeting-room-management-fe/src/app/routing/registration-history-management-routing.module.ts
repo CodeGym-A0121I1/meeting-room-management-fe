@@ -5,10 +5,14 @@ import {SearchRoomComponent} from "../component/registration-history-management/
 import {StatisticsComponent} from "../component/registration-history-management/statistics/statistics.component";
 import {UserGuard} from "../guards/user.guard";
 
+
 const routes: Routes = [
   {path: 'searchroom', component: SearchRoomComponent, canActivate: [UserGuard]},
   {path: 'list', component: ListRegistrationHistoryComponent},
   {path: 'statistic', component: StatisticsComponent},
+  {
+    path:'cancel/:id',component:DeleteRegistrationHistoryComponent
+  }
 ];
 
 @NgModule({

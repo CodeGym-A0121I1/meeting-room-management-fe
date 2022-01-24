@@ -60,7 +60,8 @@ import {RegistrationHistoryManagementModule} from "./component/registration-hist
     RegistrationHistoryManagementModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [{ provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
