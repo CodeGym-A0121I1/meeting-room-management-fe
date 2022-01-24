@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RegistrationHistoryService} from "../../../service/registration-history.service";
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder} from "@angular/forms";
 
 function checkMonthYear(c: AbstractControl) {
   const value = c.value;

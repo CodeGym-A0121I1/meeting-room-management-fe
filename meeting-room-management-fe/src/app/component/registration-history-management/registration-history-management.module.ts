@@ -2,8 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {RegistrationHistoryManagementRoutingModule} from '../../routing/registration-history-management-routing.module';
-import {StatisticRoomFormComponent} from './statistic-room-form/statistic-room-form.component';
-import {StatisticsTimeFormComponent} from './statistics-time-form/statistics-time-form.component';
 import {StatisticsComponent} from './statistics/statistics.component';
 import {ListRegistrationHistoryComponent} from './list-registration-history/list-registration-history.component';
 import {DeleteRegistrationHistoryComponent} from './delete-registration-history/delete-registration-history.component';
@@ -20,8 +18,6 @@ import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
     declarations: [
-      StatisticRoomFormComponent,
-      StatisticsTimeFormComponent,
       StatisticsComponent,
       ListRegistrationHistoryComponent,
       DeleteRegistrationHistoryComponent,
@@ -39,9 +35,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     FormsModule,
     MatSnackBarModule,
     NgxPaginationModule,
-    NgxPaginationModule,
-  ], exports: [StatisticRoomFormComponent,
-    StatisticsTimeFormComponent,
+  ], exports: [
     StatisticsComponent,
     ListRegistrationHistoryComponent,
     DeleteRegistrationHistoryComponent,

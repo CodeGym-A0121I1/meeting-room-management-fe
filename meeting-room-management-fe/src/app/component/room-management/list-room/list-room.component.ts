@@ -52,12 +52,13 @@ export class ListRoomComponent implements OnInit {
     })
   }
   openDialogDelete(room:Room){
-    this.roomService.getRoomById(room.id).subscribe(data =>{
-      const dialogRef = this.matDialog.open(DeleteRoomComponent,{
-        width:'500px',
-        height:'215px',
-        data:data});
-      dialogRef.afterClosed().subscribe(()=>{
+    this.roomService.getById(room.id).subscribe(data => {
+      const dialogRef = this.matDialog.open(DeleteRoomComponent, {
+        width: '500px',
+        height: '215px',
+        data: data
+      });
+      dialogRef.afterClosed().subscribe(() => {
         this.ngOnInit();
       })
     })

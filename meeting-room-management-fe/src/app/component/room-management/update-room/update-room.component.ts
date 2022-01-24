@@ -131,7 +131,7 @@ export class UpdateRoomComponent implements OnInit {
             // Call API to create vaccine
             this.service.updateRoom(this.roomDTO).subscribe(() => {
               this.snackBar.open("Bạn đã cập nhật thành công", "Ok");
-              this.route.navigateByUrl("/");
+              this.route.navigateByUrl("/room");
             })
           });
         })
@@ -139,7 +139,7 @@ export class UpdateRoomComponent implements OnInit {
     } else {
       this.service.updateRoom(this.roomDTO).subscribe(() => {
         this.snackBar.open("Bạn đã cập nhật thành công", "Ok");
-        this.route.navigateByUrl("/");
+        this.route.navigateByUrl("/room");
       });
     }
 

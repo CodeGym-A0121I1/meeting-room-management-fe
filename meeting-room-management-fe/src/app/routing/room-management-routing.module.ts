@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {CreateRoomComponent} from "../component/room-management/create-room/create-room.component";
 import {UpdateRoomComponent} from "../component/room-management/update-room/update-room.component";
 import {AdminGuard} from "../guards/admin.guard";
+import {ListRoomComponent} from "../component/room-management/list-room/list-room.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: "update/:id",
         component: UpdateRoomComponent
+      },
+      {
+        path: "",
+        component: ListRoomComponent
       }
     ],
     canActivate: [AdminGuard]

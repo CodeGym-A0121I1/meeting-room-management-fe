@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         () => {
           this.status = "Username or password was wrong"
         },
-        () => this.router.navigateByUrl("/")
+        () => this.router.navigateByUrl("/room")
     )
   }
   get username() { return this.loginForm.get('username')!; }

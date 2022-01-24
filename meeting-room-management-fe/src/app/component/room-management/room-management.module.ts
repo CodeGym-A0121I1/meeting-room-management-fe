@@ -10,9 +10,7 @@ import {DeleteRoomComponent} from './delete-room/delete-room.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SelectEquipmentComponent} from './select-equipment/select-equipment.component';
 import {NgxPaginationModule} from "ngx-pagination";
-import {NgxPaginationModule} from "ngx-pagination";
 import {MatDialogModule} from "@angular/material/dialog";
-import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
