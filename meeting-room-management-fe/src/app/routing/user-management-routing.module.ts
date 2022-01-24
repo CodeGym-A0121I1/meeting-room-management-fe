@@ -4,8 +4,6 @@ import {CreateUserComponent} from "../component/user-management/create-user/crea
 import {UpdateUserComponent} from "../component/user-management/update-user/update-user.component";
 import {AdminGuard} from "../guards/admin.guard";
 import {ListUserComponent} from "../component/user-management/list-user/list-user.component";
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import {ChangePasswordUserComponent} from "../component/user-management/change-password-user/change-password-user.component";
 
 const routes: Routes = [

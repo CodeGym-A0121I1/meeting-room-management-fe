@@ -8,6 +8,7 @@ import {
 import {ChangePasswordRequestDTO} from "../../../models/dto/ChangePasswordRequestDTO";
 import {UserService} from "../../../service/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-change-password-user',
@@ -41,7 +42,8 @@ export class ChangePasswordUserComponent implements OnInit {
   }
 
   constructor(private userService: UserService,
-              private matSnackBar: MatSnackBar
+              private matSnackBar: MatSnackBar,
+              private authService: AuthService
               ) {
   }
 
@@ -69,7 +71,7 @@ export class ChangePasswordUserComponent implements OnInit {
   onSubmit() {
     if (this.formChangePassword.valid) {
       // gáng cứng
-      this.changePasswordRequestDTO.username = "trong";
+      this.changePasswordRequestDTO.username = this.authService.getUser();
       this.changePasswordRequestDTO.oldPassword = this.formChangePassword.value.oldPassword;
       this.changePasswordRequestDTO.newPassword = this.formChangePassword.value.pwGroup.newPassword;
       this.userService.changePassword(this.changePasswordRequestDTO).subscribe(

@@ -38,7 +38,6 @@ export class UserService {
   }
 
 
-
   getAllUser(): Observable<any> {
     return this.http.get<any>(this.API_USER, {headers: this.headers})
   }
@@ -69,5 +68,6 @@ export class UserService {
   }
 
   changePassword(changePasswordRequestDTO: ChangePasswordRequestDTO): Observable<boolean> {
-    return this.httpClient.put<boolean>(this.API_USER + '/account/password', changePasswordRequestDTO, {headers: this.headers});
+    return this.http.put<boolean>(this.API_USER + '/account/password', changePasswordRequestDTO, {headers: this.headers});
   }
+}
