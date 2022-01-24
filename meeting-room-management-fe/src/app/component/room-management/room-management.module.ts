@@ -10,6 +10,9 @@ import {DeleteRoomComponent} from './delete-room/delete-room.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SelectEquipmentComponent} from './select-equipment/select-equipment.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {NgxPaginationModule} from "ngx-pagination";
+import {MatDialogModule} from "@angular/material/dialog";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -25,6 +28,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     CommonModule,
     RoomManagementRoutingModule,
     FormsModule,
+    MatDialogModule,
     ReactiveFormsModule,
     NgxPaginationModule
   ],
@@ -36,5 +40,4 @@ import {NgxPaginationModule} from "ngx-pagination";
     UpdateRoomComponent
   ]
 })
-export class RoomManagementModule {
-}
+export class RoomManagementModule { }

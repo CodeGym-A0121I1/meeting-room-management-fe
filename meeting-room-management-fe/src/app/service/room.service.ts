@@ -6,6 +6,11 @@ import {Area} from "../model/room/Area";
 import {RoomType} from "../model/room/RoomType";
 import {Room} from "../model/room/Room";
 import {AuthService} from "./auth.service";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Floor} from "../models/Floor";
+import {Area} from "../models/Area";
+import {RoomType} from "../models/RoomType";
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +61,13 @@ export class RoomService {
 
   updateRoom(room: any): Observable<any> {
     return this.httpClient.put(this.api_room, room, {headers: this.headers});
+  }
+
+  deleteRoomById(id:string){
+    return this.http.delete(this.URL_ROOM+'/'+id);
+  }
+
+  getAllRoom():Observable<any[]>{
+    return this.http.get<any[]>(this.URL_ROOM);
   }
 }
