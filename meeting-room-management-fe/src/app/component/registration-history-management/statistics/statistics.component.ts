@@ -2,6 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {RegistrationHistoryService} from "../../../service/registration-history.service";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 
+function checkMonthYear(c: AbstractControl) {
+  const value = c.value;
+  if (value.month != '' && value.year == '')
+    return {yearRequired: true}
+  return null;
+}
+
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
@@ -18,7 +25,7 @@ export class StatisticsComponent implements OnInit {
   // @ts-ignore
   p: string | number;
 
-  constructor(private registrationHistoryService: RegistrationHistoryService,) {
+  constructor(private registrationHistoryService: RegistrationHistoryService, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -32,6 +39,13 @@ export class StatisticsComponent implements OnInit {
       this.roomList = data;
     });
   }
+
+  searchForm = this.fb.group({
+    timeGroup: this.fb.group({
+        month: [],
+        year: []
+      }, {validator: checkMonthYear}
+    )});
 
   searchByRoom(roomType: string, roomName: string, month: string, year: string) {
     this.registrationHistoryService.getStatisticByRoom(roomType, roomName, month, year).subscribe(data => {
