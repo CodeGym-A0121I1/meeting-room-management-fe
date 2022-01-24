@@ -1,4 +1,4 @@
-import {Status} from "./Status";
+import {Status} from "../Status";
 import {Area} from "./Area";
 import {Floor} from "./Floor";
 import {RoomType} from "./RoomType";

@@ -3,10 +3,10 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../../../service/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AccountDTO} from "../../../model/DTO/AccountDTO";
+import {Account} from "../../../model/user/Account";
 import {UserDTO} from "../../../model/DTO/UserDTO";
-import {DepartmentDTO} from "../../../model/DTO/DepartmentDTO";
-import {ERole} from "../../../model/ERole";
+import {Department} from "../../../model/user/Department";
+import {ERole} from "../../../model/user/ERole";
 
 @Component({
   selector: 'app-create-user',
@@ -16,10 +16,10 @@ import {ERole} from "../../../model/ERole";
 export class CreateUserComponent implements OnInit {
 
   createUser: FormGroup;
-  account: AccountDTO;
+  account: Account;
   user: UserDTO;
   listUsername: String[] = [];
-  listDepartment: DepartmentDTO[] = [];
+  listDepartment: Department[] = [];
   roles = Object.values(ERole);
 
   constructor(private formBuilder: FormBuilder, private router: Router,
@@ -63,7 +63,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   getDepartments() {
-    this.userService.getAllDepartments().subscribe((data: DepartmentDTO[]) => this.listDepartment = data);
+    this.userService.getAllDepartments().subscribe((data: Department[]) => this.listDepartment = data);
     console.log(this.listDepartment);
   }
 
@@ -73,13 +73,13 @@ export class CreateUserComponent implements OnInit {
   }
 
   convertToDto() {
-    let account: AccountDTO = {
+    let account: Account = {
       username: this.createUser.value.username,
       password: this.createUser.value.password,
       role: this.createUser.value.role
     }
 
-    let department: DepartmentDTO = new DepartmentDTO(this.createUser.value.department);
+    let department: Department = new Department(this.createUser.value.department);
 
     let user: UserDTO = {
       fullName: this.createUser.value.fullName,

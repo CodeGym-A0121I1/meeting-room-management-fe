@@ -1,8 +1,8 @@
-import {AccountDTO} from "./AccountDTO";
-import {DepartmentDTO} from "./DepartmentDTO";
+import {Account} from "../user/Account";
+import {Department} from "../user/Department";
 
 export class UserDTO {
   fullName: string;
-  account: AccountDTO;
-  department: DepartmentDTO;
+  account: Account;
+  department: Department;
 }

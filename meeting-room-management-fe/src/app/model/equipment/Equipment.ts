@@ -1,4 +1,4 @@
-import {Status} from "../room/Status";
+import {Status} from "../Status";
 import {Category} from "./Category";
 
 export interface Equipment {

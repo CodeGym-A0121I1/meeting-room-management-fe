@@ -4,7 +4,7 @@ import {Area} from "../../../model/room/Area";
 import {Floor} from "../../../model/room/Floor";
 import {RoomType} from "../../../model/room/RoomType";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Status} from "../../../model/room/Status";
+import {Status} from "../../../model/Status";
 import {MatDialog} from "@angular/material/dialog";
 import {SelectEquipmentComponent} from "../select-equipment/select-equipment.component";
 import {Equipment} from "../../../model/equipment/Equipment";

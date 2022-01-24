@@ -16,7 +16,7 @@ import {RouterModule} from "@angular/router";
 import {RoomManagementModule} from "./component/room-management/room-management.module";
 import {LoginModule} from "./component/login/login.module";
 import {EquipmentManagementModule} from "./component/equipment-management/equipment-management.module";
-import {HeaderComponent} from './component/header/header.component';
+import {SlidebarComponent} from './component/slidebar/slidebar.component';
 import {PageNotFoundComponent} from './component/pagenotfound/page-not-found.component';
 import {ForbiddenComponent} from './component/forbidden/forbidden.component';
 
@@ -26,13 +26,15 @@ import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {UserManagementModule} from "./component/user-management/user-management.module";
+import {HomeComponent} from './component/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     PageNotFoundComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    SlidebarComponent,
+    HomeComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

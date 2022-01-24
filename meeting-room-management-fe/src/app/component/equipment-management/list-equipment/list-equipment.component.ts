@@ -6,7 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {DeleteEquipmentComponent} from "../delete-equipment/delete-equipment.component";
 import {UpdateEquipmentComponent} from "../update-equipment/update-equipment.component";
 import {Equipment} from "../../../model/equipment/Equipment";
-import {Status} from "../../../model/room/Status";
+import {Status} from "../../../model/Status";
 
 @Component({
   selector: 'app-list-equipment',
