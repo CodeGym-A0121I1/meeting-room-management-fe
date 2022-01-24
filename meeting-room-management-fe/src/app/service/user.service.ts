@@ -1,52 +1,44 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 
-import {Observable} from "rxjs";
 import {UserDTO} from "../model/DTO/UserDTO";
 import {Department} from "../model/user/Department";
-import {Account} from "../model/user/Account";
 import {User} from "../model/user/User";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import set = Reflect.set;
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  readonly api: string = "http://localhost:8080/user";
+  readonly API_USER: string = "http://localhost:8080/api/users";
   readonly apiDepartment: string = "http://localhost:8080/department";
   readonly apiAccount: string = "http://localhost:8080/account";
+  private readonly jwt = this.authService.getToken() || '';
 
-  constructor(private http: HttpClient) {
+  headers = new HttpHeaders({
+    'Authorization': this.jwt
+  });
+
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   editCustomer(user: User) {
-    return this.http.put(this.api + "/" + user.id, user);
+    return this.http.put(this.API_USER + "/" + user.id, user, {headers: this.headers});
   }
 
   getUserById(id: any): Observable<User> {
-    return this.http.get<User>(this.api + "/" + id);
+    return this.http.get<User>(this.API_USER + "/" + id, {headers: this.headers});
   }
 
   getAllDepartment(): Observable<Array<Department>> {
-    return this.http.get<Array<Department>>(this.apiDepartment);
+    return this.http.get<Array<Department>>(this.apiDepartment, {headers: this.headers});
   }
 
-  URL_API = "http://localhost:8080/api/users";
 
-  headers = new HttpHeaders({
-    'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0cm9uZyIsImV4cCI6MTY0MzAzMTc0NywiaWF0IjoxNjQyOTk1NzQ3fQ.SZRlmCmJE83wKylQxVIZIEx2LDnTT00KY7L3LoORSALlGg6xU1vxlkgVWsDSkGZ0CNX76Z0qwy85O97NjPVkbw'
-  });
-
-
-  constructor(
-    private httpClient: HttpClient
-  ) {
-  }
 
   getAllUser(): Observable<any> {
-    return this.httpClient.get<any>(this.URL_API, {headers: this.headers})
+    return this.http.get<any>(this.API_USER, {headers: this.headers})
   }
 
   search(userForm: any): Observable<any> {
@@ -55,6 +47,23 @@ export class UserService {
       .set('role', userForm.role)
       .set('fullName', userForm.fullName)
       .set('departmentName', userForm.departmentName)
-    return this.httpClient.get<any>(this.URL_API + "/search", {headers: this.headers, params: params})
+    return this.http.get<any>(this.API_USER + "/search", {headers: this.headers, params: params})
   }
+
+  public createUser(user: UserDTO): Observable<UserDTO> {
+    return this.http.post<UserDTO>(`${this.API_USER}/add/user`, user, {headers: this.headers});
+  }
+
+  public getAllDepartments(): Observable<Department[]> {
+    return this.http.get<Department[]>(`${this.API_USER}/department`, {headers: this.headers});
+  }
+
+  public getAllUsername(): Observable<String[]> {
+    return this.http.get<String[]>(`${this.API_USER}/username`, {headers: this.headers});
+  }
+
+  getAccountByUsername(username: any): Observable<User> {
+    return this.http.get<User>(this.API_USER + "/" + username, {headers: this.headers});
+  }
+
 }

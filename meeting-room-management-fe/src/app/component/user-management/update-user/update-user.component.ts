@@ -4,7 +4,6 @@ import {UserService} from "../../../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Department} from 'src/app/model/user/Department';
-import {Account} from 'src/app/model/user/Account';
 
 @Component({
   selector: 'app-update-user',
@@ -13,7 +12,6 @@ import {Account} from 'src/app/model/user/Account';
 })
 export class UpdateUserComponent implements OnInit {
   listDepartment: Array<Department> = [];
-  listAccount: Array<Account> = [];
 
   formEditUser: FormGroup = this.formBuilder.group({
     full_name: ['', [Validators.required]],
@@ -44,18 +42,6 @@ export class UpdateUserComponent implements OnInit {
       }
     );
 
-    this.userService.getAllAccount().subscribe(
-      data2 => {
-        this.listAccount = data2;
-
-        let username = this.activatedRoute.snapshot.params['username'];
-        this.userService.getAccountByUsername(username).subscribe(
-          data3 => {
-            this.formEditUser.setValue(data3)
-          }
-        )
-      }
-    );
 
   }
 

@@ -49,12 +49,10 @@ export class CreateUserComponent implements OnInit {
         }
       }
       this.convertToDto();
-      this.userService.createAccount(this.account).subscribe(() => {
         this.userService.createUser(this.user).subscribe(() => {
           this.createUser.reset();
           this.snackBar.open("Thêm mới thành công", "OK")
         })
-      });
     }
   }
 
