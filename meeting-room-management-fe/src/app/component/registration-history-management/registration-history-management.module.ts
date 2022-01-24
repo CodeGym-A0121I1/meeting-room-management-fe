@@ -13,6 +13,9 @@ import {SigupRoomComponent} from './sigup-room/sigup-room.component';
 import {CancelSignroomComponent} from './cancel-signroom/cancel-signroom.component';
 import {StatisticsOfTimesComponent} from './statistics-of-times/statistics-of-times.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {MatDialogModule} from "@angular/material/dialog";
+import { PopUpComponent } from './pop-up/pop-up.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -26,13 +29,16 @@ import {NgxPaginationModule} from "ngx-pagination";
     DeleteRegistrationHistoryComponent,
     SigupRoomComponent,
     CancelSignroomComponent,
-    StatisticsOfTimesComponent
+    StatisticsOfTimesComponent,
+    PopUpComponent
   ],
-    imports: [
-        CommonModule,
-        RegistrationHistoryManagementRoutingModule,
-        NgxPaginationModule
-    ],exports:[StatisticRoomFormComponent,
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    RegistrationHistoryManagementRoutingModule,
+    NgxPaginationModule,
+    ReactiveFormsModule
+  ],exports:[StatisticRoomFormComponent,
     StatisticsTimeFormComponent,
     StatisticsRoomTableComponent,
     StatisticsTimeTableComponent,

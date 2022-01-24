@@ -7,9 +7,13 @@ import {
   DeleteRegistrationHistoryComponent
 } from "../component/registration-history-management/delete-registration-history/delete-registration-history.component";
 
+
 const routes: Routes = [
   {
        path: 'list', component: ListRegistrationHistoryComponent
+  },
+  {
+    path:'cancel/:id',component:DeleteRegistrationHistoryComponent
   }
 
 ];
