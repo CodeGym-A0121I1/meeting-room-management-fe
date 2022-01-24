@@ -21,8 +21,21 @@ export class ChangePasswordUserComponent implements OnInit {
     oldPassword: string | any;
     username: string | any;
   };
+
   checkOldPassword = false;
 
+  fieldTextType !: boolean;
+  fieldTextType2 !: boolean;
+  fieldTextType3 !: boolean;
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+  toggleFieldTextType2() {
+    this.fieldTextType2 = !this.fieldTextType2;
+  }
+  toggleFieldTextType3() {
+    this.fieldTextType3 = !this.fieldTextType3;
+  }
   constructor(private userService: UserService,
               private matSnackBar: MatSnackBar) {
   }
@@ -30,9 +43,10 @@ export class ChangePasswordUserComponent implements OnInit {
   formChangePassword = new FormGroup({
     oldPassword: new FormControl('', [Validators.required]),
     pwGroup: new FormGroup({
-      newPassword: new FormControl('', [Validators.required]),
-      confirmPassword: new FormControl('', [Validators.required])
-    }, this.checkMatchPassword)
+      newPassword: new FormControl('', [Validators.required ,Validators.minLength(6) ,Validators.maxLength(10)]),
+      confirmPassword: new FormControl('', [Validators.required ,Validators.minLength(6), Validators.maxLength(10)])
+    },this.checkMatchPassword)
+
   });
 
   ngOnInit(): void {
@@ -43,14 +57,13 @@ export class ChangePasswordUserComponent implements OnInit {
     let pwGroup = control.value;
     if (pwGroup.newPassword !== pwGroup.confirmPassword) {
       return {passwordDontMatch: true};
-
     }
     return null;
-   }
+  }
 
   onSubmit() {
     if (this.formChangePassword.valid) {
-      // gáng cứng, sau này fix sau
+      // gáng cứng
       this.changePasswordRequestDTO.username = "trong";
       this.changePasswordRequestDTO.oldPassword = this.formChangePassword.value.oldPassword;
       this.changePasswordRequestDTO.newPassword = this.formChangePassword.value.pwGroup.newPassword;

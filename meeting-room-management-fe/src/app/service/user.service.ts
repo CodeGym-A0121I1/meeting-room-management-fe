@@ -12,7 +12,7 @@ export class UserService {
   URL_API = "http://localhost:8080/api/users";
 
   headers = new HttpHeaders({
-    'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0cm9uZyIsImV4cCI6MTY0Mjc5MzgyMiwiaWF0IjoxNjQyNzU3ODIyfQ.tKlM0R5yyrpglxZftofB5E9SnWK_PpZq58PseCa4NxPOICUSMP71sDn17OE1ElzGGA2JTc2d5AZAIWLHdizxJg'
+    'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0cm9uZyIsImV4cCI6MTY0Mjk4ODY3MiwiaWF0IjoxNjQyOTUyNjcyfQ.uuxn7I6Ww_fVIIwo9G5Tk0CdCmOIgNv7KKsdmG-hf_5ZaRd6lxnp1WfZMMWAcw8i4wF77nns28IhPy1oX_7Rtg'
   });
 
 
