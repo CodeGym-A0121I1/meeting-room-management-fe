@@ -1,47 +1,53 @@
-<!--<mat-dialog-content>-->
-    <div class="col-md-6 mt-5 pl-5 pr-5">
-        <h5>Xem Chi Tiết Phòng Họp</h5>
-        <div class="row ">
-            <div class="col-sm-5  col-6">Tên phòng:</div>
-            <div class="col-sm-5  col-6">{{room.name}}</div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm-5  col-6">Tầng:</div>
-            <div class="col-sm-5  col-6">{{room.floor.name}}</div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm-5  col-6">Khu vực:</div>
-            <div class="col-sm-5  col-6">{{room.area.name}}</div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm-5  col-6">Sức chứa:</div>
-            <div class="col-sm-5  col-6">{{room.capacity}}</div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm-5  col-6">Loại phòng:</div>
-            <div class="col-sm-5  col-6">{{room.roomType.name}}</div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm-5  col-6">Trạng thái:</div>
-            <div class="col-sm-5  col-6">{{room.status}}</div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm-5  col-6">Tài sản:</div>
-<!--            tai san-->
-            <!--                <div class="col-sm-5  col-6">-->
-            <!--                    <span *ngFor="let equipment of room.equipmentList">{{equipment.name}}, </span>-->
-            <!--                </div>-->
-        </div>
-    </div>
-    <div class="col-md-6 ">
-        <div class="row mt-2">
-            <div class="col-sm-6 mt-2">
-                <img [src]="room.image" width="700px" height="400px">
+<!--<mat-dialog-content style="background: #673ab7;color: white">-->
+<div class="container" style="background: cornflowerblue;color: white">
+  <br>
+<h3 >Chi Tiết Phòng Họp</h3>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <label class="col-sm-4 col-form-label">Tên phòng: </label>
+            <div class="col-sm-4">
+                <p>{{room.name}}</p>
             </div>
         </div>
-    </div>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <label class="col-sm-4 col-form-label">Tầng: </label>
+            <div class="col-sm-4">
+                <p>{{room.floor.name}}</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <label class="col-sm-4 col-form-label">Khu vực: </label>
+            <div class="col-sm-4">
+                <p>{{room.area.name}}</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <label class="col-sm-4 col-form-label">Sức chứa: </label>
+            <div class="col-sm-4">
+                <p>{{room.capacity}}</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <label class="col-sm-4 col-form-label">Loại phòng: </label>
+            <div class="col-sm-4">
+                <p>{{room.roomType.name}}</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <label class="col-sm-4 col-form-label">Tài sản: </label>
+            <div class="col-sm-4">
+                <p *ngFor="let equipment of room.equipmentList">{{equipment.name}}</p>
+            </div>
+        </div>
+  <button type="button" (click)="Huy()" class="btn btn-secondary">Hủy</button>
+<br><br>
+</div>
 <!--</mat-dialog-content>-->
-<!--<mat-dialog-actions>-->
-<!--    <button mat-raised-button mat-dialog-close>Đóng</button>-->
-<!--</mat-dialog-actions>-->
+
+
 

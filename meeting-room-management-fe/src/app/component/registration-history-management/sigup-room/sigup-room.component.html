@@ -1,88 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Đăng ký phòng</title>
-</head>
-<body>
-<body>
-<div class="container">
+<div class="container" style="background: cornflowerblue;color: white">
+  <br>
   <div class="panel panel-primary ">
     <div class="panel-heading ">
       <br> <br>
-      <h2 class="text-center">Đăng ký phòng</h2>
+      <h3 >Đăng ký phòng</h3>
     </div>
     <br>
     <form>
       <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">Tên Phòng:</label>
-        <div class="col-sm-10">
-          <h4>6.5.A</h4>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">Loại cuộc họp:</label>
-        <div class="col-sm-3">
-          <select  class="form-control">
-            <option>Hàng Ngày</option>
-            <option>Hàng Tuần</option>
-            <option>Thứ 2,4,6 </option>
-            <option>Thứ 3,5,7</option>
-          </select>
-        </div>
-      </div>
-
-<!--      <select formControlName="typeCustomer" class="form-control">-->
-<!--        <option *ngFor="let typeCustomer of typeCustomers" [ngValue]="typeCustomer">{{typeCustomer.name}}</option>-->
-<!--      </select>-->
-<!--      <div *ngIf="customerForm.get('typeCustomer')?.hasError('required')-->
-<!--&& customerForm.get('typeCustomer')?.touched" style="color: red">Not null !!!-->
-<!--      </div>-->
-<!--      <div style="color: red" *ngIf="isSubmit">Request re-entry ...</div>-->
-
-
-      <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">Ngày bắt đầu:</label>
+        <div class="col-sm-2"></div>
+        <label class="col-sm-3 col-form-label">Tên Phòng:</label>
         <div class="col-sm-4">
-          <input type="date" class="form-control"  placeholder="Ngày bắt đầu" value="01/05/2016">
+          <!--                    <p>{{history.room.name}}</p>-->
+          <input type="text" class="form-control" value="{{history.room.name}}" readonly>
         </div>
       </div>
       <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">Ngày kết thúc:</label>
+        <div class="col-sm-2"></div>
+        <label class="col-sm-3 col-form-label">Loại cuộc họp:</label>
         <div class="col-sm-4">
-          <input type="date" class="form-control"  placeholder="Ngày kết thúc" value="01/05/2016">
+          <input type="text" class="form-control" value="{{history.room.roomType.name}}" readonly>
+
         </div>
       </div>
       <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">Thời gian bắt đầu:</label>
-        <div class="col-sm-3">
-          <input type="time" class="form-control"  placeholder="Thời gian kết thúc" value="10:00 PM">
+        <div class="col-sm-2"></div>
+        <label class="col-sm-3 col-form-label">Ngày bắt đầu:</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" value={{history.dateStart}} readonly>
         </div>
       </div>
       <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">Thời gian kết thúc:</label>
-        <div class="col-sm-3">
-          <input type="time" class="form-control"  placeholder="Thời gian kết thúc" value="01/05/2016">
+        <div class="col-sm-2"></div>
+        <label class="col-sm-3 col-form-label">Ngày kết thúc:</label>
+        <div class="col-sm-4">
+<!--          <p class="form-control">{{history.dateEnd}}</p>-->
+                      <input type="text" class="form-control" value="{{history.dateEnd}}" placeholder="dd/mm/yyyy" readonly>
         </div>
       </div>
       <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">Nội dung cuộc họp:</label>
-        <div class="col-sm-8">
-          <textarea type="text" class="form-control"  placeholder="Nội dung cuộc họp" value="Họp đuổi nhân viên sống không tử tế"></textarea>
+        <div class="col-sm-2"></div>
+        <label class="col-sm-3 col-form-label">Thời gian bắt đầu:</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" value="{{history.timeStart}}" readonly>
         </div>
       </div>
       <div class="form-group row">
-        <label  class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-2"></div>
+        <label class="col-sm-3 col-form-label">Thời gian kết thúc:</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" value="{{history.timeEnd}}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <label class="col-sm-3 col-form-label">Nội dung cuộc họp:</label>
+        <div class="col-sm-6">
+          <textarea type="text" class="form-control" [maxLength]="300" placeholder="Vui lòng điền nội dung cuộc họp số lượng nhỏ hơn 300 ký tự "
+                    (change)="soA($event)"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label"></label>
         <div class="col-sm-2">
-          <button type="reset" class="btn btn-warning">Hủy</button>
+          <button type="reset" class="btn btn-secondary" (click)="Cancel()">Hủy</button>
         </div>
         <div class="col-sm-5">
-          <button type="submit" class="btn btn-success">Đăng Ký</button>
+          <button (click)="xacdinh()" class="btn btn-primary">Đăng Ký</button>
         </div>
       </div>
+      <br>
     </form>
   </div>
 </div>
-</body>
-</body>
-</html>
+
+
+

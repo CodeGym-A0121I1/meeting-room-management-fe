@@ -8,11 +8,11 @@ import {Area} from "../model/Area";
 import {ICategory} from "../model/ICategory";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class RegistrationHistoryService {
 
-  readonly URL_API_HISTORY = "http://localhost:8080/api/registration-histories";
+  readonly URL_API_HISTORY = "http://localhost:8080/api/registration-histories/signupRoom";
   readonly ROOM_API_URL = "http://localhost:8080/api/rooms";
   readonly ROOMTYPE_API_URL = "http://localhost:8080/api/rooms/roomTypes";
   readonly AREAS_API_URL = "http://localhost:8080/api/rooms/areas";

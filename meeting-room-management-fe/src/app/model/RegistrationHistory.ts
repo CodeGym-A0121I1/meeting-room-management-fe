@@ -9,6 +9,7 @@ export interface RegistrationHistory {
   timeEnd: string;
   description: string;
   isCancel: boolean;
+
   room: Room;
   user: User;
 }
