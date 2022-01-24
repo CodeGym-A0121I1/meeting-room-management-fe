@@ -17,13 +17,11 @@ export class AdminGuard implements CanActivate, CanActivateChild {
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this.authService.isAuthenticated()) {
-      console.log('not author')
       this.router.navigateByUrl("/login");
       return false;
     }
 
     if (this.authService.isAdmin()) {
-      console.log("is admin")
       return true;
     }
 
@@ -41,13 +39,11 @@ export class AdminGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this.authService.isAuthenticated()) {
-      console.log('not author')
       this.router.navigateByUrl("/login");
       return false;
     }
 
     if (this.authService.isAdmin()) {
-      console.log("is admin")
       return true;
     }
 
