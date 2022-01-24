@@ -41,11 +41,14 @@ export class StatisticsComponent implements OnInit {
   }
 
   searchForm = this.fb.group({
+    roomType: ["", []],
+    roomName: ["", []],
     timeGroup: this.fb.group({
-        month: [],
-        year: []
+        month: ["", []],
+        year: ["", []]
       }, {validator: checkMonthYear}
-    )});
+    )
+  });
 
   searchByRoom(roomType: string, roomName: string, month: string, year: string) {
     this.registrationHistoryService.getStatisticByRoom(roomType, roomName, month, year).subscribe(data => {
