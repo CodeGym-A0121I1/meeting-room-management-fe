@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpHeaders, HttpErrorResponse} from "@angular/common/http";
 import {Floor} from "../model/room/Floor";
 import {Area} from "../model/room/Area";
 import {RoomType} from "../model/room/RoomType";
@@ -8,7 +7,6 @@ import {Room} from "../model/room/Room";
 import {AuthService} from "./auth.service";
 import {Observable, throwError} from "rxjs";
 import { catchError } from 'rxjs/operators';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -35,26 +33,28 @@ export class RoomService {
     'Authorization': this.JWT
   })
 
+
   getAllFloors(): Observable<Array<Floor>> {
     return this.httpClient.get<Array<Floor>>(this.api_floor, {headers: this.headers});
-  }
-
-  getAllAreas(): Observable<Array<Area>> {
-    return this.httpClient.get<Array<Area>>(this.api_area, {headers: this.headers});
   }
 
   getAllRoomTypes(): Observable<Array<RoomType>> {
     return this.httpClient.get<Array<RoomType>>(this.api_roomType, {headers: this.headers});
   }
 
+
   addRoom(room: Room) {
     return this.httpClient.post(this.api_room, room, {headers: this.headers});
   }
 
+  getAllAreas(): Observable<Array<Area>> {
+    return this.httpClient.get<Array<Area>>(this.api_area, {headers: this.headers});
+  }
   getImageName(): Observable<string> {
     // @ts-ignore
     return this.httpClient.get<string>(this.api_image, {responseType: 'text', headers: this.headers});
   }
+
 
   getById(id: string): Observable<any> {
     return this.httpClient.get(this.api_room + '/' + id, {headers: this.headers});
@@ -63,6 +63,7 @@ export class RoomService {
   updateRoom(room: any): Observable<any> {
     return this.httpClient.put(this.api_room, room, {headers: this.headers});
   }
+
 
   deleteRoomById(id:string){
     return this.httpClient.delete(this.api_room + '/' + id, {headers: this.headers});
@@ -73,8 +74,7 @@ export class RoomService {
   }
 messeage!:string;
   getRoomById(id:string):Observable<any>{
-
-    return this.httpClient.get(this.URL_ROOM+'/'+id).pipe(
+    return this.httpClient.get(this.URL_ROOM+'/'+id, {headers: this.headers}).pipe(
       catchError( (error)=> {
         if (error.status === 404)
           return throwError("không tìm thấy phòng với mã là " + id);
@@ -82,6 +82,6 @@ messeage!:string;
       }));
   }
   getCountStaticByRoom(nameRoom:string){
-    return this.httpClient.get(this.URL_STATIC+'/static-room-id?roomId='+nameRoom);
+    return this.httpClient.get(this.URL_STATIC+'/static-room-id?roomId='+nameRoom,{headers: this.headers});
   }
 }

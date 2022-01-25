@@ -42,7 +42,6 @@ export class SelectEquipmentComponent implements OnInit {
       data => {
         this.categoryWithEquipmentList = data;
         this.categoryWithEquipmentListDuplicate = this.categoryWithEquipmentList
-
         for (const category of this.categoryWithEquipmentList) {
           this.mapCategoryCheckbox.set('check' + category.id, true);
           for (const equipment of category.equipmentList) {

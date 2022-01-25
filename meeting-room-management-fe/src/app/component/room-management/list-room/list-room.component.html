@@ -95,7 +95,7 @@
               <td *ngIf="room.status == 'USING'">Đang sử dụng</td>
               <td>{{room.roomType.name}}</td>
               <td>{{room.capacity}} người</td>
-              <td class="text-center"><a href="#" class="detailButton"><i class="fa fa-eye"></i></a></td>
+              <td class="text-center"><a [routerLink]="'detail/' + room.id" class="detailButton"><i class="fa fa-eye"></i></a></td>
               <td class="text-center"><a [routerLink]="'update/' + room.id" class="editButton"><i
                 class="fa fa-edit"></i></a></td>
               <td class="text-center"><a class="deleteButton" (click)="openDialogDelete(room)"><i
