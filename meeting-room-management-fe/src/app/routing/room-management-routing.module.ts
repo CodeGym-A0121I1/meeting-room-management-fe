@@ -4,7 +4,7 @@ import {CreateRoomComponent} from "../component/room-management/create-room/crea
 import {UpdateRoomComponent} from "../component/room-management/update-room/update-room.component";
 import {AdminGuard} from "../guards/admin.guard";
 import {ListRoomComponent} from "../component/room-management/list-room/list-room.component";
-
+import {DetailRoomComponent} from "../component/room-management/detail-room/detail-room.component";
 const routes: Routes = [
   {
     path: "room", children: [
@@ -16,6 +16,7 @@ const routes: Routes = [
         path: "update/:id",
         component: UpdateRoomComponent
       },
+      {path: 'detail/:id',component:DetailRoomComponent },
       {
         path: "",
         component: ListRoomComponent
@@ -29,5 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RoomManagementRoutingModule {
-}
+export class RoomManagementRoutingModule { }
