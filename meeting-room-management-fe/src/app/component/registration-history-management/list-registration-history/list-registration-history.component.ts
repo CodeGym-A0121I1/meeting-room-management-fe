@@ -1,16 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {RegistrationHistoryService} from "../../../service/registration-history.service";
-import {DeleteRegistrationHistoryComponent} from "../delete-registration-history/delete-registration-history.component";
-import {ActivatedRoute} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {EStatus} from "../../../model/EStatus";
-import {Status} from "../../../model/status";
+import {Status} from "../../../model/Status";
+
 
 @Component({
   selector: 'app-list-registration-history',
   templateUrl: './list-registration-history.component.html',
-  styleUrls: ['./list-registration-history.component.css']
+  styleUrls: []
 })
 export class ListRegistrationHistoryComponent implements OnInit {
 

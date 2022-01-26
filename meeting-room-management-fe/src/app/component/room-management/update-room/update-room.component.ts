@@ -118,7 +118,7 @@ export class UpdateRoomComponent implements OnInit {
   }
 
   save() {
-
+    console.log(this.isChange)
     this.covertToDto();
     if (this.isChange) {
 

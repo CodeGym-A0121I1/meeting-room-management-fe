@@ -2,10 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {RegistrationHistoryService} from "../../../service/registration-history.service";
-import {InjectableClassRegistry} from "@angular/compiler-cli/src/ngtsc/metadata";
-import {RegistrationHistory} from "../../../model/RegistrationHistory";
-import {ActivatedRoute, Router} from "@angular/router";
-import {error} from "@angular/compiler/src/util";
+import {Router} from "@angular/router";
+import {RegistrationHistory} from "../../../model/registration-history/RegistrationHistory";
 
 @Component({
   selector: 'app-pop-up',
@@ -15,10 +13,10 @@ import {error} from "@angular/compiler/src/util";
 export class PopUpComponent implements OnInit {
 
   constructor(
-    private dialogRef:MatDialogRef<PopUpComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:any,
+    private dialogRef: MatDialogRef<PopUpComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private service: RegistrationHistoryService,
-    private snackBar:MatSnackBar,
+    private snackBar: MatSnackBar,
     private router: Router
   ) { }
   registrationHistory!: RegistrationHistory;

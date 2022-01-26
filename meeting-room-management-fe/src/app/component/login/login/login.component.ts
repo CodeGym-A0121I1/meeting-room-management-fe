@@ -42,15 +42,21 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginService.login(this.loginForm.value).subscribe(
-        (data: any) => {
-          this.authService.setToken(data.jwtToken);
-          this.authService.setRole(data.account.role);
-          this.authService.setUser(data.account.username);
-        },
-        () => {
-          this.status = "Username or password was wrong"
-        },
-        () => this.router.navigateByUrl("/room")
+      (data: any) => {
+        this.authService.setToken(data.jwtToken);
+        this.authService.setRole(data.account.role);
+        this.authService.setUser(data.account.username);
+      },
+      () => {
+        this.status = "Username or password was wrong"
+      },
+      () => {
+        if (this.authService.isAdmin()) {
+          this.router.navigateByUrl("/room")
+        } else {
+          this.router.navigateByUrl("/searchroom")
+        }
+      }
     )
   }
   get username() { return this.loginForm.get('username')!; }

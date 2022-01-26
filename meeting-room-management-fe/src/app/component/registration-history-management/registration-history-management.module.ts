@@ -14,6 +14,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NgxPaginationModule} from "ngx-pagination";
+import {PopUpComponent} from "./pop-up/pop-up.component";
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import {NgxPaginationModule} from "ngx-pagination";
       CancelSignroomComponent,
       SearchRoomComponent,
       DetailRoomComponent,
+      PopUpComponent
     ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     DeleteRegistrationHistoryComponent,
     SignupRoomComponent,
     CancelSignroomComponent,
+    PopUpComponent
   ]
 })
 export class RegistrationHistoryManagementModule {

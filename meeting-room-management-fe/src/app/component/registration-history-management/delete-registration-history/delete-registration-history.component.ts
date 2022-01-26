@@ -3,11 +3,12 @@ import {RegistrationHistoryService} from "../../../service/registration-history.
 import {ActivatedRoute} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {RegistrationHistory} from "../../../model/registration-history/RegistrationHistory";
+import {PopUpComponent} from "../pop-up/pop-up.component";
 
 @Component({
   selector: 'app-delete-registration-history',
   templateUrl: './delete-registration-history.component.html',
-  styleUrls: ['./delete-registration-history.component.css']
+  styleUrls: []
 })
 export class DeleteRegistrationHistoryComponent implements OnInit {
 
