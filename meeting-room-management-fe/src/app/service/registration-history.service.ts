@@ -18,6 +18,7 @@ export class RegistrationHistoryService {
   readonly ROOMTYPE_API_URL = "http://localhost:8080/api/rooms/roomTypes";
   readonly AREAS_API_URL = "http://localhost:8080/api/rooms/areas";
   readonly CATEGORY_API_URL = "http://localhost:8080/api/categories";
+  readonly URL_API_HISTORY_ALL = "http://localhost:8080/api/registration-histories/show";
   readonly URL_STATISTIC_BY_ROOM = "http://localhost:8080/api/registration-histories/static-by-room";
   readonly URL_STATISTIC_PERFORMANCE = "http://localhost:8080/api/registration-histories/static-room-performance";
   readonly URL_STATISTIC_TOTAL_USE = "http://localhost:8080/api/registration-histories/static-room-total";
@@ -34,7 +35,7 @@ export class RegistrationHistoryService {
   }
 
   getAll() {
-    return this.httpClient.get(this.URL_API_HISTORY, {headers: this.headers});
+    return this.httpClient.get(this.URL_API_HISTORY_ALL, {headers: this.headers});
   }
 
   signupHistory(history: RegistrationHistory): Observable<RegistrationHistory> {
