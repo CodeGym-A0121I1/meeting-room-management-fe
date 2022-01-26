@@ -8,5 +8,6 @@ export interface Equipment {
   price: number,
   image: string,
   status: Status,
-  category: Category;
+  category: Category,
+  room: any
 }

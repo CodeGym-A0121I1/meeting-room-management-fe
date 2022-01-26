@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Equipment} from "../../../model/equipment/Equipment";
+import {EquipmentService} from "../../../service/equipment.service";
 
 @Component({
   selector: 'app-delete-equipment',

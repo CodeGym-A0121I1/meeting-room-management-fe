@@ -16,7 +16,6 @@ export class ViewEquipmentComponent implements OnInit {
   ngOnInit(): void {
     this.equipmentService.getEquipmentById(this.activatedRoute.snapshot.params['idEquipment']).subscribe((data: any) => {
         this.equipment = data;
-        console.log(data);
       }, error => this.errors = error
     )
   }

@@ -97,12 +97,7 @@ export class EquipmentService {
     return this.httpClient.post(this.API_EQUIPMENT, equipment, {headers: this.headers})
   }
 
-  getEquipmentById(id:string):Observable<any>{
-    return this.httpClient.get(this.API_EQUIPMENT + '/' + id, {headers: this.headers}).pipe(
-      catchError((err) => {
-        if (err.status === 404)
-          return throwError("Không tìm thấy tài sản với mã: " + id);
-        return throwError("Không tìm thấy tài sản với mã: " + id);
-      }));
+  getEquipmentById(id: string): Observable<Equipment> {
+    return this.httpClient.get<Equipment>(this.API_EQUIPMENT + '/' + id, {headers: this.headers});
   }
 }
