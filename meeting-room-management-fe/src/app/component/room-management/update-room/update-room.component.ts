@@ -54,7 +54,7 @@ export class UpdateRoomComponent implements OnInit {
       {
         id: ['', Validators.required],
         name: ['', Validators.required],
-        capacity: ['', [Validators.pattern("^-?\\d+$"), Validators.required]],
+        capacity: ['', [Validators.pattern("[0-9]{0,1}[1-9]{1,}"), Validators.required]],
         image: [''],
         status: ['USING', Validators.required],
         area: ['', Validators.required],
