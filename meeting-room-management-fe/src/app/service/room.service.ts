@@ -16,7 +16,7 @@ export class RoomService {
   private readonly api_area = "http://localhost:8080/api/rooms/areas";
   private readonly api_roomType = "http://localhost:8080/api/rooms/roomTypes";
 
-  
+
   getAllRoom():Observable<any[]>{
     return this.http.get<any[]>(this.URL_ROOM);
   }
@@ -37,5 +37,9 @@ export class RoomService {
 
   getRoomById(id: string) {
     return this.http.get(this.URL_ROOM+'/'+id);
+  }
+  searchRoom(name:string,floor:number,area:number,roomType:number,capacity:number,status:string){
+    return this.http.get(this.URL_ROOM + '/searchRoom?name=' + name +
+      '&floor=' + floor + '&area=' + area + '&roomType=' + roomType + '&capacity=' + capacity + '&status=' + status);
   }
 }

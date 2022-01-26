@@ -7,7 +7,8 @@ import {Room} from "../../../models/Room";
 import {Floor} from "../../../models/Floor";
 import {RoomType} from "../../../models/RoomType";
 import {Area} from "../../../models/Area";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-list-room',
@@ -21,11 +22,11 @@ export class ListRoomComponent implements OnInit {
   floorList:Array<Floor> = [];
   roomTypeList: Array<RoomType> = [];
   areaList:Array<Area> = [];
-  formSearchRoom!:FormGroup;
   constructor(private roomService:RoomService,
               private activatedRoute:ActivatedRoute,
               private matDialog:MatDialog,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private  snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.roomService.getAllRoom().subscribe(data =>
@@ -39,17 +40,7 @@ export class ListRoomComponent implements OnInit {
     );
     this.roomService.getAllAreas().subscribe(
       data => this.areaList = data
-    )
-  }
-  createForm():void {
-    this.formSearchRoom = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      status: [''],
-      capacity: ['', [Validators.pattern("\\d+"), Validators.required]],
-      area: [this.areaList[0], [Validators.required]],
-      floor: [this.floorList[0], [Validators.required]],
-      roomType: [this.roomTypeList[0], [Validators.required]]
-    })
+    );
   }
   openDialogDelete(room:Room){
     this.roomService.getRoomById(room.id).subscribe(data =>{
@@ -61,5 +52,18 @@ export class ListRoomComponent implements OnInit {
         this.ngOnInit();
       })
     })
+  }
+
+  search(roomName:any,floor:any,area:any,roomType:any,capacity:any,status:any) {
+      this.roomService.searchRoom(roomName,floor,area,roomType,capacity,status).subscribe((data:any)=>{
+        this.roomList = data;
+        this.p= 1;
+        console.log(this.roomList)
+      },()=>{
+        this.snackBar.open("Không tìm thấy phòng như yêu cầu","OK",{
+          duration:4000
+        });
+        this.ngOnInit();
+      })
   }
 }

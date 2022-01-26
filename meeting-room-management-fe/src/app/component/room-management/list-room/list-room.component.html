@@ -7,25 +7,24 @@
           <button class="btn btn-primary btn-create">Thêm phòng mới</button>
         </div>
         <div class="col-lg-10">
-          <form>
             <div class="row">
               <div class="col-md-3">
                 <div class="row form-group">
-                  <label for="nameRoom" class="col-md-5 col-form-label">Tên phòng :</label>
-                  <input id="nameRoom" class="form-control col-md-7" type="text">
+                  <label for="name" class="col-md-5 col-form-label">Tên phòng :</label>
+                  <input id="name" class="form-control col-md-7" type="text" #nameRoom>
                 </div>
                 <div class="row form-group">
                   <label for="floor" class="col-md-5 col-form-label">Tầng :</label>
-                  <select id="floor" class="form-control col-md-7">
-                    <option selected disabled>Chọn</option>
-                    <option *ngFor="let floor of floorList"  [text]="floor.name" [value]="floor.id"></option>
+                  <select id="floor" class="form-control col-md-7" #floor>
+                    <option selected disabled>Chọn tầng</option>
+                    <option *ngFor="let floor of floorList"  [text]="floor.name" value="{{floor.id}}"></option>
                   </select>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="row form-group">
                   <label for="status" class="col-md-5 col-form-label">Trạng thái :</label>
-                  <select id="status" class="form-control col-md-7">
+                  <select id="status" class="form-control col-md-7" #statusValue>
                     <option selected disabled>Chọn</option>
                     <option value="FIXING">đang sửa chữa</option>
                     <option value="AVAILABLE">sẵn sàng</option>
@@ -34,22 +33,22 @@
                 </div>
                 <div class="row form-group">
                   <label for="typeRoom" class="col-md-5 col-form-label">Loại phòng :</label>
-                  <select id="typeRoom" class="form-control col-md-7">
+                  <select id="typeRoom" class="form-control col-md-7" #roomType>
                     <option selected disabled>Chọn</option>
-                    <option *ngFor="let typeRoom of roomTypeList" [text]="typeRoom.name" [value]="typeRoom.id" ></option>
+                    <option *ngFor="let roomType of roomTypeList" [text]="roomType.name" value="{{roomType.id}}" ></option>
                   </select>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="row form-group">
                   <label for="capacity" class="col-md-5 col-form-label">Sức chứa :</label>
-                  <input id="capacity" class="form-control col-md-7" type="text">
+                  <input id="capacity" class="form-control col-md-7" type="text" #capacity>
                 </div>
                 <div class="row form-group">
                   <label for="area" class="col-md-5 col-form-label">Khu vực :</label>
-                  <select id="area" class="form-control col-md-7">
+                  <select id="area" class="form-control col-md-7" #area>
                     <option selected disabled>Chọn</option>
-                    <option *ngFor="let area of areaList" [text]="area.name" [value]="area.id"></option>
+                    <option *ngFor="let area of areaList" [text]="area.name" value="{{area.id}}"></option>
                   </select>
                 </div>
               </div>
@@ -58,13 +57,12 @@
                   <div class="col-2">
                   </div>
                   <div class="col-8">
-                    <button class="btn btn-outline-primary btn-search">Tìm kiếm</button>
+                    <button class="btn btn-outline-primary btn-search" (click)="search(nameRoom.value,floor.value,area.value,roomType.value,capacity.value,statusValue.value)">Tìm kiếm</button>
                   </div>
                   <div class="col-2"></div>
                 </div>
               </div>
             </div>
-          </form>
         </div>
       </div>
       <div class="row">
@@ -90,7 +88,7 @@
               <td>{{room.name}}</td>
               <td>{{room.floor.name}}</td>
               <td>{{room.area.name}}</td>
-              <td *ngIf="room.status == 'FIXING'">Đang sửa</td>
+              <td *ngIf="room.status == 'FIXING'">Đang sửa chữa</td>
               <td *ngIf="room.status == 'AVAILABLE'">Khả dụng</td>
               <td *ngIf="room.status == 'USING'">Đang sử dụng</td>
               <td>{{room.roomType.name}}</td>
