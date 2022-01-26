@@ -3,7 +3,9 @@ import {Department} from "./Department";
 
 export interface User {
   id: number,
-  full_name: string;
+  fullName: string;
+  email: string;
+  phone: string
   department: Department;
   account: Account;
 }

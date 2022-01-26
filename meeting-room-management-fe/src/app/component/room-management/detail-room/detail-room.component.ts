@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {RoomService} from "../../../service/room.service";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-detail-room',
@@ -10,7 +11,8 @@ import {RoomService} from "../../../service/room.service";
 export class DetailRoomComponent implements OnInit {
 
   constructor(private roomServie: RoomService
-    , private activatedRoute: ActivatedRoute) {
+    , private activatedRoute: ActivatedRoute,
+              private authService: AuthService) {
   }
 
   room: any;
@@ -19,21 +21,18 @@ export class DetailRoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.roomServie.getRoomById(this.activatedRoute.snapshot.params['id']).subscribe(data => {
-data.status=this.converStatus(data.status)
-      data.equipmentList=this.covertArrayEquipmentToString(data.equipmentList)
+        data.status = this.converStatus(data.status)
+        data.equipmentList = this.covertArrayEquipmentToString(data.equipmentList)
         this.room = data;
         this.roomServie.getCountStaticByRoom(this.room.id).subscribe(data => {
           this.countRoom = data;
-          console.log(this.countRoom)
         })
-
-
       }, error => this.errors = error
     )
+    this.authService.getUserId()
   }
 
   converStatus(status: string):string {
-    console.log(status)
     if (status=="USING") {
       status = 'Đang sử dụng'
     }
@@ -51,7 +50,6 @@ data.status=this.converStatus(data.status)
       arrayString +=equipment.name+' ,';
     }
     arrayString2=arrayString.slice(0,-1)
-    console.log(arrayString2)
     return arrayString2;
   }
 }

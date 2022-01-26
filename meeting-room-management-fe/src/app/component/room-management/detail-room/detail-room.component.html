@@ -8,27 +8,27 @@
     <div class="col-md-6 mt-5 pl-5 pr-5">
       <div class="row ">
         <div class="col-sm-5  col-6">Tên phòng:</div>
-        <div class="col-sm-5  col-6">{{room.name}}</div>
+        <div class="col-sm-5  col-6">{{room?.name}}</div>
       </div>
       <div class="row mt-3">
         <div class="col-sm-5  col-6">Tầng:</div>
-        <div class="col-sm-5  col-6">{{room.floor.name}}</div>
+        <div class="col-sm-5  col-6">{{room?.floor.name}}</div>
       </div>
       <div class="row mt-3">
         <div class="col-sm-5  col-6">Khu vực:</div>
-        <div class="col-sm-5  col-6">{{room.area.name}}</div>
+        <div class="col-sm-5  col-6">{{room?.area.name}}</div>
       </div>
       <div class="row mt-3">
         <div class="col-sm-5  col-6">Sức chứa:</div>
-        <div class="col-sm-5  col-6">{{room.capacity}}</div>
+        <div class="col-sm-5  col-6">{{room?.capacity}}</div>
       </div>
       <div class="row mt-3">
         <div class="col-sm-5  col-6">Loại phòng:</div>
-        <div class="col-sm-5  col-6">{{room.roomType.name}}</div>
+        <div class="col-sm-5  col-6">{{room?.roomType.name}}</div>
       </div>
       <div class="row mt-3">
         <div class="col-sm-5  col-6">Trạng thái:</div>
-        <div class="col-sm-5  col-6">{{room.status}}</div>
+        <div class="col-sm-5  col-6">{{room?.status}}</div>
       </div>
       <div class="row mt-3">
         <div class="col-sm-5  col-6">Số lần sử dụng:</div>
@@ -37,7 +37,7 @@
       <div class="row mt-3">
         <div class="col-sm-5  col-6">Tài sản:</div>
         <div class="col-sm-5  col-6">
-          <span >{{room.equipmentList}} </span>
+          <span>{{room?.equipmentList}} </span>
         </div>
       </div>
 
@@ -49,7 +49,7 @@
     <div class="col-md-6 ">
       <div class="row mt-2">
         <div class="col-sm-6 mt-2">
-          <img [src]="room.image"  width="700px" height="400px">
+          <img [src]="room?.image" width="700px" height="400px">
         </div>
       </div>
     </div>

@@ -5,15 +5,25 @@ import {Injectable} from '@angular/core';
 })
 export class AuthService {
 
+  userId: string = '';
+
   constructor() {
   }
 
-  public setUser(user_id: string) {
-    localStorage.setItem('user', user_id);
+  public setUser(username: string) {
+    localStorage.setItem('username', username);
   }
 
   public getUser() {
-    return localStorage.getItem('user');
+    return localStorage.getItem('username');
+  }
+
+  public saveUserId(userId: string) {
+    localStorage.setItem('userID', userId);
+  }
+
+  public getUserId() {
+    localStorage.getItem('userID');
   }
 
   public setToken(jwtToken: string) {
