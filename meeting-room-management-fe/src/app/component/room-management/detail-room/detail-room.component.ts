@@ -51,7 +51,10 @@ data.status=this.converStatus(data.status)
       arrayString +=equipment.name+' ,';
     }
     arrayString2=arrayString.slice(0,-1)
-    console.log(arrayString2)
+  if(arrayString2==''){
+    arrayString2='Phòng này chưa có tài sản.';
+  }
+
     return arrayString2;
   }
 }
