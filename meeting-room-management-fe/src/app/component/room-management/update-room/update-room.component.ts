@@ -11,6 +11,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {CategoryDTO} from "../../../model/dto/CategoryDTO";
 import {EquipmentService} from "../../../service/equipment.service";
 import {Room} from "../../../model/room/Room";
+import bsCustomFileInput from "bs-custom-file-input";
 
 @Component({
   selector: 'app-update-room',
@@ -49,7 +50,7 @@ export class UpdateRoomComponent implements OnInit {
   };
 
   ngOnInit(): void {
-
+    bsCustomFileInput.init()
     this.updateRoom = this.fb.group(
       {
         id: ['', Validators.required],

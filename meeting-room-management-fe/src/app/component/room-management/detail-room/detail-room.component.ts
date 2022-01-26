@@ -19,8 +19,8 @@ export class DetailRoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.roomServie.getRoomById(this.activatedRoute.snapshot.params['id']).subscribe(data => {
-data.status=this.converStatus(data.status)
-      data.equipmentList=this.covertArrayEquipmentToString(data.equipmentList)
+        data.status = this.converStatus(data.status)
+        // data.equipmentList=this.covertArrayEquipmentToString(data.equipmentList)
         this.room = data;
         this.roomServie.getCountStaticByRoom(this.room.id).subscribe(data => {
           this.countRoom = data;
@@ -32,29 +32,18 @@ data.status=this.converStatus(data.status)
     )
   }
 
-  converStatus(status: string):string {
+  converStatus(status: string): string {
     console.log(status)
-    if (status=="USING") {
+    if (status == "USING") {
       status = 'Đang sử dụng'
     }
     if (status == "FIXING") {
       status = 'Đang sửa'
-    } if(status=="AVAIABLE") {
+    }
+    if (status == "AVAIABLE") {
       status = 'Khả Dụng';
     }
     return status
   }
-  covertArrayEquipmentToString(ArrayEquipment: any){
-    let arrayString:string='';
-    let arrayString2:string='';
-    for (const equipment of ArrayEquipment) {
-      arrayString +=equipment.name+' ,';
-    }
-    arrayString2=arrayString.slice(0,-1)
-  if(arrayString2==''){
-    arrayString2='Phòng này chưa có tài sản.';
-  }
 
-    return arrayString2;
-  }
 }

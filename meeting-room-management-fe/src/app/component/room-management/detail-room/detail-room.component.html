@@ -37,7 +37,11 @@
       <div class="row mt-3">
         <div class="col-sm-5  col-6">Tài sản:</div>
         <div class="col-sm-5  col-6">
-          <span >{{room.equipmentList}} </span>
+          <p *ngIf="room.equipmentList==''">Không có tài sản nào ở phòng này!</p>
+          <ul class="list-group" *ngFor="let equipment of room.equipmentList">
+            <li class="list-group-item">{{equipment.name}}</li>
+          </ul>
+<!--          <span >{{room.equipmentList}} </span>-->
         </div>
       </div>
 
