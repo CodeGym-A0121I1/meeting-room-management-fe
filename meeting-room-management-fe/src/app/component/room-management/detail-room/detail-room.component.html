@@ -43,7 +43,7 @@
 
       <div class="ml-5 mt-5 ">
         <button class="btn btn-outline-info" routerLink="/">Trở lại</button>
-        <button class="btn btn-info ml-4" routerLink="/statistic">Xem lịch sử đăng kí</button>
+        <button class="btn btn-info ml-4" (click)="getHistoryRoomId(room?.id)">Xem lịch sử đăng kí</button>
       </div>
     </div>
     <div class="col-md-6 ">
@@ -55,4 +55,43 @@
     </div>
   </div>
 </div>
+
+<div class="table-responsive mt-3" *ngIf="historyRoomList">
+  <h3 class="text-center">Lịch sử đăng ký phòng</h3>
+  <table class="table table-striped table-bordered text-center">
+    <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Tên người đăng ký</th>
+      <th scope="col">Thời gian bắt đầu</th>
+      <th scope="col">Thời gian kết thúc</th>
+      <th scope="col">Ngày bắt đầu</th>
+      <th scope="col">Ngày kết thúc</th>
+      <th scope="col">Trạng thái</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="text-left"
+        *ngFor="let history of historyRoomList | paginate: { itemsPerPage: 5, currentPage: p}; let i=index">
+      <th class="text-center" scope="row">{{i+1}}</th>
+      <td class="text-left">{{history.user.fullName}}</td>
+      <td class="text-right">{{history.timeStart}}</td>
+      <td class="text-right">{{history.timeEnd}}</td>
+      <td class="text-right">{{history.dateStart | date:'dd/MM/yyyy'}}</td>
+      <td class="text-right">{{history.dateEnd | date:'dd/MM/yyyy'}}</td>
+      <td class="text-left" *ngIf="history.cancel==false">Chưa hủy</td>
+      <td class="text-left" *ngIf="history.cancel==true">Đã hủy</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!--Pagination-->
+<div class="container-fluid justify-content-lg-end">
+  <pagination-controls class="float-lg-right"
+                       previousLabel="Trước"
+                       nextLabel="Sau"
+                       (pageChange)="p = $event">
+  </pagination-controls>
+</div>
+
 

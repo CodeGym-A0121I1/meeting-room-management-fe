@@ -62,7 +62,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button id="btnSearchRoom" class="btn btn-primary" 
+            <button id="btnSearchRoom" class="btn btn-primary"
                     (click)="searchByRoom(searchRoomType.value, searchRoomName.value, searchMonth.value, searchYear.value)">
               Thống kê
             </button>
@@ -98,8 +98,8 @@
           </thead>
           <tbody>
           <tr class="text-left"
-              *ngFor="let registration of registrationList | paginate: { itemsPerPage: 5, currentPage: p} ">
-            <th scope="row">{{registration.id}}</th>
+              *ngFor="let registration of registrationList | paginate: { itemsPerPage: 5, currentPage: p}; let i = index">
+            <th class="text-center" scope="row">{{i+1}}</th>
             <td class="text-left">{{registration.user.fullName}}</td>
             <td *ngIf="searchRoomName.value != ''" class="text-left">{{registration.room.roomType.name}}</td>
             <td *ngIf="searchRoomType.value != ''" class="text-left">{{registration.room.name}}</td>

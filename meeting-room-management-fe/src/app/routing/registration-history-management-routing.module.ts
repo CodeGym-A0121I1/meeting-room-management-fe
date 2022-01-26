@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'list', component: ListRegistrationHistoryComponent},
   {path: 'statistic', component: StatisticsComponent},
   {
-    path:'cancel/:id',component:DeleteRegistrationHistoryComponent
+    path: 'cancel/:id', component: DeleteRegistrationHistoryComponent
   }
 ];
 
