@@ -34,7 +34,8 @@ export class DeleteRoomComponent implements OnInit {
     if(!this.errors){
       this.dialogRef.close();
       this.snackBar.open("Xoá thất bại ! Phòng đang có người đặt","OK",{
-        duration:4000
+        duration:4000,
+        panelClass: ['warning']
       })
     }
   }
