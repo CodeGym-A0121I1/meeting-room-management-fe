@@ -40,12 +40,9 @@ export class CreateFeedbackComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.authService.getUser())
-    console.log(this.authService.getUserId())
     if (this.formFeedback.valid) {
       this.checkOnSubmit = false;
-      this.formFeedback.value.user.id = 'U0001';
-      // this.formFeedback.value.user.username = 'U0001';
+      this.formFeedback.value.user.id = this.authService.getUserId();
       this.feedback = this.formFeedback.value;
       this.matSnackBar.open("Đang gửi phản hồi đến quản trị viên ...")
       this.feedbackService.create(this.feedback).subscribe(

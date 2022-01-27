@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   public getUserId() {
-    localStorage.getItem('userID');
+    return localStorage.getItem('userID');
   }
 
   public setToken(jwtToken: string) {
