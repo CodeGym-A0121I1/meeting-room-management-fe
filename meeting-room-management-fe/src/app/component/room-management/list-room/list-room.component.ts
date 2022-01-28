@@ -18,18 +18,23 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class ListRoomComponent implements OnInit {
 
   roomList!: any[];
-  p: any;
+  p: number| any;
   floorList:Array<Floor> = [];
   roomTypeList: Array<RoomType> = [];
   areaList:Array<Area> = [];
+  checkPagination = true;
   constructor(private roomService:RoomService,
               private activatedRoute:ActivatedRoute,
               private matDialog:MatDialog,
               private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
-    this.roomService.getAllRoom().subscribe(data =>
-      this.roomList = data
+    this.roomService.getAllRoom().subscribe((data) =>{
+        this.roomList = data;
+        if(data.length < 11){
+          this.checkPagination = false;
+        }
+    }
     );
     this.roomService.getAllFloors().subscribe(
       data => this.floorList = data
