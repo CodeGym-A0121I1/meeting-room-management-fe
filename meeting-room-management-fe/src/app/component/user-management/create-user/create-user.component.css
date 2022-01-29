@@ -27,8 +27,15 @@
   width: 100%;
   padding: 25px 30px;
   border-radius: 10px;
-  /*background-color: #ccc;*/
-  background: linear-gradient(135deg, #aff5f5, #96eed1);
+  box-shadow: 5px 10px 8px 5px #ccc;
+}
+
+.fa {
+  margin-right: 10px;
+}
+
+.eye {
+  position: absolute;
 }
 
 label {
@@ -41,6 +48,10 @@ button {
   padding: 10px 20px;
   margin: 0 20px;
   box-sizing: unset;
+}
+
+#hide-eye {
+  display: none;
 }
 
 @media only screen and (max-width: 576px)
