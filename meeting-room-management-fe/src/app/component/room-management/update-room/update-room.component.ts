@@ -12,6 +12,10 @@ import {CategoryDTO} from "../../../model/dto/CategoryDTO";
 import {EquipmentService} from "../../../service/equipment.service";
 import {Room} from "../../../model/room/Room";
 import bsCustomFileInput from "bs-custom-file-input";
+import {Area} from "../../../model/room/Area";
+import {Floor} from "../../../model/room/Floor";
+import {RoomType} from "../../../model/room/RoomType";
+import {Equipment} from "../../../model/equipment/Equipment";
 
 @Component({
   selector: 'app-update-room',
@@ -30,12 +34,12 @@ export class UpdateRoomComponent implements OnInit {
               @Inject(AngularFireStorage) private storage: AngularFireStorage) {
   }
 
-  updateRoom!: FormGroup;
+  updateRoom: FormGroup;
   selectedImage: any = null;
-  areas!: any[];
-  floors!: any[];
-  roomTypes!: any[];
-  equipList!: any[];
+  areas: Array<Area> = [];
+  floors: Array<Floor> = [];
+  roomTypes: Array<RoomType> = [];
+  equipList: Array<Equipment> = [];
   categoryWithEquipments: Array<CategoryDTO> = [];
   roomDTO: Room = new class implements Room {
     area: any;

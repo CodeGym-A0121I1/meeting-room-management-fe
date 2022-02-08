@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {RoomService} from "../../../service/room.service";
 import {AuthService} from "../../../service/auth.service";
 import {RegistrationHistoryService} from "../../../service/registration-history.service";
+import {Room} from "../../../model/room/Room";
 
 @Component({
   selector: 'app-detail-room',
@@ -17,7 +18,7 @@ export class DetailRoomComponent implements OnInit {
               private registrationHistoryService: RegistrationHistoryService) {
   }
 
-  room: any;
+  room: Room;
   errors: string = '';
   countRoom!: any;
   historyRoomList: any;
