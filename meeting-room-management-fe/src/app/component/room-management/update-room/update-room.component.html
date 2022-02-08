@@ -6,7 +6,7 @@
       <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Tên Phòng <span class="required-field">(*)</span></label>
         <div class="col-sm-10">
-          <input type="text" id="name" name="name" formControlName="name" class="form-control" placeholder="Nhập tên phòng họp">
+          <input type="text" id="name" [ngClass]="{'is-invalid':updateRoom.get('name').invalid && updateRoom.get('name').touched}" name="name" formControlName="name" class="form-control" placeholder="Nhập tên phòng họp">
           <small class="form-text text-danger"
                  *ngIf="updateRoom.get('name')?.hasError('required')  && updateRoom.get('name')?.touched">
             Tên phòng không được để trống
@@ -17,7 +17,7 @@
       <div class="form-group row">
         <label for="floor" class="col-sm-2 col-form-label">Tầng <span class="required-field">(*)</span></label>
         <div class="col-sm-10">
-          <select formControlName="floor" id="floor" class="form-control">
+          <select formControlName="floor" id="floor" class="form-control" [ngClass]="{'is-invalid':updateRoom.get('floor').invalid && updateRoom.get('floor').touched}">
             <option *ngFor="let floor of floors" [selected]="updateRoom.value.floor.id==floor.id" [ngValue]="floor" value="1">{{floor.name}}</option>
           </select>
           <small class="form-text text-danger"
@@ -29,7 +29,7 @@
       <div class="form-group row">
         <label for="area" class="col-sm-2 col-form-label">Khu vực <span class="required-field">(*)</span></label>
         <div class="col-sm-10">
-          <select name="area" id="area" formControlName="area" class="form-control">
+          <select name="area" id="area" formControlName="area" class="form-control" [ngClass]="{'is-invalid':updateRoom.get('area').invalid && updateRoom.get('area').touched}">
             <option *ngFor="let area of areas" [selected]="updateRoom.value.area.id==area.id" [ngValue]="area">{{area.name}}</option>
           </select>
           <small class="form-text text-danger"
@@ -41,14 +41,14 @@
       <div class="form-group row">
         <label for="capacity" class="col-sm-2 col-form-label">Sức chứa <span class="required-field">(*)</span></label>
         <div class="col-sm-10">
-          <input type="text" id="capacity" formControlName="capacity" name="capacity" class="form-control" placeholder="Nhập sức chứa">
+          <input type="text" id="capacity" formControlName="capacity" [ngClass]="{'is-invalid':updateRoom.get('capacity').invalid && (updateRoom.get('capacity').touched || updateRoom.get('capacity').dirty)}" name="capacity" class="form-control" placeholder="Nhập sức chứa">
           <small class="form-text text-danger"
                  *ngIf="updateRoom.get('capacity')?.hasError('required')  && updateRoom.get('capacity')?.touched">
             Sức chứa không được để trống
           </small>
           <small class="form-text text-danger"
                  *ngIf="updateRoom.get('capacity')?.hasError('pattern')  && updateRoom.get('capacity')?.dirty">
-            Sức chứa phải là số lớn hơn 0
+            Sức chứa không hợp lệ
           </small>
         </div>
       </div>
@@ -56,7 +56,7 @@
         <label for="roomType" class="col-sm-2 col-form-label">Loại phòng <span
           class="required-field">(*)</span></label>
         <div class="col-sm-10">
-          <select name="roomType" id="roomType" formControlName="roomType" class="form-control">
+          <select name="roomType" id="roomType" formControlName="roomType" [ngClass]="{'is-invalid':updateRoom.get('roomType').invalid && updateRoom.get('roomType').touched}" class="form-control">
             <option *ngFor="let roomType of roomTypes" [selected]="updateRoom.value.roomType.id==roomType.id" [ngValue]="roomType">{{roomType.name}}</option>
           </select>
           <small class="form-text text-danger"
@@ -71,20 +71,14 @@
           <div class="custom-file">
             <input type="file" id="image"   name="image" (change)="showPreview($event)" class="custom-file-input">
             <label class="custom-file-label" for="image">Chọn ảnh</label>
-            <small class="form-text text-danger"
-                   *ngIf="updateRoom.get('image')?.hasError('required')  && updateRoom.get('image')?.touched">
-              Hình ảnh không được để trống
-            </small>
             <input type="hidden" formControlName="image"  name="image" class="custom-file-input">
           </div>
 
         </div>
-
       </div>
       <div class="form-group row">
         <label  class="col-sm-2 col-form-label"> <span class="required-field"></span></label>
         <div class="col-sm-10">
-<!--          <img src="{{updateRoom.value.image}}" width="70px" height="70px">-->
             <img [src]="updateRoom.value.image" *ngIf="updateRoom.value.image"  width="100px" height="100px">
         </div>
       </div>
