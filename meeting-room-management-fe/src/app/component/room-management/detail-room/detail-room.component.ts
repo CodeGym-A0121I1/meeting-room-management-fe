@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {RoomService} from "../../../service/room.service";
-import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-detail-room',
@@ -11,8 +10,7 @@ import {AuthService} from "../../../service/auth.service";
 export class DetailRoomComponent implements OnInit {
 
   constructor(private roomServie: RoomService
-    , private activatedRoute: ActivatedRoute,
-              private authService: AuthService) {
+    , private activatedRoute: ActivatedRoute) {
   }
 
   room: any;
@@ -29,7 +27,6 @@ export class DetailRoomComponent implements OnInit {
         })
       }, error => this.errors = error
     )
-    this.authService.getUserId()
   }
 
   converStatus(status: string):string {

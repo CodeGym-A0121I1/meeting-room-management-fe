@@ -1,12 +1,11 @@
-<ng-template [ngIf]="authService.isAuthenticated()">
-  <app-slidebar></app-slidebar>
-  <div class="page-content p-5" id="content">
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
+<app-slidebar *ngIf="authService.isAuthenticated()"></app-slidebar>
+<div [class]="authService.isAuthenticated()? 'page-content p-5': ''" id="content">
+  <div class="container">
+    <router-outlet></router-outlet>
   </div>
-</ng-template>
-<ng-template [ngIf]="!authService.isAuthenticated()">
-  <router-outlet></router-outlet>
-</ng-template>
+</div>
+
+
+
+
 

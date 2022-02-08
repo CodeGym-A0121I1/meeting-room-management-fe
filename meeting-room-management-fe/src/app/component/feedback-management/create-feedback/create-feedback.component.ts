@@ -4,6 +4,7 @@ import {FeedbackService} from "../../../service/feedback.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Feedback} from "../../../model/feedback/Feedback";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-create-feedback',
@@ -17,7 +18,8 @@ export class CreateFeedbackComponent implements OnInit {
   checkOnSubmit: boolean = true;
 
   constructor(private feedbackService: FeedbackService,
-              private matSnackBar: MatSnackBar) {
+              private matSnackBar: MatSnackBar,
+              private authService: AuthService) {
   }
 
   formFeedback = new FormGroup({
@@ -39,7 +41,7 @@ export class CreateFeedbackComponent implements OnInit {
   onSubmit() {
     if (this.formFeedback.valid) {
       this.checkOnSubmit = false;
-      this.formFeedback.value.user.id = 'U0001';
+      this.formFeedback.value.user.id = this.authService.getUserId();
       this.feedback = this.formFeedback.value;
       this.matSnackBar.open("Đang gửi phản hồi đến quản trị viên ...")
       this.feedbackService.create(this.feedback).subscribe(

@@ -47,16 +47,14 @@ export class LoginComponent implements OnInit {
         this.authService.setRole(data.account.role);
         this.authService.saveUserId(data.userId);
         this.authService.setUser(data.account.username);
+        if (this.authService.isAdmin()) {
+          this.router.navigate(["/room"], {replaceUrl: true})
+        } else {
+          this.router.navigate(["/search-room"], {replaceUrl: true})
+        }
       },
       () => {
         this.status = "Username or password was wrong"
-      },
-      () => {
-        if (this.authService.isAdmin()) {
-          this.router.navigateByUrl("/room")
-        } else {
-          this.router.navigateByUrl("/searchroom")
-        }
       }
     )
   }

@@ -18,6 +18,7 @@ import {CategoryDTO} from "../../../model/dto/CategoryDTO";
 import {ValidateMessage} from "../../../model/dto/ValidateMessage";
 import {EquipmentService} from "../../../service/equipment.service";
 import {Room} from "../../../model/room/Room";
+import {formatDate} from "@angular/common";
 
 
 @Component({
@@ -97,7 +98,7 @@ export class CreateRoomComponent implements OnInit {
 
   checkPositiveNumber(formControl: AbstractControl) {
     let num = parseInt(formControl.value);
-    if (!formControl.value.match("^-?\\d+$")) {
+    if (isNaN(num) || !formControl.value.match("^-?\\d+$")) {
       return {'invalidCapacity': true};
     } else if (num <= 0) {
       return {'negativeCapacity': true};
@@ -124,7 +125,6 @@ export class CreateRoomComponent implements OnInit {
       this.convertToDTO();
       this.roomService.addRoom(this.newRoom).subscribe(
         () => {
-          console.log(this.newRoom)
           this.snackBar.open("Add Successful")._dismissAfter(3000);
           this.formAddRoom.reset();
           this.equipmentList = [];
@@ -156,21 +156,23 @@ export class CreateRoomComponent implements OnInit {
   }
 
   selectFile(event: any) {
-    this.roomService.getImageName().subscribe(
-      name => {
-        let file = event.target.files[0]
-        this.angularFireStorage.upload(name, file)
-          .snapshotChanges().pipe(
-          finalize(() => {
-            this.angularFireStorage.ref(name).getDownloadURL().subscribe(
-              (data) => {
-                this.image = data
-              }
-            )
-          })
-        ).subscribe();
-      }
-    )
+    let name = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
+    let file = event.target.files[0]
+    console.log(file)
+    if (file != undefined) {
+      this.angularFireStorage.upload(name, file)
+        .snapshotChanges().pipe(
+        finalize(() => {
+          this.angularFireStorage.ref(name).getDownloadURL().subscribe(
+            (data) => {
+              this.image = data
+            }
+          )
+        })
+      ).subscribe();
+    } else {
+      this.image = null;
+    }
   }
 
   convertToDTO() {
