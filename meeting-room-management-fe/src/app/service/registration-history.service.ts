@@ -18,7 +18,9 @@ export class RegistrationHistoryService {
   readonly ROOMTYPE_API_URL = "http://localhost:8080/api/rooms/roomTypes";
   readonly AREAS_API_URL = "http://localhost:8080/api/rooms/areas";
   readonly CATEGORY_API_URL = "http://localhost:8080/api/categories";
+  readonly URL_API_HISTORY_ALL = "http://localhost:8080/api/registration-histories";
   readonly URL_STATISTIC_BY_ROOM = "http://localhost:8080/api/registration-histories/static-by-room";
+  readonly URL_HISTORY_BY_ROOM_ID = "http://localhost:8080/api/registration-histories/history-room-id";
   readonly URL_STATISTIC_PERFORMANCE = "http://localhost:8080/api/registration-histories/static-room-performance";
   readonly URL_STATISTIC_TOTAL_USE = "http://localhost:8080/api/registration-histories/static-room-total";
   readonly URL_STATISTIC_BY_TIME = "http://localhost:8080/api/registration-histories";
@@ -34,7 +36,7 @@ export class RegistrationHistoryService {
   }
 
   getAll() {
-    return this.httpClient.get(this.URL_API_HISTORY, {headers: this.headers});
+    return this.httpClient.get(this.URL_API_HISTORY_ALL, {headers: this.headers});
   }
 
   signupHistory(history: RegistrationHistory): Observable<RegistrationHistory> {
@@ -83,21 +85,26 @@ export class RegistrationHistoryService {
   getStatisticTotalUser(roomType: String, roomName: String, month: String, year: String): Observable<number> {
     return this.httpClient.get<number>(this.URL_STATISTIC_TOTAL_USE + "?roomType=" + roomType + "&roomName=" + roomName + "&month=" + month + "&year=" + year, {headers: this.headers});
   }
-  getById(id:String):Observable<any>{
+
+  getById(id: String): Observable<any> {
     return this.httpClient.get(this.URL_STATISTIC_BY_TIME + '/' + id, {headers: this.headers});
   }
 
-  cancel(id:String):Observable<any>{
+  cancel(id: String): Observable<any> {
     console.log(id);
     return this.httpClient.delete(this.URL_STATISTIC_BY_TIME + '/cancel/' + id, {headers: this.headers});
   }
 
-  getListIsCancel(){
+  getListIsCancel() {
     return this.httpClient.get<any[]>(this.URL_STATISTIC_BY_TIME + '/getListRegistrationHistoryNotCancel', {headers: this.headers});
   }
 
-  getListSearch(roomName: string, dateStart: string, dateEnd: string, status: string, roomType: string){
+  getListSearch(roomName: string, dateStart: string, dateEnd: string, status: string, roomType: string) {
     return this.httpClient.get(this.URL_STATISTIC_BY_TIME + '/search?roomName=' + roomName + '&dateStart=' + dateStart + '&dateEnd=' + dateEnd + '&status=' + status + '&roomType=' + roomType, {headers: this.headers});
+  }
+
+  getHistoryByRoomId(roomId: string) {
+    return this.httpClient.get(this.URL_HISTORY_BY_ROOM_ID + "?roomId=" + roomId, {headers: this.headers});
   }
 
 }

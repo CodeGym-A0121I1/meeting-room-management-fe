@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {RoomService} from "../../../service/room.service";
+import {AuthService} from "../../../service/auth.service";
+import {RegistrationHistoryService} from "../../../service/registration-history.service";
 
 @Component({
   selector: 'app-detail-room',
@@ -10,12 +12,16 @@ import {RoomService} from "../../../service/room.service";
 export class DetailRoomComponent implements OnInit {
 
   constructor(private roomServie: RoomService
-    , private activatedRoute: ActivatedRoute) {
+    , private activatedRoute: ActivatedRoute,
+              private authService: AuthService,
+              private registrationHistoryService: RegistrationHistoryService) {
   }
 
   room: any;
   errors: string = '';
   countRoom!: any;
+  historyRoomList: any;
+  p: string | number;
 
   ngOnInit(): void {
     this.roomServie.getRoomById(this.activatedRoute.snapshot.params['id']).subscribe(data => {
@@ -24,16 +30,13 @@ export class DetailRoomComponent implements OnInit {
         this.room = data;
         this.roomServie.getCountStaticByRoom(this.room.id).subscribe(data => {
           this.countRoom = data;
-          console.log(this.countRoom)
         })
-
-
       }, error => this.errors = error
     )
+    this.authService.getUserId()
   }
 
   converStatus(status: string): string {
-    console.log(status)
     if (status == "USING") {
       status = 'Đang sử dụng'
     }
@@ -46,4 +49,20 @@ export class DetailRoomComponent implements OnInit {
     return status
   }
 
+  covertArrayEquipmentToString(ArrayEquipment: any) {
+    let arrayString: string = '';
+    let arrayString2: string = '';
+    for (const equipment of ArrayEquipment) {
+      arrayString += equipment.name + ' ,';
+    }
+    arrayString2 = arrayString.slice(0, -1)
+    return arrayString2;
+  }
+
+  getHistoryRoomId(roomId: string) {
+    this.registrationHistoryService.getHistoryByRoomId(roomId).subscribe(data => {
+      this.historyRoomList = data;
+      console.log(this.historyRoomList);
+    });
+  }
 }
