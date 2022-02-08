@@ -19,16 +19,15 @@
   <tr *ngIf="feedbackList?.length == 0">
     <td colspan="9">Hiện không có phản hồi nào.</td>
   </tr>
-  <tr *ngFor="let feedback of feedbackList | paginate :{itemsPerPage:5 ,currentPage : p} ; let i = index">
+  <tr *ngFor="let feedback of feedbackList | paginate :{itemsPerPage:10 ,currentPage : p} ; let i = index">
     <th scope="row">{{i + 1}}</th>
     <td>{{feedback.user.fullName}}</td>
     <td>{{feedback.room.name}}</td>
     <td>{{feedback.noteRequest | limitToPipe: 20 }}{{feedback.noteRequest.length > 20 ? '...' : ''}}</td>
     <td>{{feedback.dateRequest}}</td>
     <td>{{feedback.dateResponse}}</td>
-    <td *ngIf="feedback.noteResponse == null; else elseNote">{{feedback.noteResponse}}</td>
-    <ng-template
-      #elseNote>{{feedback.noteResponse | limitToPipe: 20 }}{{feedback.noteResponse.length > 20 ? '...' : ''}}</ng-template>
+    <td *ngIf="feedback.noteResponse == null"></td>
+    <td *ngIf="feedback.noteResponse != null">{{feedback.noteResponse | limitToPipe: 20 }}{{feedback.noteResponse.length > 20 ? '...' : ''}}</td>
     <td *ngIf="feedback.status" style="color: blue">Đã xử lý</td>
     <td *ngIf="!feedback.status" style="color: red">Chưa xử lý</td>
     <td>
@@ -38,14 +37,6 @@
   </tbody>
 </table>
 
-<pagination-controls (pageChange)="p = $event"
-                     [directionLinks]=true
-                     [autoHide]=true
-                     [responsive]=true
-                     previousLabel="Trước"
-                     nextLabel="Sau"
-                     screenReaderPaginationLabel="Pagination"
-                     screenReaderPageLabel="page"
-                     screenReaderCurrentLabel="You're on page">
-</pagination-controls>
+<pagination-controls class="text-right" (pageChange)="p = $event" previousLabel="Trước"
+                     nextLabel="Sau"></pagination-controls>
 

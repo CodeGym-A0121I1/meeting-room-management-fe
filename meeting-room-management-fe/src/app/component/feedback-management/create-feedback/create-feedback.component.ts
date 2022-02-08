@@ -25,7 +25,8 @@ export class CreateFeedbackComponent implements OnInit {
   formFeedback = new FormGroup({
     noteRequest: new FormControl("", Validators.required),
     user: new FormGroup({
-      id: new FormControl()
+      id: new FormControl(),
+      username: new FormControl()
     }),
     room: new FormControl('', Validators.required)
   })

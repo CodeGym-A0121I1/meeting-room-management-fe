@@ -7,6 +7,7 @@ import {DeleteEquipmentComponent} from "../delete-equipment/delete-equipment.com
 import {UpdateEquipmentComponent} from "../update-equipment/update-equipment.component";
 import {Equipment} from "../../../model/equipment/Equipment";
 import {Status} from "../../../model/Status";
+import {data} from "jquery";
 
 @Component({
   selector: 'app-list-equipment',
@@ -19,6 +20,8 @@ export class ListEquipmentComponent implements OnInit {
   idCategory: number | any;
   p: number | any;
   eStatus = Status;
+  checkPagination = true;
+  equipment: | any;
 
   constructor(private equipmentService: EquipmentService,
               private activatedRoute: ActivatedRoute,
@@ -33,31 +36,40 @@ export class ListEquipmentComponent implements OnInit {
         this.equipmentService.getAllEquipmentByCategoryId(this.idCategory).subscribe(
           (data) => {
             this.equipmentList = data;
+            if (data.length < 11) {
+              this.checkPagination = false;
+            }
           }
         );
       }
     )
   }
 
-  openDialogDelete(equipment: Equipment) {
-    const dialog = this.matDialog.open(DeleteEquipmentComponent, {
-      data: equipment
-    })
-    dialog.afterClosed().subscribe(isResult => {
-      if (isResult) {
-        this.equipmentService.deleteEquipment(equipment.id).subscribe(
-          () => {
-            this.snackbar.open("Đã xóa tài sản " + equipment.name, "OK", {
-              panelClass: ['mat-toolbar', 'mat-warn'],
-              duration: 3000
-              });
-              this.p = 1;
-              this.ngOnInit();
+  openDialogDelete(id: string) {
+    this.equipmentService.getEquipmentById(id).subscribe(
+      (data) => {
+        this.equipment = data;
+        const dialog = this.matDialog.open(DeleteEquipmentComponent, {
+          data: this.equipment
+        });
+        dialog.afterClosed().subscribe(isResult => {
+            if (isResult) {
+              this.equipmentService.deleteEquipment(this.equipment.id).subscribe(
+                () => {
+                  this.snackbar.open("Đã xóa tài sản " + this.equipment.name, "OK", {
+                    panelClass: ['mat-toolbar', 'mat-warn'],
+                    duration: 3000
+                  });
+                  this.p = 1;
+                  this.ngOnInit();
+                }
+              );
             }
-          );
-        }
+          }
+        )
       }
-    )
+    );
+
   }
 
   openDialogEdit(equipment: Equipment) {

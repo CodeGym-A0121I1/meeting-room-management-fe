@@ -4,6 +4,8 @@
   <ul>
     <li><span>Loại thiết bị: </span>{{equipment.category.name}}</li>
     <li><span>Tên thiết bị: </span>{{equipment.name}}</li>
+    <li *ngIf="equipment.room !== null"><span>Phòng đang sử dụng: </span>{{equipment.room.name}}</li>
+    <li *ngIf="equipment.room === null"><span>Phòng đang sử dụng: </span>Còn trống</li>
   </ul>
 </mat-dialog-content>
 

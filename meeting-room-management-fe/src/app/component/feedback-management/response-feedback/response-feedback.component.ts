@@ -21,7 +21,7 @@ export class ResponseFeedbackComponent implements OnInit {
               private matDialogRef: MatDialogRef<ListFeedbackComponent>) { }
 
   formNoteResponse = new FormGroup({
-    noteResponse : new FormControl('',Validators.required)
+    noteResponse : new FormControl('',[Validators.required])
   })
 
   ngOnInit(): void {

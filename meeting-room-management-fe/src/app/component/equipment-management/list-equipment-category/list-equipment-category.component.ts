@@ -11,6 +11,7 @@ export class ListEquipmentCategoryComponent implements OnInit {
 
   categoryDtoList: QuantityCategory | any;
   p: number | any;
+  checkPagination = true;
 
 
   constructor(private equipmentService: EquipmentService) {
@@ -20,6 +21,9 @@ export class ListEquipmentCategoryComponent implements OnInit {
     this.equipmentService.getAllCategoryQuantityStatusDto().subscribe(
       (data) => {
         this.categoryDtoList = data;
+        if (data.length < 11) {
+          this.checkPagination = false;
+        }
       });
   }
 }

@@ -1,19 +1,19 @@
-<h1 mat-dialog-title>Cập nhật thiết bị</h1>
+<h1 mat-dialog-title>Cập nhật trạng thái thiết bị</h1>
 
 <mat-dialog-content>
 
   <table>
     <tr>
-      <th>Loại thiết bị:</th>
-      <td>{{equipment.category.name}}</td>
+      <td>Loại thiết bị:</td>
+      <td class="content-table">{{equipment.category.name}}</td>
     </tr>
     <tr>
-      <th>Tên thiết bị:</th>
-      <td>{{equipment.name}}</td>
+      <td>Tên thiết bị:</td>
+      <td class="content-table">{{equipment.name}}</td>
     </tr>
     <tr>
-      <th>Trạng thái:</th>
-      <td>
+      <td>Trạng thái:</td>
+      <td class="content-table">
         <select #element (change)="changeStatus(element.value)">
           <option *ngFor="let status of statusArr" [value]="status"
                   [selected]="status[0] === equipment.status">{{status[1]}}</option>

@@ -10,13 +10,15 @@
   </div>
   <div class="col-md-5">
     <input type="text" #seachNameEquipment placeholder="Tên tài sản">
-    <button class="btn btn-outline-primary" (click)="search(seachNameEquipment.value)" style="margin-left: 8px">Tìm kiếm</button>
+    <button class="btn btn-outline-primary" (click)="search(seachNameEquipment.value)" style="margin-left: 8px">Tìm
+      kiếm
+    </button>
   </div>
 </div>
 <br>
 
 <div class="table-responsive">
-  <table class="table table-striped table-bordered text-center">
+  <table class="table table-bordered table-hover text-center">
     <thead>
     <tr>
       <th>Stt</th>
@@ -30,18 +32,18 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let equipment of equipmentList | paginate :{itemsPerPage:2 ,currentPage : p} ; let i = index">
+    <tr *ngFor="let equipment of equipmentList | paginate :{itemsPerPage:10 ,currentPage : p} ; let i = index">
       <td>{{i + 1}}</td>
       <td>{{equipment.category.name}}</td>
       <td>{{equipment.name}}</td>
       <td *ngIf="equipment.status == 'FIXING'" style="color: red">Đang sửa</td>
       <td *ngIf="equipment.status == 'AVAILABLE'" style="color: blue">Khả dụng</td>
       <td *ngIf="equipment.status == 'USING'" style="color: darkcyan">Đang sủ dụng</td>
-      <td>{{equipment.price | currency}} VNĐ</td>
-<!--      DatNT-->
+      <td>{{equipment.price | number}} VNĐ</td>
+      <!--      DatNT-->
       <td>
         <a [routerLink]="['/equipment/detail/' + equipment.id]" class="detailButton">
-          <i class="fa fa-floppy-o"></i>
+          <i class="fa fa-eye"></i>
         </a>
       </td>
       <td>
@@ -50,13 +52,19 @@
         </a>
       </td>
       <td>
-        <a (click)="openDialogDelete(equipment)" class="deleteButton">
+        <a (click)="openDialogDelete(equipment.id)" class="deleteButton">
           <i class="fa fa-trash"></i>
         </a>
       </td>
     </tr>
     </tbody>
   </table>
-  <pagination-controls style="text-align: right" (pageChange)="p = $event"></pagination-controls>
-
+</div>
+<div class="row mx-0">
+  <div class="col-md-2">
+    <button class="btn btn-secondary" [routerLink]="['/equipment']">Trở về</button>
+  </div>
+  <div class="col-md-10">
+    <pagination-controls *ngIf="checkPagination" class="text-right" (pageChange)="p = $event" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
+  </div>
 </div>
