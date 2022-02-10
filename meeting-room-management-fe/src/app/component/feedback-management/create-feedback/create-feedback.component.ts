@@ -59,6 +59,7 @@ export class CreateFeedbackComponent implements OnInit {
             })
           }
           this.checkOnSubmit = true;
+          this.formFeedback.reset();
         },
         (error) => {
           this.matSnackBar.open("Phản hồi không thành công !", "Đóng", {

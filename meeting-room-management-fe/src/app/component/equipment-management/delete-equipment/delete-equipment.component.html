@@ -1,15 +1,13 @@
-<h1 mat-dialog-title>Bạn có muốn xóa?</h1>
+<h3>Xác nhận xoá</h3>
+<hr>
 
-<mat-dialog-content>
-  <ul>
-    <li><span>Loại thiết bị: </span>{{equipment.category.name}}</li>
-    <li><span>Tên thiết bị: </span>{{equipment.name}}</li>
-    <li *ngIf="equipment.room !== null"><span>Phòng đang sử dụng: </span>{{equipment.room.name}}</li>
-    <li *ngIf="equipment.room === null"><span>Phòng đang sử dụng: </span>Còn trống</li>
-  </ul>
-</mat-dialog-content>
+<p>Bạn có chắc chắn muốn xoá thiết bị <span class="text-danger">{{equipment.name}}</span> ?</p>
+<p *ngIf="equipment.room !== null">Phòng đang sử dụng: <span class="text-danger">{{equipment.room.name}}</span></p>
+<p *ngIf="equipment.room === null">Phòng đang sử dụng: <span class="text-success">Còn trống</span></p>
 
-<mat-dialog-actions  align="end">
-  <button mat-raised-button mat-dialog-close>Đóng</button>
-  <button mat-raised-button color="warn" [mat-dialog-close]="true">Xóa</button>
-</mat-dialog-actions>
+<div class="row d-flex justify-content-end">
+  <button mat-dialog-close class="btn btn-primary mr-3">Đóng</button>
+  <button class="btn btn-danger mr-3" [mat-dialog-close]="true">Xóa</button>
+</div>
+
+

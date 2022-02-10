@@ -50,7 +50,8 @@ export class ListEquipmentComponent implements OnInit {
       (data) => {
         this.equipment = data;
         const dialog = this.matDialog.open(DeleteEquipmentComponent, {
-          data: this.equipment
+          data: this.equipment,
+          width: '500px',
         });
         dialog.afterClosed().subscribe(isResult => {
             if (isResult) {
