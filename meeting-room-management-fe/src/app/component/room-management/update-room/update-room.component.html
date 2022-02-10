@@ -69,18 +69,15 @@
         <label class="col-sm-2 col-form-label">Hình ảnh</label>
         <div class="col-sm-10 input-group">
           <div class="custom-file">
-            <input type="file" id="image"   name="image" (change)="showPreview($event)" >
-            <label class="custom-file-label" style="width: 300px" for="image">Chọn ảnh</label>
-            <input type="hidden" formControlName="image"  name="image" class="custom-file-input">
+            <input type="file" id="image" name="image" (change)="showPreview($event)">
+            <label class="custom-file-label" for="image">Chọn ảnh</label>
+            <input type="hidden" formControlName="image" name="image" class="custom-file-input">
           </div>
+          <div>
+            <img [src]="updateRoom.value.image" *ngIf="updateRoom.value.image" class="img-thumbnail">
+          </div>
+        </div>
 
-        </div>
-      </div>
-      <div class="form-group row">
-        <label  class="col-sm-2 col-form-label"> <span class="required-field"></span></label>
-        <div class="col-sm-10">
-            <img [src]="updateRoom.value.image" *ngIf="updateRoom.value.image"  width="100px" height="100px">
-        </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Tài sản:</label>
