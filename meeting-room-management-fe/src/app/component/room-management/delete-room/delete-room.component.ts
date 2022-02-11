@@ -10,7 +10,7 @@ import {Room} from "../../../model/room/Room";
   styleUrls: ['./delete-room.component.css']
 })
 export class DeleteRoomComponent implements OnInit {
-  private errors: any;
+
 
   constructor(
     private dialogRef:MatDialogRef<DeleteRoomComponent>,
@@ -28,15 +28,12 @@ export class DeleteRoomComponent implements OnInit {
         this.snackBar.open("Xoá phòng thành công !!! ", "OK", {
           duration: 4000
         })
-      },error => {
-        this.errors = error
+      },() => {
+        this.dialogRef.close();
+        this.snackBar.open("Xoá thất bại ! Phòng đang có người đặt","OK",{
+          duration:4000,
+          panelClass: ['warning']
+        })
       });
-    if(!this.errors){
-      this.dialogRef.close();
-      this.snackBar.open("Xoá thất bại ! Phòng đang có người đặt","OK",{
-        duration:4000,
-        panelClass: ['warning']
-      })
-    }
   }
 }

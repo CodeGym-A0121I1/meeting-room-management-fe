@@ -74,7 +74,7 @@ export class RoomService {
   }
   searchRoom(name:string,floor:number,area:number,roomType:number,capacity:number,status:string){
     return this.httpClient.get(this.api_room + '/searchRoom?name=' + name +
-      '&floor=' + floor + '&area=' + area + '&roomType=' + roomType + '&capacity=' + capacity + '&status=' + status);
+      '&floor=' + floor + '&area=' + area + '&roomType=' + roomType + '&capacity=' + capacity + '&status=' + status,{headers:this.headers});
   }
 messeage!:string;
   getRoomById(id:string):Observable<any>{

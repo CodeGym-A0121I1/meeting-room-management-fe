@@ -10,12 +10,12 @@
             <div class="col-md-3">
               <div class="row form-group small">
                 <label for="name"  class="col-md-5 col-form-label">Tên phòng:</label>
-                <input id="name" class="form-control col-md-7" placeholder="Nhập tên phòng" type="text" #nameRoom>
+                <input id="name" class="form-control col-md-7" placeholder="Nhập tên" type="text" #nameRoom>
               </div>
               <div class="row form-group small">
                 <label for="floor" class="col-md-5 col-form-label">Tầng :</label>
                 <select id="floor" class="form-control col-md-7" #floor>
-                  <option selected disabled>Chọn tầng</option>
+                  <option selected disabled value="">Chọn tầng</option>
                   <option *ngFor="let floor of floorList"  [text]="floor.name" value="{{floor.id}}"></option>
                 </select>
               </div>
@@ -24,7 +24,7 @@
               <div class="row form-group small">
                 <label for="status" class="col-md-6 col-form-label">Trạng thái :</label>
                 <select id="status" class="form-control col-md-6" #statusValue>
-                  <option selected disabled>Chọn</option>
+                  <option selected disabled value="">Chọn</option>
                   <option value="FIXING">đang sửa chữa</option>
                   <option value="AVAILABLE">sẵn sàng</option>
                   <option value="USING">đang sử dụng</option>
@@ -33,7 +33,7 @@
               <div class="row form-group small">
                 <label for="typeRoom" class="col-md-6 col-form-label">Loại phòng :</label>
                 <select id="typeRoom" class="form-control col-md-6" #roomType>
-                  <option selected disabled>Chọn</option>
+                  <option selected disabled value="">Chọn</option>
                   <option *ngFor="let roomType of roomTypeList" [text]="roomType.name" value="{{roomType.id}}" ></option>
                 </select>
               </div>
@@ -46,7 +46,7 @@
               <div class="row form-group small">
                 <label for="area" class="col-md-5 col-form-label">Khu vực :</label>
                 <select id="area" class="form-control col-md-7" #area>
-                  <option selected disabled>Chọn</option>
+                  <option selected disabled value="">Chọn</option>
                   <option *ngFor="let area of areaList" [text]="area.name" value="{{area.id}}"></option>
                 </select>
               </div>
@@ -82,7 +82,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let room of roomList |paginate:{itemsPerPage:10,currentPage:p} ; let i = index">
+            <tr *ngFor="let room of roomList |paginate:{itemsPerPage:5,currentPage:p} ; let i = index">
               <th class="text-center">{{i+1}}</th>
               <td>{{room.name}}</td>
               <td>{{room.floor.name}}</td>
@@ -94,14 +94,15 @@
               <td>{{room.capacity}} người</td>
               <td class="text-center"><a href="#" class="detailButton"><i class="fa fa-eye"></i></a></td>
               <td class="text-center"><a href="#" class="editButton"><i class="fa fa-edit"></i></a></td>
-              <td class="text-center"><a href="#" class="deleteButton" (click)="openDialogDelete(room)"><i class="fa fa-trash"></i></a></td>
+              <td class="text-center"><a style="cursor: pointer" class="deleteButton" (click)="openDialogDelete(room)"><i class="fa fa-trash"></i></a></td>
             </tr>
             </tbody>
           </table>
         </div>
       </div>
       <div class="row p-3">
-        <div class="col-9"></div>
+        <div class="col-3"></div>
+        <div class="col-6"></div>
         <div class="col-3">
           <pagination-controls *ngIf="checkPagination" (pageChange)="p=$event" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
         </div>

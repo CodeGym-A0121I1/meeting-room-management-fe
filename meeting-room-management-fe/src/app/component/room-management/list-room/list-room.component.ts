@@ -31,7 +31,7 @@ export class ListRoomComponent implements OnInit {
   ngOnInit(): void {
     this.roomService.getAllRoom().subscribe((data) =>{
         this.roomList = data;
-        if(data.length < 11){
+        if(data.length < 5){
           this.checkPagination = false;
         }
     }
@@ -65,9 +65,9 @@ export class ListRoomComponent implements OnInit {
       console.log(this.roomList)
     },()=>{
       this.snackBar.open("Không tìm thấy phòng như yêu cầu","OK",{
-        duration:4000
+        duration:4000,
+        panelClass: ['warning']
       });
-      this.ngOnInit();
     })
   }
 }
