@@ -17,7 +17,7 @@ export class RegistrationHistoryService {
     return this.httpClient.get(this.url);
   }
 
-  getAllRoomType(){
+    getAllRoomType(){
     return this.httpClient.get<any[]>(this.urlRoom+'/roomTypes');
   }
 

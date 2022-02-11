@@ -1,10 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {RegistrationHistoryService} from "../../../service/registration-history.service";
-import {DeleteRegistrationHistoryComponent} from "../delete-registration-history/delete-registration-history.component";
-import {ActivatedRoute} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {EStatus} from "../../../model/EStatus";
 import {Status} from "../../../model/status";
 
 @Component({
@@ -12,8 +7,11 @@ import {Status} from "../../../model/status";
   templateUrl: './list-registration-history.component.html',
   styleUrls: ['./list-registration-history.component.css']
 })
+
+
 export class ListRegistrationHistoryComponent implements OnInit {
 
+  today: string ='';
   registrationHistoryList!: any[];
   p: any;
   listRoomType!: any[];
@@ -47,9 +45,10 @@ export class ListRegistrationHistoryComponent implements OnInit {
         this.registrationHistoryList = data;
       }
     )
-
+    console.log(this.listRoomType);
     this.service.getAllRoomType().subscribe((data: any) => {
         this.listRoomType = data;
+
       }
     )
   }
@@ -61,7 +60,17 @@ export class ListRegistrationHistoryComponent implements OnInit {
     });
   }
 
+  convertStatus(status: string){
+    let statusVn : string = '';
+    for (const s of this.mySentences) {
+      if (s.id == status){
+        statusVn = s.text;
+        console.log(statusVn);
+      }
 
+    }
+    return statusVn;
+  }
 }
 
 
