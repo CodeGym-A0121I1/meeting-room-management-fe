@@ -9,20 +9,21 @@
 
             <div class="row">
               <div class="col-md-3">
-                <div class="row form-group">
+                <div class="row form-group small">
                   <label for="nameRoom" class="col-md-5 col-form-label">Tên phòng :</label>
                   <input id="nameRoom" class="form-control col-md-7" type="text" #nameRoom>
                 </div>
-                <div class="row form-group">
+                <div class="row form-group small">
                   <label class="col-md-5 col-form-label">trạng thái :</label>
                   <select class="form-control col-md-7" #statusVaule>
+                    <option selected disabled>Chọn</option>
                     <option *ngFor="let status of mySentences " value="{{status.id}}">{{status.text}}</option>
                   </select>
 
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="row form-group">
+                <div class="row form-group small">
                   <label class="col-md-5 col-form-label">loại phòng :</label>
                   <select class="form-control col-md-7" #roomType>
                     <option selected disabled>Chọn</option>
@@ -30,26 +31,26 @@
                   </select>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="row form-group">
+              <div class="col-md-4">
+                <div class="row form-group small">
                   <label  class="col-md-6 col-form-label">ngày bắt đầu :</label>
                   <input  class="form-control col-md-6" type="date" #dateStart>
                 </div>
-                <div class="row form-group">
+                <div class="row form-group small">
                   <label  class="col-md-6 col-form-label">ngày kết thúc :</label>
                   <input  class="form-control col-md-6" type="date" #dateEnd>
                 </div>
             </div>
-              <div class="col-md-3">
+              <div class="col-md-2.1">
+
 
                 <div class="row">
-                  <div class="col-2">
+                  <div class="col-1">
                   </div>
-                  <div class="col-8">
+                  <div class="col-10">
                     <button class="btn btn-outline-primary btn-search" (click)="search(nameRoom.value,dateStart.value,dateEnd.value,statusVaule.value,roomType.value)">Tìm kiếm</button>
                   </div>
-                  <div class="col-2">
-
+                  <div class="col-1">
                   </div>
                 </div>
               </div>
@@ -61,17 +62,17 @@
         <div class="table-responsive">
           <table class="table table-bordered table-hover text-center">
             <thead>
-            <tr>
-              <th scope="col">STT</th>
-              <th scope="col">Tên phòng</th>
-              <th scope="col">Nội dung</th>
-              <th scope="col">Thời gian bắt đầu</th>
-              <th scope="col">Thời gian kết thúc</th>
-              <th scope="col">Ngày bắt đầu</th>
-              <th scope="col">Ngày kết thúc</th>
-              <th scope="col">Loại phòng</th>
-              <th scope="col">Trạng thái</th>
-              <th scope="col">Hủy</th>
+            <tr class="text-center">
+              <th class="small"><strong>STT</strong></th>
+              <th class="small"><strong>Tên phòng</strong></th>
+              <th class="small"><strong>Nội dung</strong></th>
+              <th class="small"><strong>Thời gian bắt đầu</strong></th>
+              <th class="small"><strong>Thời gian kết thúc</strong></th>
+              <th class="small"><strong>Ngày bắt đầu</strong></th>
+              <th class="small"><strong>Ngày kết thúc</strong></th>
+              <th class="small"><strong>Loại phòng</strong></th>
+              <th class="small"><strong>Trạng thái</strong></th>
+              <th class="small"><strong>Hủy</strong></th>
             </tr>
             </thead>
             <tbody>
@@ -84,10 +85,10 @@
               <td>{{registration.dateStart}}</td>
               <td>{{registration.dateEnd}}</td>
               <td>{{registration.room.roomType.name}}</td>
-              <td>{{registration.room.status}}</td>
+              <td>{{convertStatus(registration.room.status)}}</td>
               <td>
-                <a [routerLink]="['/cancel/', registration.id]" class="detailButton">
-                  cancel
+                <a [routerLink]="['/cancel/', registration.id]" class="deleteButton">
+                  <i class="fa fa-trash"></i>
                 </a>
               </td>
 
@@ -99,7 +100,7 @@
       <div class="row p-3">
         <div class="col-9"></div>
         <div class="col-3">
-          <pagination-controls (pageChange)="p=$event"></pagination-controls>
+          <pagination-controls *ngIf="checkPagination" (pageChange)="p=$event" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
         </div>
       </div>
     </div>
