@@ -36,7 +36,7 @@ export class ListEquipmentComponent implements OnInit {
         this.equipmentService.getAllEquipmentByCategoryId(this.idCategory).subscribe(
           (data) => {
             this.equipmentList = data;
-            if (data.length < 11) {
+            if (data.length < 8) {
               this.checkPagination = false;
             }
           }

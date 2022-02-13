@@ -14,14 +14,16 @@
       <input class="form-control" type="text" #seachNameEquipment placeholder="Tên tài sản">
     </label>
 
-    <button class="btn btn-outline-primary" (click)="search(seachNameEquipment.value)" style="margin-left: 8px">Tìm kiếm</button>
+    <button class="btn btn-outline-primary" (click)="search(seachNameEquipment.value)" style="margin-left: 8px">Tìm
+      kiếm
+    </button>
 
   </div>
 </div>
 <br>
 
 <div class="table-responsive">
-  <table class="table table-bordered table-hover text-center">
+  <table class="table table-striped table-bordered text-center">
     <thead>
     <tr>
       <th>Stt</th>
@@ -35,7 +37,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let equipment of equipmentList | paginate :{itemsPerPage:10 ,currentPage : p} ; let i = index">
+    <tr *ngIf="equipmentList == null">
+      <td colspan="9">Hiện không có phản hồi nào.</td>
+    </tr>
+    <tr *ngFor="let equipment of equipmentList | paginate :{itemsPerPage:7 ,currentPage : p} ; let i = index">
       <td>{{i + 1}}</td>
       <td>{{equipment.category.name}}</td>
       <td>{{equipment.name}}</td>
@@ -62,13 +67,16 @@
     </tr>
     </tbody>
   </table>
+
 </div>
 <div class="row mx-0">
   <div class="col-md-2">
     <button class="btn btn-secondary" [routerLink]="['/equipment']">Trở về</button>
   </div>
-  <div class="col-md-10">
-    <pagination-controls *ngIf="checkPagination" class="text-right" (pageChange)="p = $event" previousLabel="Trước"
+  <div class="col-md-10" *ngIf="checkPagination">
+    <pagination-controls class="text-right" (pageChange)="p = $event"
+                         previousLabel="Trước"
                          nextLabel="Sau"></pagination-controls>
+
   </div>
 </div>
