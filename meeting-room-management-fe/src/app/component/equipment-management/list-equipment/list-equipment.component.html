@@ -38,7 +38,7 @@
     </thead>
     <tbody>
     <tr *ngIf="equipmentList == null">
-      <td colspan="9">Hiện không có phản hồi nào.</td>
+      <td colspan="9">Hiện không có sản phẩm nào.</td>
     </tr>
     <tr *ngFor="let equipment of equipmentList | paginate :{itemsPerPage:7 ,currentPage : p} ; let i = index">
       <td>{{i + 1}}</td>
@@ -73,10 +73,11 @@
   <div class="col-md-2">
     <button class="btn btn-secondary" [routerLink]="['/equipment']">Trở về</button>
   </div>
-  <div class="col-md-10" *ngIf="checkPagination">
-    <pagination-controls class="text-right" (pageChange)="p = $event"
-                         previousLabel="Trước"
-                         nextLabel="Sau"></pagination-controls>
+  <div class="col-md-10">
 
+      <pagination-controls class="text-right" (pageChange)="p = $event"
+                           previousLabel="Trước"
+                           nextLabel="Sau"
+                           [autoHide]="true"></pagination-controls>
   </div>
 </div>
