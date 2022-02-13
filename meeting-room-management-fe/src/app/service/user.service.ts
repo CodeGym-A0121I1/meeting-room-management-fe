@@ -12,7 +12,7 @@ import {AuthService} from "./auth.service";
 })
 export class UserService {
   readonly API_USER: string = "http://localhost:8080/api/users";
-  readonly apiDepartment: string = "http://localhost:8080/department";
+  readonly apiDepartment: string = "http://localhost:8080/api/users/department";
   readonly apiAccount: string = "http://localhost:8080/account";
   private readonly jwt = this.authService.getToken() || '';
 

@@ -4,26 +4,27 @@
 <form [formGroup]="formEditUser" (ngSubmit)="editUser()">
 
   <div class="form-group">
-    <label for="username" id="username" formControlName="username"></label>
+    <label for="username" id="username" formControlName="username" >{{formEditUser.value.account.username}}</label>
 
   </div>
 
   <div class="form-group">
-    <label for="account.password">Mật Khẩu</label>
-    <input formControlName="account.password" type="account.password" class="form-control" id="account.password"
+    <label for="password">Mật Khẩu</label>
+    <input formControlName="password" type="password" class="form-control" id="password"
            placeholder="Enter new password">
   </div>
 
   <div class="form-group">
-    <label for="role">Quyền</label>
-    <select class="form-control" id="role" formControlName="role">
+    <label>Quyền</label>
+<!--    <select class="form-control" id="role" formControlName="role">-->
 
-    </select>
+<!--    </select>-->
+    <p>{{formEditUser.value.account.role}}</p>
   </div>
 
   <div class="form-group">
-    <label for="full-name">Họ và Tên</label>
-    <input type="text" class="form-control" id="full-name" formControlName="full-name">
+    <label for="fullName">Họ và Tên</label>
+    <input type="text" class="form-control" id="fullName" formControlName="fullName">
   </div>
 
   <div class="form-group">

@@ -13,11 +13,16 @@ import {Department} from 'src/app/model/user/Department';
 export class UpdateUserComponent implements OnInit {
   listDepartment: Array<Department> = [];
 
+  data5 : any;
+
   formEditUser: FormGroup = this.formBuilder.group({
-    full_name: ['', [Validators.required]],
+    fullName: ['', [Validators.required]],
     account: ['', [Validators.required]],
     department: ['', [Validators.required]],
-    id: ['', [Validators.required]]
+    id: ['', [Validators.required]],
+    role: ['', [Validators.required]],
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]]
   })
 
   constructor(
@@ -34,9 +39,21 @@ export class UpdateUserComponent implements OnInit {
         this.listDepartment = data;
 
         let id = this.activatedRoute.snapshot.params['id'];
+
         this.userService.getUserById(id).subscribe(
           data1 => {
-            this.formEditUser.setValue(data1)
+            console.log(data1);
+
+            this.formEditUser.setValue({
+              fullName: data1.fullName,
+              account: data1.account,
+              department: data1.department,
+              id: data1.id,
+              role: data1.account.role,
+              username: data1.account.username,
+              password: data1.account.password
+            })
+            console.log(this.formEditUser.value.account.username)
           }
         )
       }
