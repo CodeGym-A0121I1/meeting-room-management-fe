@@ -3,7 +3,7 @@
 
 <p>Bạn có chắc chắn muốn xoá thiết bị <span class="text-danger">{{equipment.name}}</span> ?</p>
 <p *ngIf="equipment.room !== null">Phòng đang sử dụng: <span class="text-danger">{{equipment.room.name}}</span></p>
-<p *ngIf="equipment.room === null">Phòng đang sử dụng: <span class="text-success">Còn trống</span></p>
+<p *ngIf="equipment.room === null">Tình trạng phòng: <span class="text-success">Còn trống</span></p>
 
 <div class="row d-flex justify-content-end">
   <button mat-dialog-close class="btn btn-primary mr-3">Đóng</button>
