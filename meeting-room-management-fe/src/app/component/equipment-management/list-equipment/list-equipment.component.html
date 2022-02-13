@@ -37,7 +37,7 @@
     <tbody>
     <tr *ngFor="let equipment of equipmentList | paginate :{itemsPerPage:10 ,currentPage : p} ; let i = index">
       <td>{{i + 1}}</td>
-      <td>{{equipment.category.name}}</td>
+ng      <td>{{equipment.category.name}}</td>
       <td>{{equipment.name}}</td>
       <td *ngIf="equipment.status == 'FIXING'" style="color: red">Đang sửa</td>
       <td *ngIf="equipment.status == 'AVAILABLE'" style="color: blue">Khả dụng</td>
