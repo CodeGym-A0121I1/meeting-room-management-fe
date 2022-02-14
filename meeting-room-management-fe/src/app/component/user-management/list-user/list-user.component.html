@@ -55,7 +55,7 @@
   <tr *ngIf="userList.length == 0">
     <td colspan="9">Hiện chưa có người dùng nào.</td>
   </tr>
-  <tr *ngFor="let user of userList | paginate :{itemsPerPage:2 ,currentPage : p}">
+  <tr *ngFor="let user of userList | paginate :{itemsPerPage:10 ,currentPage : p}">
     <td>{{user.id}}</td>
     <td>{{user.account.username | titlecase}}</td>
     <td>{{user.account.role | slice : 5  }}</td>
