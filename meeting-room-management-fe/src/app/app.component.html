@@ -1,11 +1,11 @@
 <app-slidebar *ngIf="authService.isAuthenticated()"></app-slidebar>
-<div [class]="authService.isAuthenticated()? 'page-content': ''" id="content">
-  <div class="container p-5">
+<div [class]="authService.isAuthenticated()? 'page-content': ''" id="content" class="main">
+  <div class="container p-5 main-content">
     <router-outlet></router-outlet>
   </div>
 
   <!-- Site footer -->
-  <div *ngIf="authService.isAuthenticated()" class="position-absolute" style="bottom: 0; width: inherit">
+  <div *ngIf="authService.isAuthenticated()" class="footer-wrapper">
     <footer class="site-footer">
       <div class="container">
         <div class="row">

@@ -76,6 +76,20 @@ body {
   color: #aaa;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 110px);
+}
+
+.main-content {
+  flex-grow: 1;
+}
+
+.footer-wrapper {
+  margin-top: auto;
+}
+
 .site-footer {
   background-color: #26272b;
   padding: 20px 0;

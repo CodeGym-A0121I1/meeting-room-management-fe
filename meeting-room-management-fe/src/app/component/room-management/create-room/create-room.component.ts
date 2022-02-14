@@ -125,7 +125,9 @@ export class CreateRoomComponent implements OnInit {
       this.convertToDTO();
       this.roomService.addRoom(this.newRoom).subscribe(
         () => {
-          this.snackBar.open("Add Successful")._dismissAfter(3000);
+          this.snackBar.open("Thêm mới thành công", "Đóng", {
+            duration: 3000,
+          })
           this.formAddRoom.reset();
           this.equipmentList = [];
           this.image = "";
