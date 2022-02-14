@@ -6,6 +6,7 @@ import {User} from "../model/user/User";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AuthService} from "./auth.service";
+import {ChangePasswordRequestDTO} from "../model/DTO/ChangePasswordRequestDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -65,5 +66,7 @@ export class UserService {
   getAccountByUsername(username: any): Observable<User> {
     return this.http.get<User>(this.API_USER + "/" + username, {headers: this.headers});
   }
-
+  changePassword(changePasswordRequestDTO: ChangePasswordRequestDTO): Observable<boolean> {
+    return this.http.put<boolean>(this.API_USER + '/account/password', changePasswordRequestDTO, {headers: this.headers});
+  }
 }

@@ -1,29 +1,30 @@
 <h2 align="center">Quản lý tài khoản</h2>
 <form class="form-group" [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div class="header">
-    <div class="row row-cols-lg-12">
-      <div class="col-2">
-        <a class="btn btn-primary form-group" routerLink="add" role="button">Thêm tài khoản</a>
+    <div class="row ">
+      <div class="col-3">
+        <a class="btn btn-primary form-group" [routerLink]="" role="button">Thêm tài khoản</a>
       </div>
-      <label class="col-form-label ">Tên đăng nhập</label>
+      <label class="col-form-label">Tên đăng nhập</label>
       <div class="col-2">
         <input type="text" class="form-control" placeholder="Tên đăng nhập" formControlName="username">
       </div>
-      <div class="col">
+      <div class="col-2">
         <select class="custom-select" formControlName="role">
           <option [selected]="userForm.value.role ===''" hidden>Quyền</option>
           <option value="ROLE_ADMIN">Admin</option>
           <option value="ROLE_USER">User</option>
         </select>
       </div>
-
-      <label class="col-form-label">Họ và tên</label>
-
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <label class="col-form-label">Họ và tên &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
       <div class="col-2">
         <input type="text" class="form-control" placeholder="Họ và tên" formControlName="fullName">
       </div>
 
-      <div class="col">
+      <div class="col-2">
         <select class="custom-select" formControlName="departmentName">
           <option [selected]="userForm.value.role ===''" hidden>Bộ phận</option>
           <option value="1">Giám đốc công ty</option>
@@ -31,13 +32,14 @@
           <option value="3">Quản lý team B</option>
         </select>
       </div>
-      <div class="col">
+      <div class="col-2">
         <input class="btn btn-outline-primary" type="submit" value="Tìm kiếm">
       </div>
     </div>
-  </div>
+    </div>
+
 </form>
-<table class="table table-striped table-hover table-bordered">
+<table class="table table-striped table-bordered text-center">
   <thead align="center">
   <tr>
     <th>ID</th>
@@ -50,6 +52,9 @@
   </tr>
   </thead>
   <tbody>
+  <tr *ngIf="userList.length == 0">
+    <td colspan="9">Hiện chưa có người dùng nào.</td>
+  </tr>
   <tr *ngFor="let user of userList | paginate :{itemsPerPage:2 ,currentPage : p}">
     <td>{{user.id}}</td>
     <td>{{user.account.username | titlecase}}</td>
@@ -71,6 +76,9 @@
   </tbody>
 
 </table>
-<pagination-controls  align="center" (pageChange)="p = $event"></pagination-controls>
+<pagination-controls class="text-right" (pageChange)="p = $event"
+                     previousLabel="Trước"
+                     nextLabel="Sau"
+                     [autoHide]="true"></pagination-controls>
 
 
