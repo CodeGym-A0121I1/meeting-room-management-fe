@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {RegistrationHistory} from "../model/registration-history/RegistrationHistory";
-import {Observable} from "rxjs";
 import {Room} from "../model/room/Room";
 import {Area} from "../model/room/Area";
 import {Category} from "../model/equipment/Category";
 import {RoomType} from "../model/room/RoomType";
 import {AuthService} from "./auth.service";
+import {Observable, throwError} from "rxjs";
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class RegistrationHistoryService {
   readonly URL_STATISTIC_PERFORMANCE = "http://localhost:8080/api/registration-histories/static-room-performance";
   readonly URL_STATISTIC_TOTAL_USE = "http://localhost:8080/api/registration-histories/static-room-total";
   readonly URL_STATISTIC_BY_TIME = "http://localhost:8080/api/registration-histories";
+
 
   private readonly jwt = this.authService.getToken() || '';
 
@@ -105,6 +107,16 @@ export class RegistrationHistoryService {
 
   getHistoryByRoomId(roomId: string) {
     return this.httpClient.get(this.URL_HISTORY_BY_ROOM_ID + "?roomId=" + roomId, {headers: this.headers});
+  }
+
+  getAllById(id: string) {
+    return this.httpClient.get(this.URL_API_HISTORY_ALL + "/list/" + id, {headers: this.headers}).pipe(
+      catchError((error) => {
+        if (error.status === 204)
+          return throwError("không tìm thấy phòng với mã là " + id);
+        return throwError("không tìm thấy phòng với mã là " + id);
+      }));
+
   }
 
 }

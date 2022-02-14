@@ -10,7 +10,7 @@ import {CancelSignroomComponent} from './cancel-signroom/cancel-signroom.compone
 import {SearchRoomComponent} from './search-room/search-room.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DetailRoomComponent} from './detail-room/detail-room.component';
-import {MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NgxPaginationModule} from "ngx-pagination";
@@ -36,6 +36,7 @@ import {PopUpComponent} from "./pop-up/pop-up.component";
     FormsModule,
     MatSnackBarModule,
     NgxPaginationModule,
+
   ], exports: [
     StatisticsComponent,
     ListRegistrationHistoryComponent,
@@ -43,7 +44,12 @@ import {PopUpComponent} from "./pop-up/pop-up.component";
     SignupRoomComponent,
     CancelSignroomComponent,
     PopUpComponent
-  ]
+  ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+]
+
 })
 export class RegistrationHistoryManagementModule {
 }

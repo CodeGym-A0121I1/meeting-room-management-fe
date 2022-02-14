@@ -19,12 +19,15 @@ export class SlidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
     //Toggle Click Function
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar, #content').toggleClass('active');
     });
     this.isAdmin = this.authService.isAdmin();
-    this.name = this.authService.getUser()
+    this.name = this.authService.getUser();
+    console.log(this.authService.getUserId());
   }
 
   logOut() {

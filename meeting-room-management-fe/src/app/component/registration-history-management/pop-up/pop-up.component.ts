@@ -30,7 +30,7 @@ export class PopUpComponent implements OnInit {
     this.service.cancel(this.registrationHistory.id).subscribe(()=>{
 
       this.dialogRef.close();
-      this.snackBar.open("Delete room success !!! ", "OK",{
+      this.snackBar.open("Xoá phòng thành công !!! ", "OK",{
         duration: 4000
       })
       this.router.navigateByUrl("/list");
