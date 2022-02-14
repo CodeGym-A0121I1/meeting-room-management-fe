@@ -48,7 +48,7 @@ export class CreateEquipmentComponent implements OnInit {
     this.formCreateEquipment.value.image = this.image
     if (this.formCreateEquipment.valid) {
       this.equipmentService.createEquipment(this.formCreateEquipment.value).subscribe(() => {
-        this.snackBar.open("Thêm mới thành công tài sản " + this.formCreateEquipment.value.name, "OK", {
+        this.snackBar.open("Thêm mới thành công " + this.formCreateEquipment.value.name, "OK", {
           duration: 5000
         });
         this.formCreateEquipment.reset();

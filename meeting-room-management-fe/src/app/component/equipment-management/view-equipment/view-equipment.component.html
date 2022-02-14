@@ -20,7 +20,10 @@
         </tr>
         <tr>
           <th>Mô tả:</th>
-          <td>{{equipment?.description}}</td>
+          <td *ngIf="equipment?.description == ''; else descriptionAvailable">Chưa có mô tả</td>
+          <ng-template #descriptionAvailable>
+            <td>{{equipment?.description}}</td>
+          </ng-template>
         </tr>
         <tr>
           <th>Giá:</th>
@@ -28,19 +31,16 @@
         </tr>
         <tr>
           <th>Phòng đang sử dụng:</th>
-          <td>{{equipment?.room?.name}}</td>
+          <td *ngIf="equipment?.room?.name == null; else roomAvailable">Trống</td>
+          <ng-template #roomAvailable>
+            <td>{{equipment?.room?.name}}</td>
+          </ng-template>
         </tr>
       </table>
     </div>
     <div class="col-5 ml-5">
       <img [src]="equipment?.image" class="w-100"
            onclick="document.getElementById('modal01').style.display='block'">
-
-      <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
-        <div class="w3-modal-content w3-animate-zoom">
-          <img [src]="equipment?.image" style="width:100%">
-        </div>
-      </div>
     </div>
 
   </div>
