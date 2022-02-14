@@ -27,7 +27,7 @@
     </thead>
     <tbody>
     <tr *ngIf="categoryDtoList.length == 0">
-      <td colspan="9">Hiện không có loại sản phẩm nào.</td>
+      <td colspan="7">Hiện không có loại sản phẩm nào.</td>
     </tr>
     <tr *ngFor="let category of categoryDtoList | paginate :{itemsPerPage:8 ,currentPage : p} ; let i = index">
       <td>{{i + 1}}</td>

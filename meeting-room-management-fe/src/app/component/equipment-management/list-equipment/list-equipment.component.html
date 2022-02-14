@@ -38,7 +38,7 @@
     </thead>
     <tbody>
     <tr *ngIf="equipmentList == null">
-      <td colspan="9">Hiện không có sản phẩm nào.</td>
+      <td colspan="8">Hiện không có sản phẩm nào.</td>
     </tr>
     <tr *ngFor="let equipment of equipmentList | paginate :{itemsPerPage:7 ,currentPage : p} ; let i = index">
       <td>{{i + 1}}</td>

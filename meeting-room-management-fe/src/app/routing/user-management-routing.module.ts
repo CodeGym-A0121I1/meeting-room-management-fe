@@ -5,6 +5,7 @@ import {UpdateUserComponent} from "../component/user-management/update-user/upda
 import {AdminGuard} from "../guards/admin.guard";
 import {ListUserComponent} from "../component/user-management/list-user/list-user.component";
 import {ChangePasswordUserComponent} from "../component/user-management/change-password-user/change-password-user.component";
+import {UserGuard} from "../guards/user.guard";
 
 const routes: Routes = [
   {
@@ -21,18 +22,19 @@ const routes: Routes = [
       {
         path: "update/:id",
         component: UpdateUserComponent
-      },
-      {
-        path: "change-password",
-        component: ChangePasswordUserComponent
       }
     ],
     canActivate: [AdminGuard]
   },
+  {
+    path: "user/change-password",
+    component: ChangePasswordUserComponent,
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserManagementRoutingModule { }
+export class UserManagementRoutingModule {
+}
