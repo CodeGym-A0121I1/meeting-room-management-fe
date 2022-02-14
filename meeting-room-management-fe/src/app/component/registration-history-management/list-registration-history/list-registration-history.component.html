@@ -1,6 +1,6 @@
-<div class="alert alert-danger" role="alert" *ngIf="errors">
-  {{errors}}
-</div>
+<!--<div class="alert alert-danger" role="alert" *ngIf="errors">-->
+<!--  {{errors}}-->
+<!--</div>-->
 
 <div  class="container-fluid">
   <div class="row">
@@ -78,7 +78,11 @@
               <th class="small"><strong>Hủy</strong></th>
             </tr>
             </thead>
-            <tbody  *ngIf="registrationHistoryList!=null">
+<!--            <tbody  *ngIf="registrationHistoryList!=null">-->
+            <tbody>
+            <tr *ngIf="registrationHistoryList == null">
+              <td colspan="10">Hiện không có lịch sử đăng ký nào.</td>
+            </tr>
             <tr *ngFor="let registration of registrationHistoryList | paginate :{itemsPerPage:5 ,currentPage : p}; let i = index">
               <td>{{i + 1}}</td>
               <td>{{registration.room.name}}</td>
@@ -94,7 +98,6 @@
                   <i class="fa fa-trash"></i>
                 </a>
               </td>
-
             </tr>
             </tbody>
           </table>
