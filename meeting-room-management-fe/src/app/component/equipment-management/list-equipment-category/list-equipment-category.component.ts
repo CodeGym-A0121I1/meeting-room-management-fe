@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {QuantityCategory} from "../../../model/dto/QuantityCategory";
 import {EquipmentService} from "../../../service/equipment.service";
+import {QuantityCategory} from "../../../model/DTO/QuantityCategory";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-equipment-category',
@@ -9,21 +10,23 @@ import {EquipmentService} from "../../../service/equipment.service";
 })
 export class ListEquipmentCategoryComponent implements OnInit {
 
-  categoryDtoList: QuantityCategory | any;
+  categoryDtoList: QuantityCategory[] = [];
   p: number | any;
-  checkPagination = true;
 
-
-  constructor(private equipmentService: EquipmentService) {
+  constructor(private equipmentService: EquipmentService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.equipmentService.getAllCategoryQuantityStatusDto().subscribe(
       (data) => {
         this.categoryDtoList = data;
-        if (data.length < 11) {
-          this.checkPagination = false;
-        }
       });
+  }
+
+  listEquipemnt(idCategory: number) {
+    // this.router.navigate(['/equipment/'+idCategory]);
+    // location.reload();
+    location.assign('/equipment/'+idCategory);
   }
 }

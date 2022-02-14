@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EquipmentService} from "../../../service/equipment.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DeleteEquipmentComponent} from "../delete-equipment/delete-equipment.component";
@@ -20,14 +20,12 @@ export class ListEquipmentComponent implements OnInit {
   idCategory: number | any;
   p: number | any;
   eStatus = Status;
-  checkPagination = true;
   equipment: | any;
 
   constructor(private equipmentService: EquipmentService,
               private activatedRoute: ActivatedRoute,
               private matDialog: MatDialog,
-              private snackbar: MatSnackBar) {
-  }
+              private snackbar: MatSnackBar){}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(
@@ -36,9 +34,6 @@ export class ListEquipmentComponent implements OnInit {
         this.equipmentService.getAllEquipmentByCategoryId(this.idCategory).subscribe(
           (data) => {
             this.equipmentList = data;
-            if (data.length < 11) {
-              this.checkPagination = false;
-            }
           }
         );
       }

@@ -1,8 +1,19 @@
 <h3>Thống kê tài sản</h3>
 
+<div class="row mx-0">
+  <div class="col-2"></div>
+  <div class="col-md-5">
+    <!--        DatNT-->
+    <a [routerLink]="['/equipment/create']">
+      <button class="btn btn-primary">Thêm tài sản</button>
+    </a>
+  </div>
+</div>
+<br>
+
 <div class="table-responsive">
 
-  <table class="table table-bordered table-hover text-center">
+  <table class="table table-striped table-bordered text-center">
     <thead>
     <tr>
       <th>Stt</th>
@@ -15,7 +26,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let category of categoryDtoList | paginate :{itemsPerPage:10 ,currentPage : p} ; let i = index">
+    <tr *ngIf="categoryDtoList.length == 0">
+      <td colspan="9">Hiện không có loại sản phẩm nào.</td>
+    </tr>
+    <tr *ngFor="let category of categoryDtoList | paginate :{itemsPerPage:8 ,currentPage : p} ; let i = index">
       <td>{{i + 1}}</td>
       <td>{{category.nameCategory}}</td>
       <td>{{category.using + category.fixing + category.available}}</td>
@@ -23,12 +37,18 @@
       <td>{{category.fixing}}</td>
       <td>{{category.available}}</td>
       <td>
-        <a [routerLink]="[category.idCategory]" class="detailButton">
+<!--        <a [routerLink]="[category.idCategory]" class="detailButton">-->
+        <a (click)="listEquipemnt(category.idCategory)" class="detailButton">
           <i class="fa fa-eye"></i>
         </a>
       </td>
     </tr>
     </tbody>
   </table>
-  <pagination-controls *ngIf="checkPagination" style="text-align: right" (pageChange)="p = $event"></pagination-controls>
+
+  <pagination-controls class="text-right" (pageChange)="p = $event"
+                       previousLabel="Trước"
+                       nextLabel="Sau"
+                       [autoHide]="true"></pagination-controls>
+
 </div>
