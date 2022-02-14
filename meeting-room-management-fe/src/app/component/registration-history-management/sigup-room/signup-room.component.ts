@@ -5,6 +5,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {RegistrationHistoryService} from "../../../service/registration-history.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-signup-room',
@@ -25,7 +26,8 @@ export class SignupRoomComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private matDialog: MatDialog,
               private snackbar: MatSnackBar,
-              private router: Router) {
+              private router: Router,
+              private auth: AuthService) {
     }
 
     ngOnInit(): void {
@@ -45,13 +47,16 @@ export class SignupRoomComponent implements OnInit {
     xacdinh() {
         this.formHistory.value.description = this.soa;
         this.history = this.formHistory.value;
+        this.formHistory.value.user.id = this.auth.getUserId();
         console.log("history");
       console.log(this.history)
-      this.historyService.signupHistory(this.history).subscribe();
-      this.snackbar.open("Đăng ký phòng thành công", "Đóng", {
-        duration: 3000,
-        panelClass: ['mat-toolbar', 'mat-toolbar']
-      })
-        this.matdialog.close();
+      this.historyService.signupHistory(this.history).subscribe(
+        () => {   this.snackbar.open("Đăng ký phòng thành công", "Đóng", {
+          duration: 3000,
+          panelClass: ['mat-toolbar', 'mat-toolbar']
+        })
+          this.matdialog.close();}
+      );
+
     }
 }

@@ -34,7 +34,7 @@ export class CreateEquipmentComponent implements OnInit {
   ngOnInit(): void {
     this.formCreateEquipment = this.formBuilder.group({
       name: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      description: [],
       price: ['', [Validators.required, Validators.min(10000), Validators.max(500000)]],
       category: [this.categoryList[0], [Validators.required]],
       image: ['']

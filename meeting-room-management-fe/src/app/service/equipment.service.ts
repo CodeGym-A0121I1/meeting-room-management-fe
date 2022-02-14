@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
-// import {QuantityCategory} from "../model/dto/QuantityCategory";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {CategoryDTO} from "../model/dto/CategoryDTO";
 import {Category} from "../model/equipment/Category";
 import {AuthService} from "./auth.service";
 import {Equipment} from "../model/equipment/Equipment";
-import {catchError} from "rxjs/operators";
+import {QuantityCategory} from "../model/DTO/QuantityCategory";
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +39,8 @@ export class EquipmentService {
     return this.httpClient.get<Array<Category>>(this.API_CATEGORY, {headers: this.headers});
   }
 
-  getAllCategoryQuantityStatusDto(): Observable<CategoryDTO[]> {
-    return this.httpClient.get<CategoryDTO[]>(this.API_CATEGORY + "/quantity", {headers: this.headers});
+  getAllCategoryQuantityStatusDto(): Observable<QuantityCategory[]> {
+    return this.httpClient.get<QuantityCategory[]>(this.API_CATEGORY + "/quantity", {headers: this.headers});
   }
 
   getAllEquipmentByCategoryId(idCategory: number): Observable<Equipment[]> {

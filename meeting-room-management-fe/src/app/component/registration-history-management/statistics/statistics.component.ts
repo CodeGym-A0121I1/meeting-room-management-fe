@@ -22,7 +22,6 @@ export class StatisticsComponent implements OnInit {
   registrationList: any;
   performance: number = 0;
   total: number = 0;
-  // @ts-ignore
   p: string | number;
 
   constructor(private registrationHistoryService: RegistrationHistoryService, private fb: FormBuilder) {

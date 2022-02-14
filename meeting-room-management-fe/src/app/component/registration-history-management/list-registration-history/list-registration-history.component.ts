@@ -42,19 +42,21 @@ export class ListRegistrationHistoryComponent implements OnInit {
 
 
     // console.log(Object.keys(Status));
-    console.log(this.authService.getUserId());
+    // console.log(this.authService.getUserId());
 
 
     this.num = Object.keys(Status);
     //console.log(this.myArray);
     this.service.getAllById(this.authService.getUserId()).subscribe((data: any) => {
         this.registrationHistoryList = data;
-        console.log(data);
+        // console.log(data);
         if (data.length < 5) {
           this.checkPagination = false;
         }
-      }, error =>{this.errors = error; console.log(this.errors)}
-
+      }, error => {
+        this.errors = error;
+        // console.log(this.errors)
+      }
     )
 
     this.service.getAllRoomType().subscribe((data: any) => {
@@ -66,7 +68,7 @@ export class ListRegistrationHistoryComponent implements OnInit {
   search(roomName: string, dateStart: string, dateEnd: string, status: string, roomType: string) {
     this.service.getListSearch(roomName, dateStart, dateEnd, status, roomType).subscribe((data: any) => {
       this.registrationHistoryList = data;
-      console.log(data);
+      // console.log(data);
     });
   }
 
@@ -75,7 +77,7 @@ export class ListRegistrationHistoryComponent implements OnInit {
     for (const s of this.mySentences) {
       if (s.id == status) {
         statusVn = s.text;
-        console.log(statusVn);
+        // console.log(statusVn);
       }
 
     }

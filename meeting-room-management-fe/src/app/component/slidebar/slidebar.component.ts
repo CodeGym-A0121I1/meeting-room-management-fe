@@ -27,7 +27,6 @@ export class SlidebarComponent implements OnInit {
     });
     this.isAdmin = this.authService.isAdmin();
     this.name = this.authService.getUser();
-    console.log(this.authService.getUserId());
   }
 
   logOut() {

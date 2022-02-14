@@ -20,7 +20,7 @@
         </tr>
         <tr>
           <th>Mô tả:</th>
-          <td *ngIf="equipment?.description == ''; else descriptionAvailable">Chưa có mô tả</td>
+          <td *ngIf="equipment?.description == null; else descriptionAvailable">Chưa có mô tả</td>
           <ng-template #descriptionAvailable>
             <td>{{equipment?.description}}</td>
           </ng-template>
