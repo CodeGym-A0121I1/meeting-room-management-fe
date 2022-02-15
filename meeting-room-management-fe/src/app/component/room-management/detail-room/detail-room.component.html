@@ -53,7 +53,7 @@
     <div class="col-md-6 "   >
       <div class="row mt-2">
         <div class="col-sm-6 mt-2" *ngIf="room?.image">
-          <img [src]="room?.image" width="700px" height="400px">
+          <img [src]="room?.image">
         </div>
         <!--        <div class="col-sm-6 mt-2">-->
         <div class="alert alert-primary" role="alert" *ngIf="!room?.image">
@@ -82,7 +82,7 @@
     </thead>
     <tbody>
     <tr class="text-left"
-        *ngFor="let history of historyRoomList | paginate: { itemsPerPage: 5, currentPage: p}; let i=index">
+        *ngFor="let history of historyRoomList | paginate: { itemsPerPage: 7, currentPage: p}; let i=index">
       <th class="text-center" scope="row">{{i+1}}</th>
       <td class="text-left">{{history.user.fullName}}</td>
       <td class="text-right">{{history.timeStart}}</td>
@@ -94,14 +94,15 @@
     </tr>
     </tbody>
   </table>
+  <!--Pagination-->
+  <div class="container-fluid justify-content-lg-end">
+    <pagination-controls class="float-lg-right"
+                         previousLabel="Trước"
+                         nextLabel="Sau"
+                         (pageChange)="p = $event">
+    </pagination-controls>
+  </div>
 </div>
-<!--Pagination-->
-<div class="container-fluid justify-content-lg-end">
-  <pagination-controls class="float-lg-right"
-                       previousLabel="Trước"
-                       nextLabel="Sau"
-                       (pageChange)="p = $event">
-  </pagination-controls>
-</div>
+
 
 

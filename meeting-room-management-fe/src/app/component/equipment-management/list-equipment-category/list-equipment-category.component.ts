@@ -23,10 +23,10 @@ export class ListEquipmentCategoryComponent implements OnInit {
         this.categoryDtoList = data;
       });
   }
-
-  listEquipemnt(idCategory: number) {
-    // this.router.navigate(['/equipment/'+idCategory]);
-    // location.reload();
-    location.assign('/equipment/'+idCategory);
-  }
+  //
+  // listEquipemnt(idCategory: number) {
+  //   // this.router.navigate(['/equipment/'+idCategory]);
+  //   // location.reload();
+  //   location.assign('/equipment/'+idCategory);
+  // }
 }

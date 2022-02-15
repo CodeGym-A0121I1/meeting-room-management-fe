@@ -3,7 +3,7 @@
       <h1 class="text-center p-3">Danh sách phòng họp</h1>
       <div class="row p-3">
         <div class="col-2 form-group">
-          <button class="btn btn-primary btn-create ">Thêm phòng </button>
+          <button class="btn btn-primary btn-create" [routerLink]="['add']">Thêm phòng </button>
         </div>
         <div class="col">
           <div class="row">
@@ -89,21 +89,16 @@
               <td *ngIf="room.status == 'USING'">Đang sử dụng</td>
               <td>{{room.roomType.name}}</td>
               <td>{{room.capacity}} người</td>
-              <td class="text-center"><a href="#" class="detailButton"><i class="fa fa-eye"></i></a></td>
-              <td class="text-center"><a href="#" class="editButton"><i class="fa fa-edit"></i></a></td>
+              <td class="text-center"><a [routerLink]="['detail/' + room.id]" class="detailButton"><i class="fa fa-eye"></i></a></td>
+              <td class="text-center"><a [routerLink]="['update/' + room.id]" class="editButton"><i class="fa fa-edit"></i></a></td>
               <td class="text-center"><a style="cursor: pointer" class="deleteButton" (click)="openDialogDelete(room)"><i class="fa fa-trash"></i></a></td>
             </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <div class="row p-3">
-        <div class="col-3"></div>
-        <div class="col-6"></div>
-        <div class="col-3">
-          <pagination-controls *ngIf="checkPagination" [directionLinks]=true [autoHide]=true [responsive]=true (pageChange)="p=$event" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
-        </div>
-      </div>
+          <pagination-controls class="text-right" *ngIf="checkPagination" [directionLinks]=true [autoHide]=true [responsive]=true (pageChange)="p=$event" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
+
     </div>
   </div>
 

@@ -62,7 +62,6 @@ export class ListRoomComponent implements OnInit {
     this.roomService.searchRoom(roomName,floor,area,roomType,capacity,status).subscribe((data:any)=>{
       this.roomList = data;
       this.p= 1;
-      console.log(this.roomList)
     },()=>{
       this.snackBar.open("Không tìm thấy phòng như yêu cầu","OK",{
         duration:4000,

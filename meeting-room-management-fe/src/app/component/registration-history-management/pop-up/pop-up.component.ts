@@ -33,7 +33,7 @@ export class PopUpComponent implements OnInit {
       this.snackBar.open("Xoá phòng thành công !!! ", "OK",{
         duration: 4000
       })
-      this.router.navigateByUrl("/list");
+      this.router.navigateByUrl("/registration-history");
 
     },error => console.log(error))
 
