@@ -32,7 +32,6 @@ export class UpdateUserComponent implements OnInit {
     this.userService.getAllDepartment().subscribe(
       data => {
         this.listDepartment = data;
-
         let id = this.activatedRoute.snapshot.params['id'];
         this.userService.getUserById(id).subscribe(
           data1 => {

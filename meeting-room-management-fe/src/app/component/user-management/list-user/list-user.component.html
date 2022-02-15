@@ -3,7 +3,7 @@
   <div class="header">
     <div class="row ">
       <div class="col-3">
-        <a class="btn btn-primary form-group" [routerLink]="" role="button">Thêm tài khoản</a>
+        <a class="btn btn-primary form-group" [routerLink]="['add']" role="button">Thêm tài khoản</a>
       </div>
       <label class="col-form-label">Tên đăng nhập</label>
       <div class="col-2">
@@ -52,7 +52,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngIf="userList.length == 0">
+  <tr *ngIf="userList == null">
     <td colspan="9">Hiện chưa có người dùng nào.</td>
   </tr>
   <tr *ngFor="let user of userList | paginate :{itemsPerPage:10 ,currentPage : p}">
