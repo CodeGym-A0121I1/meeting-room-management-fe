@@ -23,16 +23,21 @@
            *ngIf="isExistUsername">
         <p>Tên đăng nhập đã tồn tại</p>
       </div>
+<!--      <div class="form-group mt-3 row">-->
+<!--        <label for="password" class="form-label">Mật khẩu (<span class="red-asterisk">*</span>)</label>-->
+<!--        <div class="input-group" id="show_hide_password">-->
+<!--          <input class="form-control" type="password" id="password" formControlName="password">-->
+<!--          <div class="input-group-append">-->
+<!--										<span class="input-group-text">-->
+<!--										<a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>-->
+<!--										</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="form-group mt-3 row">
         <label for="password" class="form-label">Mật khẩu (<span class="red-asterisk">*</span>)</label>
-        <div class="input-group" id="show_hide_password">
-          <input class="form-control" type="password" id="password" formControlName="password">
-          <div class="input-group-append">
-										<span class="input-group-text">
-										<a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-										</span>
-          </div>
-        </div>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Nhập mật khẩu"
+               formControlName="password">
       </div>
       <div class="small-red-text"
            *ngIf="createUserForm.get('password')?.hasError('required') && createUserForm.get('password')?.touched">
