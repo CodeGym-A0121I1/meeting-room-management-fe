@@ -38,6 +38,8 @@ export class CreateUserComponent implements OnInit {
         Validators.pattern('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,30}$')]],
       role: ['', Validators.required],
       fullName: ['', [Validators.required, Validators.maxLength(30)]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('/((09|03|07|08|05)+([0-9]{8})\\b)/g')]],
       department: ['', Validators.required]
     });
     $(document).ready(function () {
@@ -108,7 +110,9 @@ export class CreateUserComponent implements OnInit {
     let user: UserDTO = {
       fullName: this.createUserForm.value.fullName,
       account: account,
-      department: department
+      department: department,
+      email: this.createUserForm.value.email,
+      phone: this.createUserForm.value.phone
     }
 
     this.account = account;
