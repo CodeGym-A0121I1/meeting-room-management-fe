@@ -5,7 +5,7 @@ import {CategoryDTO} from "../model/dto/CategoryDTO";
 import {Category} from "../model/equipment/Category";
 import {AuthService} from "./auth.service";
 import {Equipment} from "../model/equipment/Equipment";
-import {QuantityCategory} from "../model/DTO/QuantityCategory";
+import {QuantityCategory} from "../model/dto/QuantityCategory";
 
 @Injectable({
   providedIn: 'root'

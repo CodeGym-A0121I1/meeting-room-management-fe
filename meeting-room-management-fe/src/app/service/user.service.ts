@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 
-import {UserDTO} from "../model/DTO/UserDTO";
+import {UserDTO} from "../model/dto/UserDTO";
 import {Department} from "../model/user/Department";
 import {User} from "../model/user/User";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AuthService} from "./auth.service";
-import {ChangePasswordRequestDTO} from "../model/DTO/ChangePasswordRequestDTO";
+import {ChangePasswordRequestDTO} from "../model/dto/ChangePasswordRequestDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +36,6 @@ export class UserService {
     return this.http.get<Array<Department>>(this.apiDepartment, {headers: this.headers});
   }
 
-
-
   getAllUser(): Observable<any> {
     return this.http.get<any>(this.API_USER, {headers: this.headers})
   }
@@ -59,8 +57,8 @@ export class UserService {
     return this.http.get<Department[]>(`${this.API_USER}/department`, {headers: this.headers});
   }
 
-  public getAllUsername(): Observable<String[]> {
-    return this.http.get<String[]>(`${this.API_USER}/username`, {headers: this.headers});
+  public getAllUsername(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.API_USER}/username`, {headers: this.headers});
   }
 
   getAccountByUsername(username: any): Observable<User> {

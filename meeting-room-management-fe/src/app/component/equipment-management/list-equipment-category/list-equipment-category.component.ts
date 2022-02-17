@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EquipmentService} from "../../../service/equipment.service";
-import {QuantityCategory} from "../../../model/DTO/QuantityCategory";
+import {QuantityCategory} from "../../../model/dto/QuantityCategory";
 import {Router} from "@angular/router";
 
 @Component({

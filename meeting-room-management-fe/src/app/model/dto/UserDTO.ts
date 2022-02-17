@@ -5,4 +5,6 @@ export class UserDTO {
   fullName: string;
   account: Account;
   department: Department;
+  email: string;
+  phone: string;
 }

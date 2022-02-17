@@ -8,6 +8,7 @@ import {CreateUserComponent} from './create-user/create-user.component';
 import {UpdateUserComponent} from './update-user/update-user.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ConfirmEqualValidatorDirective} from "../../validator/confirm-equal-validator.directive";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     ChangePasswordUserComponent,
     CreateUserComponent,
     UpdateUserComponent,
+    ConfirmEqualValidatorDirective
   ],
     imports: [
         CommonModule,

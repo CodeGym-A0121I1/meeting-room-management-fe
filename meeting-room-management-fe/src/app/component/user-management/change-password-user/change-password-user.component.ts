@@ -9,7 +9,7 @@ import {
 import {UserService} from "../../../service/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../../../service/auth.service";
-import {ChangePasswordRequestDTO} from "../../../model/DTO/ChangePasswordRequestDTO";
+import {ChangePasswordRequestDTO} from "../../../model/dto/ChangePasswordRequestDTO";
 
 @Component({
   selector: 'app-change-password-user',

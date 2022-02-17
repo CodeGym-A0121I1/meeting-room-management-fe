@@ -5,7 +5,7 @@ export interface User {
   id: number,
   fullName: string;
   email: string;
-  phone: string
+  phone: string;
   department: Department;
   account: Account;
 }
