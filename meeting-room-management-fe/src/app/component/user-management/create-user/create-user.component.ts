@@ -39,23 +39,9 @@ export class CreateUserComponent implements OnInit {
       role: ['', Validators.required],
       fullName: ['', [Validators.required, Validators.maxLength(30)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('/((09|03|07|08|05)+([0-9]{8})\\b)/g')]],
+      phone: ['', [Validators.required, Validators.pattern('^((09|03|07|08|05)([0-9]{8}))$')]],
       department: ['', Validators.required]
     });
-    // $(document).ready(function () {
-    //   $("#show_hide_password a").on('click', function (event) {
-    //     event.preventDefault();
-    //     if ($('#show_hide_password input').attr("type") == "text") {
-    //       $('#show_hide_password input').attr('type', 'password');
-    //       $('#show_hide_password i').addClass("fa-eye-slash");
-    //       $('#show_hide_password i').removeClass("fa-eye");
-    //     } else if ($('#show_hide_password input').attr("type") == "password") {
-    //       $('#show_hide_password input').attr('type', 'text');
-    //       $('#show_hide_password i').removeClass("fa-eye-slash");
-    //       $('#show_hide_password i').addClass("fa-eye");
-    //     }
-    //   });
-    // });
     this.getDepartments();
     this.getUsername();
     this.userService.getAllUsername().subscribe((data: string[]) => {

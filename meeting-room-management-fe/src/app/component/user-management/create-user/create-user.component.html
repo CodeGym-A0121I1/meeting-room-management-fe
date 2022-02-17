@@ -66,18 +66,6 @@
         <p>Xác nhận mật khẩu không được để trống</p>
       </div>
       <div class="small-red-text"
-           *ngIf="createUserForm.get('confirmPassword')?.hasError('minlength') && createUserForm.get('confirmPassword')?.touched">
-        <p>Xác nhận mật khẩu tối thiểu 6 kí tự</p>
-      </div>
-      <div class="small-red-text"
-           *ngIf="createUserForm.get('confirmPassword')?.hasError('maxlength') && createUserForm.get('confirmPassword')?.touched">
-        <p>Xác nhận mật khẩu tối đa 30 kí tự</p>
-      </div>
-      <div class="small-red-text"
-           *ngIf="createUserForm.get('confirmPassword')?.hasError('pattern') && createUserForm.get('confirmPassword')?.touched">
-        <p>Xác nhận mật khẩu phải có 1 kí tự hoa, 1 kí tự số và 1 kí tự đặc biệt</p>
-      </div>
-      <div class="small-red-text"
            *ngIf="createUserForm.get('confirmPassword')?.hasError('notEqual') && createUserForm.get('confirmPassword')?.touched">
         <p>Mật khẩu xác nhận không khớp</p>
       </div>
